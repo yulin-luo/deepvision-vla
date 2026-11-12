@@ -38,11 +38,12 @@ tar -xjf "$DV_ASSETS/cache/micromamba-2.10.0.tar.bz2" \
 "$DV_WORK/tools/bin/micromamba" create -y -p "$DV_WORK/env" \
   --file "$DV_PACKAGE/locks/conda-linux-64.lock"
 
-export DV_PY="$DV_WORK/env/bin/python"
-"$DV_PY" -m pip install -r "$DV_PACKAGE/requirements.txt"
-"$DV_PY" -m pip install --no-deps --no-build-isolation -e "$DV_PACKAGE"
-"$DV_PY" -m pip check
-"$DV_PY" -m deepvision_vla --help
+eval "$("$DV_WORK/tools/bin/micromamba" shell hook -s bash)"
+micromamba activate "$DV_WORK/env"
+python -m pip install -r "$DV_PACKAGE/requirements.txt"
+python -m pip install --no-deps --no-build-isolation -e "$DV_PACKAGE"
+python -m pip check
+python -m deepvision_vla --help
 ```
 
 The lock file pins the conda dependencies, including Xvfb, Mesa and DBus. `environment.yml` lists the dependency recipe; use the lock file above to install the tested versions. Python dependencies are pinned in `requirements.txt`.
@@ -54,13 +55,13 @@ Transformers 4.57.0 is explicitly pinned because the model depends on its modifi
 Read the [third-party terms](../THIRD_PARTY_NOTICES.md) before obtaining the simulator. The helper downloads fixed upstream revisions and checks their hashes:
 
 ```bash
-"$DV_PY" -m deepvision_vla prepare-rlbench \
+python -m deepvision_vla prepare-rlbench \
   --output-root "$DV_WORK/deps" --cache "$DV_ASSETS/cache/native"
 
 export COPPELIASIM_ROOT="$DV_WORK/deps/CoppeliaSim"
-"$DV_PY" -m pip install --no-deps --no-build-isolation \
+python -m pip install --no-deps --no-build-isolation \
   -e "$DV_WORK/deps/PyRep" -e "$DV_WORK/deps/RLBench"
-"$DV_PY" -m pip check
+python -m pip check
 ```
 
 A C compiler such as gcc is needed to build the PyRep CFFI extension. Keep `--no-deps` when installing RLBench: its upstream setup otherwise requests an unpinned Git dependency.
@@ -81,7 +82,7 @@ The environment includes DBus, GLib and PCRE2, which are required by the simulat
 After generating your config, run this CPU-only check before evaluation:
 
 ```bash
-"$DV_PY" -m deepvision_vla doctor --config "$DV_WORK/rlbench-config.json"
+python -m deepvision_vla doctor --config "$DV_WORK/rlbench-config.json"
 ```
 
 `doctor` checks for missing shared libraries before loading the model or starting an episode.
@@ -94,10 +95,13 @@ If a download is interrupted, rerun setup with a new output directory and the sa
 
 Return to [Quick start — checkpoint download](../README.md#2-download-the-rlbench-10-checkpoint) to download the model and generate your configuration. The checkpoint helper also verifies the required file hashes.
 
-Keep `DV_WORK`, `DV_ASSETS`, and `DV_PY` set in the shell used for the remaining commands. To use the shorter `deepvision` console command instead of `"$DV_PY" -m deepvision_vla`, add this environment to the current shell's path:
+In a new Bash session, set `DV_WORK` and `DV_ASSETS` to the same paths and activate the environment:
 
 ```bash
-export PATH="$DV_WORK/env/bin:$PATH"
+eval "$("$DV_WORK/tools/bin/micromamba" shell hook -s bash)"
+micromamba activate "$DV_WORK/env"
 ```
+
+Then use `python -m deepvision_vla` or the shorter `deepvision` command.
 
 Configuration sets up the simulator paths and headless display. Use an available GPU and a new output directory for each run.

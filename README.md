@@ -58,18 +58,18 @@ git clone https://github.com/yulin-luo/deepvision-vla.git
 cd deepvision-vla
 ```
 
-Follow [Linux installation](docs/INSTALL_LINUX.md) to create the environment and install the package. Simulator dependencies are needed only for RLBench evaluation. The commands below use `DV_WORK`, `DV_ASSETS`, and `DV_PY` from that guide.
+Follow [Linux installation](docs/INSTALL_LINUX.md) to create the environment and install the package. Simulator dependencies are needed only for RLBench evaluation. Activate the environment before continuing. The commands below use `DV_WORK` and `DV_ASSETS` from that guide.
 
 The reference environment uses **Python 3.10.20, PyTorch 2.12.1 + CUDA 13.0, and Transformers 4.57.0**. Keep the source checkout: it includes the modified Transformers implementation used by the model.
 
 ```bash
-"$DV_PY" -m deepvision_vla --help
+python -m deepvision_vla --help
 ```
 
 ### 2. Download the RLBench-10 checkpoint
 
 ```bash
-"$DV_PY" -m deepvision_vla download \
+python -m deepvision_vla download \
   --output-root "$DV_ASSETS/rlbench10-model" \
   --cache "$DV_ASSETS/cache/huggingface"
 
@@ -84,7 +84,7 @@ The command downloads and verifies the checkpoint. No Hugging Face login or sepa
 For image inference alone, no PyRep, RLBench or CoppeliaSim directories are required:
 
 ```bash
-"$DV_PY" -m deepvision_vla configure \
+python -m deepvision_vla configure \
   --checkpoint "$DV_CHECKPOINT" \
   --verification-receipt "$DV_VERIFICATION" \
   --env-prefix "$DV_WORK/env" --image-only \
@@ -108,7 +108,7 @@ Create a request JSON beside an **uncropped 224 × 224 front-view RGB image**:
 Save the request as, for example, `$DV_WORK/request.json` and place `input.png` beside it. Select an available physical GPU:
 
 ```bash
-"$DV_PY" -m deepvision_vla image \
+python -m deepvision_vla image \
   --config "$DV_WORK/image-config.json" \
   --request "$DV_WORK/request.json" \
   --task close_box --gpu 0 \
@@ -136,13 +136,13 @@ The evaluator supports **10 tasks**: closing a box, fridge and laptop; placing a
 Before evaluating, complete the native-dependency section of [Linux installation](docs/INSTALL_LINUX.md), then generate a full configuration and check its libraries:
 
 ```bash
-"$DV_PY" -m deepvision_vla configure \
+python -m deepvision_vla configure \
   --checkpoint "$DV_CHECKPOINT" \
   --verification-receipt "$DV_VERIFICATION" \
   --env-prefix "$DV_WORK/env" --deps-root "$DV_WORK/deps" \
   --output "$DV_WORK/rlbench-config.json"
 
-"$DV_PY" -m deepvision_vla doctor --config "$DV_WORK/rlbench-config.json"
+python -m deepvision_vla doctor --config "$DV_WORK/rlbench-config.json"
 ```
 
 `doctor` checks simulator libraries before evaluation. Use the full configuration above for RLBench; image-only configurations do not include simulator dependencies.
@@ -150,7 +150,7 @@ Before evaluating, complete the native-dependency section of [Linux installation
 ### One task
 
 ```bash
-"$DV_PY" -m deepvision_vla eval \
+python -m deepvision_vla eval \
   --config "$DV_WORK/rlbench-config.json" \
   --task close_box --episodes 50 --gpu 0 \
   --output "$DV_WORK/runs/close-box-001"
@@ -161,7 +161,7 @@ Use `--episodes 1` for a single-episode integration check. The protocol uses var
 ### Summarize saved results
 
 ```bash
-"$DV_PY" -m deepvision_vla audit-rollouts \
+python -m deepvision_vla audit-rollouts \
   --output-root "$DV_WORK/runs/close-box-001" \
   --task close_box --episodes 50 \
   --receipt "$DV_WORK/runs/close-box-001-summary.json"
@@ -172,7 +172,7 @@ The summary reports requested episodes, actual attempts, successes, failures, an
 ### All ten tasks
 
 ```bash
-"$DV_PY" -m deepvision_vla evaluate-all \
+python -m deepvision_vla evaluate-all \
   --config "$DV_WORK/rlbench-config.json" --gpu 0 \
   --output "$DV_WORK/runs/rlbench10-001"
 ```
