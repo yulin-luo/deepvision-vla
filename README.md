@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>👁️ DeepVision-VLA</h1>
+  <h1>DeepVision-VLA</h1>
   <h3>Look Before Acting: Enhancing Vision Foundation Representations<br>for Vision-Language-Action Models</h3>
   <p><strong>ACM Multimedia 2026</strong></p>
   <p>Yulin Luo · Hao Chen · Zhuangzhe Wu · Bowen Sui · Jiaming Liu<br>Chenyang Gu · Zhuoyang Liu · Peng Jia · Pheng-Ann Heng · Shanghang Zhang</p>
