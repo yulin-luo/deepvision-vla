@@ -1,0 +1,24 @@
+# Direct dependencies for Linux inference and RLBench evaluation.
+# Exact conda artifacts are recorded separately in locks/conda-linux-64.lock.
+name: deepvision-v01
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10.20
+  - pip
+  - xorg-xvfb-server=21.1.25=h00d0823_0
+  - xorg-xauth=1.1.5
+  - xkbcomp
+  - xkeyboard-config=2.48
+  - libglu
+  - libglx
+  - libxkbcommon
+  - fontconfig
+  - xorg-libsm
+  - xorg-libice
+  - mesalib=26.3.0
+  - dbus=1.16.2=he8c428d_2
+  - libglib=2.90.1=h569388d_1
+  - pcre2=10.47=h8b3dc9c_1
+  - pip:
+      - -r requirements.txt

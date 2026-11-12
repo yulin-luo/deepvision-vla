@@ -1,0 +1,36 @@
+DeepVision-VLA
+Copyright 2026 DeepVision-VLA Authors
+
+This distribution includes or modifies software from:
+
+- Hugging Face Transformers (https://github.com/huggingface/transformers),
+  Copyright 2018- The Hugging Face team, licensed under the Apache License 2.0.
+  The selected runtime, including the DeepVision-VLA modifications for
+  VL-MoT and AGVP, is preserved in `model_runtime/transformers/`.
+  See `model_runtime/transformers/LICENSE` for the original license.
+
+- Janus (https://github.com/deepseek-ai/Janus), Copyright 2023 DeepSeek,
+  MIT License. The `model_runtime/deepvision/` package is derived from Janus and contains local
+  VLA extensions. See `model_runtime/deepvision/LICENSE-CODE`.
+
+- OpenVLA (https://github.com/openvla/openvla), Copyright 2024 Moo Jin Kim,
+  Karl Pertsch, and Siddharth Karamcheti, MIT License. The action discretizer
+  in `model_runtime/deepvision/models/action_tokenizer.py` is adapted from OpenVLA. See
+  `licenses/OpenVLA_MIT_LICENSE.txt`.
+
+- OpenVLA-OFT (https://github.com/moojink/openvla-oft), Copyright 2025 Moo Jin
+  Kim, Chelsea Finn, and Percy Liang, MIT License. The continuous action head
+  in `model_runtime/deepvision/models/action_head.py` is adapted from OpenVLA-OFT. See
+  `licenses/OpenVLA_OFT_MIT_LICENSE.txt`.
+
+- LIFT3D (https://github.com/PKU-HMI-Lab/LIFT3D), Copyright 2024 Sixiang
+  Chen and Yueru Jia, MIT License. A minimal, project-pinned RLBench helper
+  subset is distributed under `model_runtime/third_party/lift3d/`; see
+  `model_runtime/third_party/lift3d/LICENSE` and `model_runtime/third_party/lift3d/README.md`.
+
+External components required for RLBench simulator rollout (CoppeliaSim,
+PyRep, the LIFT3D-pinned RLBench fork, and optional pytorch3d) are not
+distributed with this repository and retain their own licenses; see
+`docs/INSTALL_LINUX.md`.
+
+Source locations: Transformers is preserved under model_runtime/transformers; Janus-derived code under model_runtime/deepvision; LIFT3D under model_runtime/third_party/lift3d. OpenVLA and OpenVLA-OFT notices are supplied under licenses/. Current environment instructions are docs/INSTALL_LINUX.md. Original source notices are preserved in model_runtime/NOTICE.

@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "profiles": {
+    "hf-legacy-224-v1": {
+      "data": {
+        "image_path_contract": "relative-json-dir",
+        "native_image_resolution": 224,
+        "rotation_encoding": "euler-xyz-negpi-pi"
+      },
+      "description": "Original Hugging Face RLBench10 release: relative PNG paths, native 224x224 frames, Euler xyz in [-pi, pi].",
+      "fingerprints": {
+        "data_sha256": [
+          "06a199c7d109950305d06666879ba496de0d87cde87fcb30e9bb92e04032dfbc"
+        ],
+        "path_hints": [
+          "rlbench_hf_snapshots/",
+          "hf-rlbench-10-revisions/",
+          "hf_compare/rlbench-10/"
+        ],
+        "stats_sha256": [
+          "93fd324d5fca8b9974171d155ced8cbdf8de9f3188ff004330082433004231b7"
+        ]
+      },
+      "simulator": {
+        "camera_resolution": 224,
+        "default_task_base_yaw_offset": 0.0,
+        "task_base_yaw_offsets": {
+          "close_fridge": 3.141592653589793,
+          "place_wine_at_rack_location": 3.141592653589793,
+          "toilet_seat_down": 3.141592653589793
+        }
+      }
+    }
+  }
+}

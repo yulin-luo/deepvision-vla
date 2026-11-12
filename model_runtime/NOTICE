@@ -1,0 +1,36 @@
+DeepVision-VLA
+Copyright 2026 DeepVision-VLA Authors
+
+This distribution includes or modifies software from:
+
+- Hugging Face Transformers (https://github.com/huggingface/transformers),
+  Copyright 2018- The Hugging Face team, licensed under the Apache License 2.0.
+  `transformers_replace/` ships only the files DeepVision-VLA modifies in
+  Transformers v4.57.0 to implement VL-MoT (shared attention between the DINOv3
+  vision expert and the Qwen3-VL backbone) and AGVP (action-guided visual
+  pruning); `apply_overlay.sh` copies them over the pinned upstream release.
+  See `transformers_replace/LICENSE` for the original license.
+
+- Janus (https://github.com/deepseek-ai/Janus), Copyright 2023 DeepSeek,
+  MIT License. The `deepvision/` package is derived from Janus and contains local
+  VLA extensions. See `deepvision/LICENSE-CODE`.
+
+- OpenVLA (https://github.com/openvla/openvla), Copyright 2024 Moo Jin Kim,
+  Karl Pertsch, and Siddharth Karamcheti, MIT License. The action discretizer
+  in `deepvision/models/action_tokenizer.py` is adapted from OpenVLA. See
+  `third_party/openvla/LICENSE`.
+
+- OpenVLA-OFT (https://github.com/moojink/openvla-oft), Copyright 2025 Moo Jin
+  Kim, Chelsea Finn, and Percy Liang, MIT License. The continuous action head
+  in `deepvision/models/action_head.py` is adapted from OpenVLA-OFT. See
+  `third_party/openvla-oft/LICENSE`.
+
+- LIFT3D (https://github.com/PKU-HMI-Lab/LIFT3D), Copyright 2024 Sixiang
+  Chen and Yueru Jia, MIT License. A minimal, project-pinned RLBench helper
+  subset is distributed under `third_party/lift3d/`; see
+  `third_party/lift3d/LICENSE` and `third_party/lift3d/README.md`.
+
+External components required for RLBench simulator rollout (CoppeliaSim,
+PyRep, the LIFT3D-pinned RLBench fork, and optional pytorch3d) are not
+distributed with this repository and retain their own licenses; see
+`docs/RLBENCH_REPRODUCTION.md`.

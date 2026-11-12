@@ -1,0 +1,27 @@
+{
+  "observed_date": "2026-11-11",
+  "licenses": [
+    {
+      "component": "OpenVLA",
+      "repository": "openvla/openvla",
+      "path": "LICENSE",
+      "blob": "04f26a7d0bfdeb89ce54681c695a40df21aa6d96",
+      "copy": "licenses/OpenVLA_MIT_LICENSE.txt"
+    },
+    {
+      "component": "OpenVLA-OFT",
+      "repository": "moojink/openvla-oft",
+      "path": "LICENSE",
+      "blob": "b2c22d519c9b30ad4cc809cb686074f658520044",
+      "copy": "licenses/OpenVLA_OFT_MIT_LICENSE.txt"
+    },
+    {
+      "component": "DINOv3",
+      "repository": "facebookresearch/dinov3",
+      "path": "LICENSE.md",
+      "blob": "f531b1e6b5ab2318957bbf8ad1bda9f800a23e17",
+      "copy": "licenses/DINOv3_LICENSE.md"
+    }
+  ],
+  "model_publication": false
+}

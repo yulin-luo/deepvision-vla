@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "repo_type": "model",
+  "repo_id": "lyl010221-pku/deepvision-vla-rlbench10",
+  "revision": "f0a3a4c6eaa07e7e939452ad9dec66aa7c252fe3",
+  "checkpoint_subdirectory": "checkpoint-299-39300",
+  "inventory": "checkpoint_inventory.origin.json",
+  "checkpoint_role": "RLBench-10 fine-tuned downstream policy; action horizon1; general pretrained model is a separate future release",
+  "anonymous_access_observed_20261111": "Public checkpoint; no login required."
+}

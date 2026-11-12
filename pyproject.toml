@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deepvision-vla"
+version = "0.1.0"
+description = "DeepVision-VLA RLBench-10 inference and evaluation"
+requires-python = ">=3.10"
+readme = "README.md"
+license = {file = "LICENSE"}
+
+[project.scripts]
+deepvision = "deepvision_vla.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+deepvision_vla = ["assets/*.json", "assets/dino_runtime/*.json"]

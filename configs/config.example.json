@@ -1,0 +1,27 @@
+{
+  "source_root": "/path/to/deepvision-vla/model_runtime",
+  "checkpoint_root": "/path/to/checkpoint-299-39300",
+  "dino_runtime_root": "/path/to/matching-dino-config-and-processor",
+  "python_bin": "/path/to/deepvision-env/bin/python",
+  "profile_path": "/path/to/deepvision-vla/src/deepvision_vla/assets/rlbench_profile.json",
+  "sample_data_path": "",
+  "rlbench_root": "/path/to/RLBench_lift3d",
+  "pyrep_root": "/path/to/PyRep",
+  "coppeliasim_root": "/path/to/CoppeliaSim",
+  "host_library_path": "/path/to/deepvision-env/lib",
+  "display_argv": [
+    "/path/to/deepvision-env/bin/python",
+    "-m",
+    "deepvision_vla.runtime.display",
+    "--"
+  ],
+  "checkpoint_small_file_sha256": {
+    "training_config.json": "709d27b8683674f28f979f64ee16456175889523768727a60daba1f7af7021f8",
+    "stats_data.json": "93fd324d5fca8b9974171d155ced8cbdf8de9f3188ff004330082433004231b7"
+  },
+  "image_only": false,
+  "native_library_paths": [],
+  "checkpoint_verification_receipt": "/path/to/checkpoint_verification.json",
+  "checkpoint_verification_receipt_sha256": "REPLACE_WITH_GENERATED_RECEIPT_SHA256",
+  "checkpoint_inventory_sha256": "3600e41c5db2bdbd21649000b2d633b85fd04c847848f49fb2b32bf9ccd1f500"
+}
