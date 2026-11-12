@@ -4,15 +4,29 @@
 
 ## Model
 
-The released checkpoint is a complete RLBench-10 downstream policy. It initializes from Full32 embodied pretraining and is then fine-tuned on RLBench for 300 epochs / 39,300 updates, with training seed 42, learning rate 2e-5, shared crop 0.9 and full DINOv3 fine-tuning. It uses seven decoupled action queries and an action horizon of one.
+The released checkpoint is an embodied-pretrained DeepVision-VLA policy fine-tuned on RLBench-10. It includes the backbone/tokenizer, DINOv3, aligner, action head, configuration and action statistics. The embodied-pretraining checkpoint will be released separately.
 
-The model repository revision is `f0a3a4c6eaa07e7e939452ad9dec66aa7c252fe3`; the checkpoint lives under `checkpoint-299-39300`. All required components are included in the twenty-file bundle. The general embodied-pretraining checkpoint is planned as a separate release.
+See [checkpoint setup](CHECKPOINT_DELIVERY.md) for the download revision and directory.
+
+## Model specifications
+
+| Setting | Value |
+| --- | --- |
+| RLBench fine-tuning | 300 epochs / 39,300 updates |
+| Training seed | 42 |
+| Learning rate | 2e-5 |
+| DINOv3 during fine-tuning | Full fine-tuning |
+| Action horizon | 1 |
+| Action queries | 7 decoupled queries |
+| Observation | 224 × 224 front-view RGB + instruction |
+| Preprocessing | Matched crop 0.9; Qwen input 256 × 256; DINOv3 input 512 × 512 |
+| Robot-state conditioning | None |
+| Action output | World-frame EEF XYZ delta, absolute extrinsic XYZ Euler angles in radians, and gripper |
+| Action normalization | Saved q01/q99 statistics, without clipping |
 
 ## Inputs and outputs
 
-Input is a 224×224 front-view RGB observation and an instruction. The matched preprocessing applies crop 0.9 and prepares a 256-resolution Qwen input and a 512-resolution DINOv3 input. Robot state is not used as policy conditioning.
-
-The output has seven values: world-frame EEF XYZ delta, absolute extrinsic XYZ Euler angles in radians, and gripper. Saved quantile statistics use unclipped normalization. An optional measured EEF position is used only to decode an absolute execution target, adding the predicted XYZ delta once.
+The policy predicts seven action values from an image and instruction. An optional measured EEF position is used only to decode an absolute execution target by adding the XYZ delta once; it is not an input to the policy.
 
 ## Usage
 

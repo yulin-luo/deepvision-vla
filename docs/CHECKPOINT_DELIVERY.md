@@ -4,9 +4,9 @@
 
 - **Revision:** `f0a3a4c6eaa07e7e939452ad9dec66aa7c252fe3`
 - **Checkpoint directory:** `checkpoint-299-39300`
-- **Contents:** 20 required files, 11,391,500,062 bytes
+- **Download size:** 11.39 GB
 
-This is the complete RLBench-10-fine-tuned policy: backbone/tokenizer, saved DINOv3, aligner, action head, configuration and action statistics. It can be used directly for inference; the separate embodied-pretraining checkpoint is not required.
+This checkpoint is fine-tuned on RLBench-10 and includes all components needed for inference. No separate base-model download is required.
 
 ## Download and verify
 
@@ -17,7 +17,7 @@ deepvision download --output-root /new/assets/rlbench10-model \
   --cache /your/asset-cache/huggingface
 ```
 
-No Hugging Face login is required. The downloader retrieves the pinned revision and verifies all required bytes. It writes `checkpoint_verification.json` outside the checkpoint directory. Reuse that receipt when generating a configuration:
+No Hugging Face login is required. The downloader checks file integrity and writes `checkpoint_verification.json` next to the checkpoint directory. Pass that file when configuring the model:
 
 ```bash
 deepvision configure \
@@ -35,8 +35,8 @@ deepvision verify --checkpoint /your/checkpoint-299-39300 \
   --receipt /new/checkpoint-verification.json
 ```
 
-Pass that receipt to `configure --verification-receipt`. If the option is omitted, configuration performs a full verification and records a new receipt alongside the configuration. A failed or unsealed old receipt is not accepted as proof of current file identity.
+Pass the generated file to `configure --verification-receipt`. Without this option, configuration verifies the checkpoint again.
 
-The receipt binds the full pinned inventory to stable file identities observed before and after hashing. Configuration records the receipt identity, and launches check that neither the receipt nor the selected files changed. If weights or links change, verify again and generate a new configuration. This avoids hashing the 11 GB bundle before every episode while detecting changes to an existing copy.
+After changing checkpoint files or their links, run verification again and generate a new configuration. Unchanged checkpoints can reuse the verification file across runs.
 
-Use a new config/receipt path rather than overwriting earlier records. The checkpoint's original provenance paths are metadata, not required server locations. See the [model card](MODEL_CARD.md) for model and action conventions, and [third-party notices](../THIRD_PARTY_NOTICES.md) for component licences.
+See the [model card](MODEL_CARD.md) for model specifications and action conventions, and [third-party notices](../THIRD_PARTY_NOTICES.md) for licenses.

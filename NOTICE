@@ -28,9 +28,6 @@ This distribution includes or modifies software from:
   subset is distributed under `model_runtime/third_party/lift3d/`; see
   `model_runtime/third_party/lift3d/LICENSE` and `model_runtime/third_party/lift3d/README.md`.
 
-External components required for RLBench simulator rollout (CoppeliaSim,
-PyRep, the LIFT3D-pinned RLBench fork, and optional pytorch3d) are not
-distributed with this repository and retain their own licenses; see
+External simulator dependencies (CoppeliaSim, PyRep and RLBench) retain
+their own licenses and are downloaded separately; see
 `docs/INSTALL_LINUX.md`.
-
-Source locations: Transformers is preserved under model_runtime/transformers; Janus-derived code under model_runtime/deepvision; LIFT3D under model_runtime/third_party/lift3d. OpenVLA and OpenVLA-OFT notices are supplied under licenses/. Current environment instructions are docs/INSTALL_LINUX.md. Original source notices are preserved in model_runtime/NOTICE.

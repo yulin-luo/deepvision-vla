@@ -1,6 +1,6 @@
-# One image and an instruction, without labels
+# Image inference
 
-The RLBench-10 checkpoint predicts an action from one image and an instruction. Use the complete checkpoint and the environment described in [installation](INSTALL_LINUX.md); a training dataset and simulator are not needed for image inference.
+The RLBench-10 checkpoint predicts an action from one image and an instruction. Image inference does not require a training dataset or simulator.
 
 First install the Python environment in [Linux installation](INSTALL_LINUX.md), obtain the [checkpoint and verification receipt](CHECKPOINT_DELIVERY.md), and configure the image-only interface:
 
@@ -22,7 +22,7 @@ Create a request JSON next to your own input image:
 }
 ```
 
-`image` resolves relative to the request file. Supply the original uncropped 224×224 front-view RGB image for this trained profile; the scientific preprocessing applies the matched crop 0.9 and model-specific image processing. Another camera/input protocol is not silently substituted.
+`image` is relative to the request file. Supply an uncropped 224×224 front-view RGB image. The pipeline applies the matched crop 0.9 and prepares inputs for Qwen and DINOv3.
 
 ```bash
 python -m deepvision_vla image --config /new/image-config.json --output /new/image-output \
@@ -31,14 +31,14 @@ python -m deepvision_vla audit-image --output-root /existing/image-output \
   --receipt /new/image-summary.json
 ```
 
-Use one actually available card; the launcher checks compute/graphics occupancy and actual CUDA PCI identity. The task option selects the pinned model/profile context. **The image API preserves your explicit instruction** and does not replace it using the RLBench task-name overrides. This does not mean paraphrase/compositional performance has been measured.
+Choose an available GPU. `--task` selects the RLBench task profile. The instruction in your request is passed directly to the model.
 
-The output `results/image_prediction/prediction.json` contains one finite 7D denormalized vector:
+The output `results/image_prediction/prediction.json` contains a seven-dimensional action vector in physical units:
 
 `[world_delta_x, world_delta_y, world_delta_z, absolute_roll, absolute_pitch, absolute_yaw, gripper]`
 
-Rotation is absolute extrinsic XYZ Euler in radians. Normalization uses the saved unclipped q01/q99 contract. Gripper decoding comes from the original scientific function; no new clipping or threshold is introduced in this API.
+Rotation is absolute extrinsic XYZ Euler in radians. Action decoding uses the checkpoint's saved q01/q99 statistics without clipping.
 
-Optionally include `current_ee_position_xyz` as a JSON list of three **measured world-frame position values in meters**. It is used only after prediction to add the XYZ delta once. The receipt then also includes `execution_xyz_xyzw_grip`, an 8D command with absolute world position and the original Euler-to-xyzw codec. Position is not a policy-conditioning input; no robot-state tokens are sent to this checkpoint. If no measured position is provided, the decoded execution command remains null.
+Optionally include `current_ee_position_xyz`: three measured world-frame coordinates in meters. The decoder adds the predicted XYZ delta once and returns `execution_xyz_xyzw_grip`, containing absolute position, an xyzw quaternion, and gripper. The measured position is used only for decoding, not as a policy input. Without it, this field is null.
 
-The API never executes an action. It reports simulator episodes0 and RLBench success rate null. It rejects GT/unknown request fields and preserves existing output directories instead of overwriting them.
+Image inference returns a prediction without executing it. Use a new output directory for each request.

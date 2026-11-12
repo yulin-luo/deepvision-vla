@@ -11,12 +11,12 @@
 
 - [Image inference](../src/deepvision_vla/inference/image.py): RGB-plus-instruction requests and prediction output.
 - [Evaluation](../src/deepvision_vla/evaluation/runner.py): single-task evaluation on a selected GPU.
-- [Strict loading](../src/deepvision_vla/runtime/strict_entry.py): checkpoint-key and tensor checks before prediction.
+- [Checkpoint loading](../src/deepvision_vla/runtime/strict_entry.py): model loading and parameter checks before prediction.
 - [Setup tools](../src/deepvision_vla/tools/): checkpoint download, verification and configuration.
 
 Run `deepvision --help` to see the available commands. `python -m deepvision_vla` provides the same interface using your selected Python interpreter.
 
-## Directory boundaries
+## Package layout
 
 `src/deepvision_vla` contains the user-facing interface and runtime orchestration. `model_runtime` groups the model implementation, modified Transformers and the LIFT3D helper subset. Keeping their relative layout preserves the runtime's existing imports.
 

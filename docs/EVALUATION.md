@@ -24,7 +24,7 @@ deepvision eval --config /your/config.json --output /new/close-box-results \
   --gpu 0 --task close_box --episodes 50
 ```
 
-A one-episode environment check uses the same command with `--episodes 1`. Each run requires a new output directory. No failed episode is silently retried with a replacement seed.
+A one-episode environment check uses the same command with `--episodes 1`. Each run requires a new output directory.
 
 The checkpoint uses variation 0, a 224×224 front RGB observation, matched crop 0.9, and no robot-state conditioning. Each episode permits at most 10 policy steps. The evaluation seed is `42 + episode_id * 1009`; the reset adapter makes one reset attempt for each episode identity. The selected model profile is `hf-legacy-224-v1`.
 
@@ -39,7 +39,7 @@ deepvision audit-rollouts --output-root /existing/close-box-results \
   --task close_box --episodes 50 --receipt /new/close-box-summary.json
 ```
 
-The summary separates requested episodes, actual model attempts, successes, model failures, failures before policy entry, and missing outcomes. Reset or infrastructure failures remain in the request count. A partial run is reported as incomplete. Audit commands read saved results; they do not replay the model or simulator.
+The summary reports requested episodes, actual model attempts, successes, model failures, failures before policy entry, and missing outcomes. Reset or infrastructure failures remain in the request count, and partial runs are marked incomplete. This command summarizes saved files without rerunning evaluation.
 
 ## Evaluate all ten tasks
 
@@ -48,4 +48,4 @@ deepvision evaluate-all --config /your/config.json \
   --output /new/rlbench10-results --gpu 0
 ```
 
-This explicitly requests 50 episodes per task, for 500 total requests, using the same single-GPU protocol. It stops if a task is not fully accepted and does not resume or retry an existing output automatically. Installation and image inference do not start this evaluation.
+This runs 50 episodes per task, for 500 requests on one GPU. It stops if a task does not produce a complete result. Episodes are not automatically retried or replaced with different seeds.

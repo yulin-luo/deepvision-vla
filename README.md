@@ -17,7 +17,7 @@
 
 - **2026.11.11** — Initial release of the inference code, RLBench-10 evaluation pipeline, and [RLBench-10 fine-tuned checkpoint](https://huggingface.co/lyl010221-pku/deepvision-vla-rlbench10).
 
-Training code and embodied-pretraining checkpoints are planned for a later release. Future releases will be announced here.
+Training code and embodied-pretraining checkpoints will follow.
 
 <a name="overview"></a>
 
@@ -37,7 +37,7 @@ Training code and embodied-pretraining checkpoints are planned for a later relea
   <img src="assets/method.png" alt="DeepVision-VLA architecture, Action-Guided Visual Pruning, and vision-language shared attention" width="960">
 </p>
 
-The figures illustrate the method and results reported in the paper. This release provides **image inference and single-GPU RLBench-10 evaluation** with the downstream checkpoint below.
+This release provides **image inference and single-GPU RLBench-10 evaluation**. The figures above show results from the paper.
 
 ## 🧭 Start here
 
@@ -58,9 +58,9 @@ git clone https://github.com/yulin-luo/deepvision-vla.git
 cd deepvision-vla
 ```
 
-Follow the Python-environment section of [the Linux setup guide](docs/INSTALL_LINUX.md) to install the pinned environment and editable package. Native simulator dependencies are needed only for RLBench evaluation. The guide defines `DV_WORK`, `DV_ASSETS`, and `DV_PY`; the commands below use those same paths.
+Follow [Linux installation](docs/INSTALL_LINUX.md) to create the environment and install the package. Simulator dependencies are needed only for RLBench evaluation. The commands below use `DV_WORK`, `DV_ASSETS`, and `DV_PY` from that guide.
 
-The reference environment uses **Python 3.10.20, PyTorch 2.12.1 + CUDA 13.0, and the modified Transformers 4.57.0 implementation**. Keep this source checkout alongside the editable package.
+The reference environment uses **Python 3.10.20, PyTorch 2.12.1 + CUDA 13.0, and Transformers 4.57.0**. Keep the source checkout: it includes the modified Transformers implementation used by the model.
 
 ```bash
 "$DV_PY" -m deepvision_vla --help
@@ -77,7 +77,7 @@ export DV_CHECKPOINT="$DV_ASSETS/rlbench10-model/checkpoint-299-39300"
 export DV_VERIFICATION="$DV_ASSETS/rlbench10-model/checkpoint_verification.json"
 ```
 
-The downloader retrieves the pinned model revision and checks all 20 required files. No Hugging Face login or separate base-model download is needed.
+The command downloads and verifies the checkpoint. No Hugging Face login or separate base-model download is needed.
 
 ### 3. Configure image inference
 
@@ -91,7 +91,8 @@ For image inference alone, no PyRep, RLBench or CoppeliaSim directories are requ
   --output "$DV_WORK/image-config.json"
 ```
 
-The downloader verifies the complete checkpoint once. Configuration binds that verification to the selected files; subsequent launches reject changed files or a changed receipt. For an existing model copy, follow [checkpoint verification](docs/CHECKPOINT_DELIVERY.md).
+For existing weights, see [how to reuse a checkpoint](docs/CHECKPOINT_DELIVERY.md#reuse-an-existing-checkpoint).
+
 ### 4. Run image inference
 
 Create a request JSON beside an **uncropped 224 × 224 front-view RGB image**:
@@ -114,7 +115,7 @@ Save the request as, for example, `$DV_WORK/request.json` and place `input.png` 
   --output "$DV_WORK/runs/image-001"
 ```
 
-The output is saved to `results/image_prediction/prediction.json` under the run directory. It contains **XYZ delta + absolute XYZ Euler rotation + gripper**. An optional measured current EEF position enables decoding an absolute execution target; it is not a policy input. Image inference predicts an action without executing it. See the [input/output specification](docs/IMAGE_INFERENCE.md).
+The prediction is saved to `results/image_prediction/prediction.json` under the run directory. It contains **XYZ delta, absolute XYZ Euler rotation, and gripper**. See [image inference](docs/IMAGE_INFERENCE.md) for the input and output formats.
 
 Use a **new output directory** for every run.
 
@@ -122,15 +123,9 @@ Use a **new output directory** for every run.
 
 ## 🤗 Checkpoint
 
-[**DeepVision-VLA RLBench-10**](https://huggingface.co/lyl010221-pku/deepvision-vla-rlbench10) is already fine-tuned on RLBench. It includes the backbone/tokenizer, saved DINOv3, aligner, action head, configuration and action statistics.
+[**DeepVision-VLA RLBench-10**](https://huggingface.co/lyl010221-pku/deepvision-vla-rlbench10) is fine-tuned on RLBench-10 and ready for inference and evaluation.
 
-- **Pinned revision:** `f0a3a4c6eaa07e7e939452ad9dec66aa7c252fe3`
-- **Checkpoint directory:** `checkpoint-299-39300`
-- **Action horizon:** 1, with seven decoupled action queries
-- **Image processing:** matched crop 0.9; 256-resolution Qwen input and 512-resolution DINOv3 input
-- **Action convention:** world-frame EEF XYZ delta, absolute extrinsic XYZ Euler angles in radians, and gripper
-
-The embodied-pretraining checkpoint is a separate planned release. It is not needed to run this RLBench checkpoint. See [checkpoint setup](docs/CHECKPOINT_DELIVERY.md) and the [model card](docs/MODEL_CARD.md).
+[Download and setup](docs/CHECKPOINT_DELIVERY.md) · [Model specifications](docs/MODEL_CARD.md#model-specifications)
 
 <a name="evaluation"></a>
 
@@ -150,7 +145,7 @@ Before evaluating, complete the native-dependency section of [Linux installation
 "$DV_PY" -m deepvision_vla doctor --config "$DV_WORK/rlbench-config.json"
 ```
 
-The native check uses the same dynamic-library paths as evaluation and reports missing Qt/X11 dependencies before a GPU/model is started. The pinned environment includes DBus. An image-only configuration cannot be used for simulation.
+`doctor` checks simulator libraries before evaluation. Use the full configuration above for RLBench; image-only configurations do not include simulator dependencies.
 
 ### One task
 
@@ -172,7 +167,7 @@ Use `--episodes 1` for a single-episode integration check. The protocol uses var
   --receipt "$DV_WORK/runs/close-box-001-summary.json"
 ```
 
-The summary separates requested episodes, actual attempts, successes, model failures, failures before policy entry, and missing outcomes. Reading a saved result does not replay the model or simulator.
+The summary reports requested episodes, actual attempts, successes, failures, and missing outcomes from the saved run.
 
 ### All ten tasks
 
@@ -182,7 +177,7 @@ The summary separates requested episodes, actual attempts, successes, model fail
   --output "$DV_WORK/runs/rlbench10-001"
 ```
 
-This explicitly runs 50 episodes per task, for 500 total requests. It does not resume or overwrite an existing run. An incomplete run is not reported as a complete benchmark score.
+This runs 50 episodes per task, for 500 requests. Use a new output directory; partial results are marked incomplete.
 
 ## 🗂️ Repository structure
 
@@ -194,7 +189,7 @@ deepvision-vla/
 ├── src/deepvision_vla/
 │   ├── inference/           # Image requests and prediction adapter
 │   ├── evaluation/          # Task runner and result summaries
-│   ├── runtime/             # Strict loading, reset and headless display
+│   ├── runtime/             # Checkpoint loading, reset and headless display
 │   ├── tools/               # Download, verification and setup
 │   └── assets/              # Model inventory and runtime profiles
 ├── model_runtime/           # Model implementation and pinned dependencies
