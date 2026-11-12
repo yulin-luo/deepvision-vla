@@ -14,8 +14,6 @@ See [checkpoint setup](CHECKPOINT_DELIVERY.md) for the download revision and dir
 | --- | --- |
 | RLBench fine-tuning | 300 epochs / 39,300 updates |
 | Training seed | 42 |
-| Learning rate | 2e-5 |
-| DINOv3 during fine-tuning | Full fine-tuning |
 | Action horizon | 1 |
 | Action queries | 7 decoupled queries |
 | Observation | 224 × 224 front-view RGB + instruction |
