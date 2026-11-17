@@ -1,13 +1,12 @@
 <div align="center">
-  <h1>DeepVision-VLA</h1>
-  <h3>Look Before Acting: Enhancing Vision Foundation Representations<br>for Vision-Language-Action Models</h3>
-  <p><strong>ACM Multimedia 2026</strong></p>
+  <h1>Look Before Acting:<br>Enhancing Vision Foundation Representations<br>for Vision-Language-Action Models</h1>
+  <p><strong>DeepVision-VLA · ACM MM 2026</strong></p>
   <p>Peking University · The Chinese University of Hong Kong · Simplexity Robotics</p>
   <p>
     <a href="https://arxiv.org/abs/2603.15618"><img src="https://img.shields.io/badge/arXiv-2603.15618-B31B1B?style=flat&amp;logo=arxiv&amp;logoColor=white" alt="Paper"></a>
     <a href="https://deepvision-vla.github.io/"><img src="https://img.shields.io/badge/Project-Website-2C7A7B?style=flat&amp;logo=githubpages&amp;logoColor=white" alt="Project website"></a>
     <a href="https://huggingface.co/lyl010221-pku/deepvision-vla-rlbench10"><img src="https://img.shields.io/badge/Checkpoint-RLBench--10-FFD21E?style=flat&amp;logo=huggingface&amp;logoColor=black" alt="RLBench-10 checkpoint"></a>
-    <a href="https://doi.org/10.1145/3767308.3835774"><img src="https://img.shields.io/badge/ACM_MM-2026-7E57C2?style=flat" alt="ACM Multimedia 2026"></a>
+    <a href="https://doi.org/10.1145/3767308.3835774"><img src="https://img.shields.io/badge/ACM%20MM-2026-7E57C2?style=flat" alt="ACM MM 2026"></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/Code-Apache_2.0-2563EB?style=flat" alt="Source code licence"></a>
   </p>
   <p><a href="#overview">Overview</a> · <a href="#quick-start">Quick start</a> · <a href="#checkpoint">Checkpoint</a> · <a href="#evaluation">Evaluation</a> · <a href="#citation">Citation</a></p>
@@ -17,7 +16,7 @@
 
 - **2026.11.11** — Initial release of the inference code, RLBench-10 evaluation pipeline, and [RLBench-10 fine-tuned checkpoint](https://huggingface.co/lyl010221-pku/deepvision-vla-rlbench10).
 
-Training code and embodied-pretraining checkpoints will follow.
+Training code, visual-diagnosis tools, and embodied-pretraining checkpoints will follow.
 
 <a name="overview"></a>
 
@@ -29,7 +28,7 @@ Training code and embodied-pretraining checkpoints will follow.
   <img src="assets/teaser.png" alt="DeepVision-VLA overview: deep visual grounding, action-guided selection, and paper-reported robot results" width="960">
 </p>
 
-- **Diagnose visual grounding.** Layer-wise ROI masking and attention analysis reveal where task-relevant visual evidence weakens.
+- **Diagnose visual grounding.** Layer-wise ROI masking and visual contribution analysis reveal where task-relevant visual evidence weakens.
 - **VL-MoT: refresh deep visual evidence.** Couple multi-level DINOv3 features with the VLA backbone through shared attention while retaining separate processing pathways.
 - **AGVP: keep action-relevant tokens.** Use shallow action-to-vision attention to select the high-resolution visual tokens passed to deep layers.
 
@@ -205,7 +204,7 @@ See [the source guide](docs/SOURCE_LAYOUT.md) for VL-MoT, AGVP and action-head i
 
 ## 📝 Citation
 
-If you use DeepVision-VLA in your research, please cite the ACM Multimedia paper:
+If you use DeepVision-VLA in your research, please cite the ACM MM 2026 paper:
 
 ```bibtex
 @inproceedings{luo2026deepvision,
