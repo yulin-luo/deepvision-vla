@@ -1,0 +1,27 @@
+{
+  "dataset": "BridgeData V2",
+  "dataset_url": "https://rail-berkeley.github.io/bridgedata/",
+  "dataset_license": "CC BY 4.0",
+  "dataset_license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "dataset_citation": "Homer Walke et al., BridgeData V2: A Dataset for Robot Learning at Scale, CoRL 2023.",
+  "data_revision": "bf83119398c0ac0debe88ecfd9fbacef5a57dbca",
+  "source": {
+    "ordinal": 49,
+    "sample_id": "643f49a881a2772dc005",
+    "shard": "bridge_dataset-train.tfrecord-00018-of-01024",
+    "record_offset": 62621979,
+    "record_sha256": "b0db3b5805aa6f04d16ee0c5e4ba6c6d21edd18e164a27fbdb712313335d1300",
+    "anchor": 23,
+    "steps": 48,
+    "camera": "image_0",
+    "instruction": "fold the cloth from the right to the left side",
+    "image_sha256": "09415a41265bc8609e6bd7445f9bab5df28bba466554225709c0f9997d42a9b0"
+  },
+  "image_size": [
+    256,
+    256
+  ],
+  "image_preparation": "Recorded frame reconstructed from the public TFRecord. The plotted image is converted to grayscale and overlaid with token Grad-CAM.",
+  "scope": "single fixed BridgeV2 source, model-specific visual contribution",
+  "target_normalization": "Displayed positive Grad-CAM divided by the maximum across the four layers of each model."
+}

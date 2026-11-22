@@ -1,0 +1,85 @@
+{
+  "model": "HaomingSong/lerobot-pi0-bridge",
+  "revision": "93c2840a2c68c337da0d472a2f52d1fd8d62132a",
+  "license": "mit",
+  "private": false,
+  "gated": false,
+  "total_bytes": 6521471189,
+  "files": [
+    {
+      "path": "README.md",
+      "size": 1095,
+      "sha256": null,
+      "git_blob": "ecc4386a8aac509ff6aea343b89a5550d146c4cc"
+    },
+    {
+      "path": "added_tokens.json",
+      "size": 24,
+      "sha256": null,
+      "git_blob": "ff9246e420971b10c510b39a0de289132c2bf23f"
+    },
+    {
+      "path": "config.json",
+      "size": 3445,
+      "sha256": null,
+      "git_blob": "0664d11b484c5391f05567e4f2f9cd94498bdd11"
+    },
+    {
+      "path": "configuration_pi0.py",
+      "size": 6789,
+      "sha256": null,
+      "git_blob": "5dc6d0cfcbc26b8d3200f845d67efe001f2707ff"
+    },
+    {
+      "path": "model.safetensors",
+      "size": 6482727448,
+      "sha256": "7078a1ddf199fc4964340e7f4622f3f98e79b2acfb9e83ac538fe5dcade2a90d",
+      "git_blob": "71e3629ef2007e5f3bf5c8bd5718d3d981208ffc"
+    },
+    {
+      "path": "modeling_pi0.py",
+      "size": 30435,
+      "sha256": null,
+      "git_blob": "ab0f9fb2a91ed6339d6ff4d791da618ca0ff9a94"
+    },
+    {
+      "path": "special_tokens_map.json",
+      "size": 607,
+      "sha256": null,
+      "git_blob": "0c18fdd94629ea652e2ef36ed9a422474ad0a8e8"
+    },
+    {
+      "path": "tokenizer.json",
+      "size": 34387383,
+      "sha256": "537cbe6b94581ee7b70f7f39453d5c52f2590069aa75d76ceee458fde442523c",
+      "git_blob": "50e12ba571993b23f5f7e68f64cf29ee06605213"
+    },
+    {
+      "path": "tokenizer.model",
+      "size": 4264023,
+      "sha256": "8986bb4f423f07f8c7f70d0dbe3526fb2316056c17bae71b1ea975e77a168fc6",
+      "git_blob": "22ad048d392b4f5191be7cec47d03eb3cdb360f4"
+    },
+    {
+      "path": "tokenizer_config.json",
+      "size": 39998,
+      "sha256": null,
+      "git_blob": "1278d56f8ff6ae65af415d494ce6aae640345c01"
+    },
+    {
+      "path": "train_config.json",
+      "size": 9942,
+      "sha256": null,
+      "git_blob": "786c1c9350e49030431a4e1d49b7ef4fe3a1e8fc"
+    }
+  ],
+  "source_url": "https://huggingface.co/api/models/HaomingSong/lerobot-pi0-bridge?blobs=true",
+  "provenance": "Third-party Bridge-finetuned LeRobot PI0 flow model; not official PI05 or recovered paper checkpoint",
+  "runtime_ready": false,
+  "gt_mapping_verified": false,
+  "runtime_missing": [
+    "paligemma_with_expert.py is imported but absent from HF artifact",
+    "Pinned compatible LeRobot implementation must be recovered",
+    "Native state8 pad-slot value and action conversion must be validated"
+  ]
+}

@@ -9,14 +9,15 @@
     <a href="https://doi.org/10.1145/3767308.3835774"><img src="https://img.shields.io/badge/ACM%20MM-2026-7E57C2?style=flat" alt="ACM MM 2026"></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/Code-Apache_2.0-2563EB?style=flat" alt="Source code licence"></a>
   </p>
-  <p><a href="#overview">Overview</a> · <a href="#quick-start">Quick start</a> · <a href="#checkpoint">Checkpoint</a> · <a href="#evaluation">Evaluation</a> · <a href="#citation">Citation</a></p>
+  <p><a href="#overview">Overview</a> · <a href="#quick-start">Quick start</a> · <a href="#checkpoint">Checkpoint</a> · <a href="#evaluation">Evaluation</a> · <a href="#bridgev2-diagnostics">BridgeV2 diagnostics</a> · <a href="#citation">Citation</a></p>
 </div>
 
 ## 📰 News
 
+- **2026.11.22** — Released the [BridgeV2 ROI dataset](https://huggingface.co/datasets/lyl010221-pku/deepvision-vla-bridgev2-roi), [QwenVLA-OFT H16 baseline](https://huggingface.co/lyl010221-pku/deepvision-vla-qwenvla-oft-h16), and [diagnostic code](docs/diagnostics/QUICKSTART.md). Find these assets and the RLBench-10 checkpoint in the [DeepVision-VLA collection](https://huggingface.co/collections/lyl010221-pku/deepvision-vla-6b030965d2acd95487d39617).
 - **2026.11.11** — Initial release of the inference code, RLBench-10 evaluation pipeline, and [RLBench-10 fine-tuned checkpoint](https://huggingface.co/lyl010221-pku/deepvision-vla-rlbench10).
 
-Training code, visual-diagnosis tools, and embodied-pretraining checkpoints will follow.
+Training code and embodied-pretraining checkpoints will follow.
 
 <a name="overview"></a>
 
@@ -36,7 +37,7 @@ Training code, visual-diagnosis tools, and embodied-pretraining checkpoints will
   <img src="assets/method.png" alt="DeepVision-VLA architecture, Action-Guided Visual Pruning, and vision-language shared attention" width="960">
 </p>
 
-This release provides **image inference and single-GPU RLBench-10 evaluation**. The figures above show results from the paper.
+The code supports **image inference, single-GPU RLBench-10 evaluation, and BridgeV2 visual diagnostics**. The figures above show results from the paper.
 
 ## 🧭 Start here
 
@@ -44,7 +45,19 @@ This release provides **image inference and single-GPU RLBench-10 evaluation**. 
 - **Get the model:** [Checkpoint download and verification](docs/CHECKPOINT_DELIVERY.md) · [Model card](docs/MODEL_CARD.md)
 - **Predict an action:** [Image + instruction inference](docs/IMAGE_INFERENCE.md)
 - **Run the benchmark:** [RLBench tasks, protocol and result summaries](docs/EVALUATION.md)
+- **Reproduce the BridgeV2 drop curves:** [Diagnostic quick start](docs/diagnostics/QUICKSTART.md)
 - **Explore the implementation:** [Source guide](docs/SOURCE_LAYOUT.md)
+
+<a name="bridgev2-diagnostics"></a>
+
+## BridgeV2 visual diagnostics
+
+Reproduce the layer-wise ROI masking curves for OpenVLA, Bridge π₀ and
+QwenVLA-OFT on a fixed 1,500-episode BridgeData V2 panel. The release bundle
+includes ROI labels, per-episode metrics, curves and token Grad-CAM values
+for a fixed example. Verify the saved results on CPU, or run a 16-episode
+pilot with the supported checkpoints to check a new setup.
+[BridgeV2 diagnostic quick start](docs/diagnostics/QUICKSTART.md).
 
 <a name="quick-start"></a>
 

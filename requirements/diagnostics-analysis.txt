@@ -1,0 +1,5 @@
+# CPU-only reporting/plotting pins observed with Python3.12.14.
+# Keep separate from the three model-native environments.
+numpy==2.3.5
+matplotlib==3.10.7
+Pillow==13.0.0

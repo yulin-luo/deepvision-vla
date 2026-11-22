@@ -1,0 +1,34 @@
+{
+  "model": "deepvision-vla/qwenvla-oft-h16-runtime",
+  "revision": "b131353d58b77daf2b6308e5ea4ea0aa4a417a79",
+  "receipt_format": "qwen_h16_runtime_export_v1",
+  "receipt_prefix": "qwen_only/checkpoint-5-10000",
+  "files": [
+    {
+      "path": "training_config.json",
+      "size": 732,
+      "sha256": "cbb7205562adaf050a77cf914087b4ac91866fde8d5c55d6e6b78c7331fe0835"
+    },
+    {
+      "path": "portable/qwen_backbone/manifest.json",
+      "size": 1498,
+      "sha256": "5850de98cc0e14989107aac9284e616b46568ff2c03485c5c8bc36d9ea1e1e0c"
+    },
+    {
+      "path": "portable/qwen_backbone/model.safetensors",
+      "size": 8875719384,
+      "sha256": "c40a22ca892c147325cd7c39a75c7c45c865c9d22ddc02278d4a9b7e4712f865"
+    },
+    {
+      "path": "portable/shared_action_head/manifest.json",
+      "size": 2994,
+      "sha256": "1f2ac2856db3ba8d3a153e8b53065cbe05e888fda63d22108305fee585eae401"
+    },
+    {
+      "path": "portable/shared_action_head/action_head.safetensors",
+      "size": 39415350,
+      "sha256": "d01bc944553c7373ae5131badc96758a73159c4eb429dba615b1c927e707bf84"
+    }
+  ],
+  "total_bytes": 8915139958
+}

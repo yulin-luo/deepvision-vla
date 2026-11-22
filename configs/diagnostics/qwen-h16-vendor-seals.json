@@ -1,0 +1,40 @@
+{
+  "schema": "deepvision_qwen_h16_vendor_contract_v1",
+  "runtime_family": "modified_transformers_4.57.0",
+  "checkpoint_family": "qwen_only_H16_per_step_shared_v1",
+  "original_paper_checkpoint_identity_verified": false,
+  "source_sha256": {
+    "transformers/models/qwen3_vl/modeling_qwen3_vl.py": "6a6c6249c6f4100348224b1924bed71251c6e20dcfbfd962e9d64d0c41f166a6",
+    "transformers/models/qwen3_vl/processing_qwen3_vl.py": "efd8d64aaf608aad1ffb3e6d503d6a99e5227d007df95c1d9fa905d998cda4a9",
+    "deepvision/models/action_head.py": "2cf3cd1cd9a7b8b301df936cbaa6b1a3a1f72a627ef5e29c6768c732d4cd6252"
+  },
+  "statistics_sha256": "0e30b5c17c91bdd3f3b3c9ea1814af189dd8192ad5ea37179acf3597efa694c7",
+  "asset_access": "authorized_separate_components_required_no_implicit_private_download",
+  "new_clean_install_and_native_acceptance": "verified_on_fixed_16_source_pilot_with_controlled_assets",
+  "public_model_runtime": {
+    "path": "model_runtime",
+    "git_commit": "6fdc5b6125ba265c3f2714fcf721e6d20dd8c274",
+    "critical_source_verified": true,
+    "controlled_checkpoint_gpu_attribution_verified": true
+  },
+  "checkpoint_component_sha256": {
+    "portable/qwen_backbone/manifest.json": "5850de98cc0e14989107aac9284e616b46568ff2c03485c5c8bc36d9ea1e1e0c",
+    "portable/qwen_backbone/model.safetensors": "c40a22ca892c147325cd7c39a75c7c45c865c9d22ddc02278d4a9b7e4712f865",
+    "portable/shared_action_head/action_head.safetensors": "d01bc944553c7373ae5131badc96758a73159c4eb429dba615b1c927e707bf84",
+    "portable/shared_action_head/manifest.json": "1f2ac2856db3ba8d3a153e8b53065cbe05e888fda63d22108305fee585eae401",
+    "training_config.json": "678ce2ae5ac8e153b215fff3d763e2c0e16606753ecad3eb0a42322d10b52633"
+  },
+  "processor_sha256": {
+    "chat_template.json": "6f8a6a55027e3da5160105556cda5dd69f6423f1c32645f6730d32de7773d0c4",
+    "config.json": "edac7703329133edfc53e46ac0081835144c99d7eebf28b71c732694d435224d",
+    "generation_config.json": "8469742d1fce0de951c8909b26a2c0c0d8490837ce476efb114da9e0cefc4d44",
+    "merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+    "model.safetensors.index.json": "58a7841d7bff2548dd91577d216274a83cf1b500bc6a534b809d6c1b1707cf2b",
+    "preprocessor_config.json": "93585062a80db5e8ca038efc7726a3e6411d9db948472d81d63c6303993be8c5",
+    "tokenizer.json": "a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7",
+    "tokenizer_config.json": "c2da771801886ad9ae98181793ffd3dfb7f1af30f6f7c6a4e15d7dbba52e2399",
+    "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+  },
+  "runtime_export_training_config_sha256": "cbb7205562adaf050a77cf914087b4ac91866fde8d5c55d6e6b78c7331fe0835"
+}

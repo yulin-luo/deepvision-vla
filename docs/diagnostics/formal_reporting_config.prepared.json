@@ -1,0 +1,24 @@
+{
+  "schema": "formal1500_reporting_config_v1",
+  "status": "prepared_not_authorized",
+  "analysis_authorized": false,
+  "source_count": 1500,
+  "analysis_seed": 20261114,
+  "bootstrap_resamples": 2000,
+  "physical_GT_promotion": false,
+  "analysis_plan": {
+    "path": null,
+    "sha256": "cf5b73c0cb3a909a419bd9b4ea418412fc405585fc4c71c059830436b2dba88a"
+  },
+  "inventory": null,
+  "models": {
+    "openvla": null,
+    "pi0": null,
+    "qwen_h16": null
+  },
+  "cluster_field": "original_source.shard",
+  "output": null,
+  "actual_results_or_predictions_read": false,
+  "model_calls": 0,
+  "GPU_calls": 0
+}

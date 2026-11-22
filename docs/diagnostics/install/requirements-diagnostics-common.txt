@@ -1,0 +1,17 @@
+# Shared pins observed in both validated Linux Python3.10 adapter environments.
+--extra-index-url https://download.pytorch.org/whl/cu130
+torch==2.12.1+cu130
+torchvision==0.27.1+cu130
+numpy==1.26.4
+Pillow==12.3.0
+safetensors==0.5.3
+huggingface-hub==0.36.2
+einops==0.8.1
+accelerate==1.8.1
+scipy==1.15.3
+PyYAML==6.0.2
+gymnasium==1.0.0
+tqdm==4.67.1
+packaging==26.3
+protobuf==5.29.6
+

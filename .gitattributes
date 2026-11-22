@@ -3,3 +3,8 @@
 *.jpg binary
 *.jpeg binary
 *.pdf binary
+
+# Preserve the exact bytes of the verified BridgeV2 artifacts.
+docs/diagnostics/install/pi0-bridge-inventory.json -text
+src/deepvision_vla/diagnostics/reconstruct_bridge.py -text
+tests/test_reconstruct_bridge.py -text

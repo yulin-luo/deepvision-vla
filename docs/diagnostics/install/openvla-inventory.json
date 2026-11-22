@@ -1,0 +1,100 @@
+{
+  "model": "openvla/openvla-7b",
+  "revision": "47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+  "license": "mit",
+  "private": false,
+  "gated": false,
+  "total_bytes": 15085152363,
+  "files": [
+    {
+      "path": "README.md",
+      "size": 5038,
+      "git_blob": "5c6c0b051a677873c01aca3dbb84877b7189e53b"
+    },
+    {
+      "path": "added_tokens.json",
+      "size": 21,
+      "git_blob": "8671820d1bb0dfd4dd92d5bd0fa9b5a7773f843e"
+    },
+    {
+      "path": "config.json",
+      "size": 60712,
+      "git_blob": "42ea81c7c783049559839e305afdfe97e30581a3"
+    },
+    {
+      "path": "configuration_prismatic.py",
+      "size": 5865,
+      "git_blob": "c2625753c4da1a6ef274a02645d4086bc7a7fb2b"
+    },
+    {
+      "path": "generation_config.json",
+      "size": 136,
+      "git_blob": "2cefc1e51e6ccfe846d2b509ced403df73a8efe2"
+    },
+    {
+      "path": "model-00001-of-00003.safetensors",
+      "size": 6948961960,
+      "sha256": "10d8636256018712c5e5c823d12e22b5797f99bb721bd123bf6bf2379892be85",
+      "git_blob": "a75d72ce2a40e1c5890d6e1bc17c58c4549c9f25"
+    },
+    {
+      "path": "model-00002-of-00003.safetensors",
+      "size": 6971232040,
+      "sha256": "2050b14f21d48904d269f48d5a980fecea87cd7b36641d9b0f015e72d1fe216a",
+      "git_blob": "972c9d9aec09ccb0dbb6ab3923946e115de03393"
+    },
+    {
+      "path": "model-00003-of-00003.safetensors",
+      "size": 1162406824,
+      "sha256": "ea65305a1577f36f721965bf84c8caec0a948ce7ce84d754701637376c531fef",
+      "git_blob": "6180dbcf444007c0ada80bf7463fa54d00a50fc2"
+    },
+    {
+      "path": "model.safetensors.index.json",
+      "size": 94764,
+      "git_blob": "d946bb8d409850ee48c26d09457670341e9289cf"
+    },
+    {
+      "path": "modeling_prismatic.py",
+      "size": 26062,
+      "git_blob": "4a26c487190fa2359007b30a78094a6c432d6519"
+    },
+    {
+      "path": "preprocessor_config.json",
+      "size": 1650,
+      "git_blob": "92975ace548590d24f65f497d7610af3b92b4dcd"
+    },
+    {
+      "path": "processing_prismatic.py",
+      "size": 12718,
+      "git_blob": "3f2daaf82c3b8946fe57596f656f14a031eaef93"
+    },
+    {
+      "path": "processor_config.json",
+      "size": 130,
+      "git_blob": "f892f8a8f53e2f3603a7cf86043a1add317c1787"
+    },
+    {
+      "path": "special_tokens_map.json",
+      "size": 552,
+      "git_blob": "ab75c8e0a22550f0667501a0c52758f071a9efd8"
+    },
+    {
+      "path": "tokenizer.json",
+      "size": 1842976,
+      "git_blob": "591f1fc6ff695d967513100f707e66d5bf731414"
+    },
+    {
+      "path": "tokenizer.model",
+      "size": 499723,
+      "sha256": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+      "git_blob": "6c00c742ce03c627d6cd5b795984876fa49fa899"
+    },
+    {
+      "path": "tokenizer_config.json",
+      "size": 1192,
+      "git_blob": "d39defd338dee423ae0a71abfd7ea69a44fb1e52"
+    }
+  ],
+  "source_url": "https://huggingface.co/api/models/openvla/openvla-7b?blobs=true"
+}
