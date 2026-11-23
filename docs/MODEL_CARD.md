@@ -6,7 +6,7 @@
 
 The released checkpoint is an embodied-pretrained DeepVision-VLA policy fine-tuned on RLBench-10. It includes the backbone/tokenizer, DINOv3, aligner, action head, configuration and action statistics. The embodied-pretraining checkpoint will be released separately.
 
-See [checkpoint setup](CHECKPOINT_DELIVERY.md) for the download revision and directory.
+See [checkpoint setup](rlbench/CHECKPOINT_DELIVERY.md) for the download revision and directory.
 
 ## Model specifications
 
@@ -28,7 +28,7 @@ The policy predicts seven action values from an image and instruction. An option
 
 ## Usage
 
-Use the supplied [image inference](IMAGE_INFERENCE.md) or [RLBench evaluation](EVALUATION.md) interface with the matching checkpoint statistics and simulator profile. This checkpoint targets RLBench tasks; real-robot deployment and other task suites require their own interfaces and validation. Image inference predicts an action and does not execute it.
+Use the supplied [image inference](rlbench/IMAGE_INFERENCE.md) or [RLBench evaluation](rlbench/EVALUATION.md) interface with the matching checkpoint statistics and simulator profile. This checkpoint targets RLBench tasks; real-robot deployment and other task suites require their own interfaces and validation. Image inference predicts an action and does not execute it.
 
 ## Licences
 

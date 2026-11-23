@@ -52,7 +52,7 @@ Transformers 4.57.0 is explicitly pinned because the model depends on its modifi
 
 ## 2. RLBench native dependencies
 
-Read the [third-party terms](../THIRD_PARTY_NOTICES.md) before obtaining the simulator. The helper downloads fixed upstream revisions and checks their hashes:
+Read the [third-party terms](../../THIRD_PARTY_NOTICES.md) before obtaining the simulator. The helper downloads fixed upstream revisions and checks their hashes:
 
 ```bash
 python -m deepvision_vla prepare-rlbench \
@@ -93,7 +93,7 @@ If a download is interrupted, rerun setup with a new output directory and the sa
 
 ## 4. Continue with the model and configuration
 
-Return to [Quick start — checkpoint download](../README.md#2-download-the-rlbench-10-checkpoint) to download the model and generate your configuration. The checkpoint helper also verifies the required file hashes.
+Return to [Quick start — checkpoint download](../../README.md#2-download-the-rlbench-10-checkpoint) to download the model and generate your configuration. The checkpoint helper also verifies the required file hashes.
 
 In a new Bash session, set `DV_WORK` and `DV_ASSETS` to the same paths and activate the environment:
 

@@ -30,4 +30,4 @@ This distribution includes or modifies software from:
 
 External simulator dependencies (CoppeliaSim, PyRep and RLBench) retain
 their own licenses and are downloaded separately; see
-`docs/INSTALL_LINUX.md`.
+`docs/rlbench/INSTALL_LINUX.md`.

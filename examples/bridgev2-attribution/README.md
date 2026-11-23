@@ -12,7 +12,7 @@ The ROI masking curves summarize sensitivity across trajectories. The contributi
 
 <img src="selected/attribution.png" alt="Three-model Grad-CAM for taking a lid off a pot or pan" width="720" />
 
-[Original frame](selected/source.jpg) · [Three-model PDF](selected/attribution.pdf) · [Recompute the example](../../docs/diagnostics/guides/ATTRIBUTION.md)
+[Original frame](selected/input/source.jpg) · [Three-model PDF](selected/attribution.pdf) · [Recompute the example](../../docs/diagnostics/guides/ATTRIBUTION.md)
 
 This example contains the original image and the signed and positive token Grad-CAM values for four layers of each model. All three models read the same BridgeData V2 frame and the instruction “fold the cloth from the right to the left side.”
 
@@ -35,10 +35,10 @@ EXAMPLE_DIR="$PWD/examples/bridgev2-attribution/selected"
 FIGURE_DIR="$PWD/bridgev2-attribution-redraw"
 (cd "$EXAMPLE_DIR" && sha256sum -c SHA256SUMS)
 .venv-bridgev2-plot/bin/python -m deepvision_vla.diagnostics plot attribution \
-  --image "$EXAMPLE_DIR/source.jpg" \
-  --result "$EXAMPLE_DIR/openvla.json" \
-  --result "$EXAMPLE_DIR/pi0-base.json" \
-  --result "$EXAMPLE_DIR/qwen-h16.json" \
+  --image "$EXAMPLE_DIR/input/source.jpg" \
+  --result "$EXAMPLE_DIR/tokens/openvla.json" \
+  --result "$EXAMPLE_DIR/tokens/pi0-base.json" \
+  --result "$EXAMPLE_DIR/tokens/qwen-h16.json" \
   --output "$FIGURE_DIR"
 ```
 
@@ -47,9 +47,9 @@ new output directory. This version shows where positive contribution is located
 within each map. Use the shared-scale view to compare strengths across a
 model's layers.
 
-The output contains `attribution.png`, `attribution.pdf`, and `RENDER_RECEIPT.json`. The frame locator and image digest are in [the source manifest](selected/source.json).
+The output contains `attribution.png`, `attribution.pdf`, and `RENDER_RECEIPT.json`. The frame locator and image digest are in [the source manifest](selected/input/source.json).
 For a new QwenVLA-OFT Grad-CAM probe, see the [Qwen H16 guide](../../docs/diagnostics/install/QWEN_H16_ENVIRONMENT.md).
 
 ## Image credit
 
-The source frame is from *BridgeData V2: A Dataset for Robot Learning at Scale*, Homer Walke and collaborators, CoRL 2023. [The original RGB image](selected/source.jpg) is the reconstructed input frame. The figure displays it in grayscale with DeepVision-VLA diagnostic overlays. [BridgeData V2](https://rail-berkeley.github.io/bridgedata/) · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+The source frame is from *BridgeData V2: A Dataset for Robot Learning at Scale*, Homer Walke and collaborators, CoRL 2023. [The original RGB image](selected/input/source.jpg) is the reconstructed input frame. The figure displays it in grayscale with DeepVision-VLA diagnostic overlays. [BridgeData V2](https://rail-berkeley.github.io/bridgedata/) · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)

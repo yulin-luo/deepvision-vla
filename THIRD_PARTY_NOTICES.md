@@ -14,7 +14,7 @@ Qwen-derived weights use Apache 2.0; see the [Qwen3-VL-4B-Instruct model card](h
 
 DINOv3-derived code and weights retain the [DINOv3 License](licenses/DINOv3_LICENSE.md), including its use and redistribution conditions. The repository's Apache 2.0 license does not replace those terms.
 
-The [RLBench-10 checkpoint](docs/CHECKPOINT_DELIVERY.md) includes Qwen- and DINOv3-derived components; their respective licenses apply.
+The [RLBench-10 checkpoint](docs/rlbench/CHECKPOINT_DELIVERY.md) includes Qwen- and DINOv3-derived components; their respective licenses apply.
 
 ## Simulator dependencies
 

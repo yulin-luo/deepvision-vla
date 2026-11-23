@@ -42,10 +42,10 @@ The code supports **image inference, single-GPU RLBench-10 evaluation, and Bridg
 
 ## 🧭 Start here
 
-- **Set up the environment:** [Linux installation and simulator dependencies](docs/INSTALL_LINUX.md)
-- **Get the model:** [Checkpoint download and verification](docs/CHECKPOINT_DELIVERY.md) · [Model card](docs/MODEL_CARD.md)
-- **Predict an action:** [Image + instruction inference](docs/IMAGE_INFERENCE.md)
-- **Run the benchmark:** [RLBench tasks, protocol and result summaries](docs/EVALUATION.md)
+- **Set up the environment:** [Linux installation and simulator dependencies](docs/rlbench/INSTALL_LINUX.md)
+- **Get the model:** [Checkpoint download and verification](docs/rlbench/CHECKPOINT_DELIVERY.md) · [Model card](docs/MODEL_CARD.md)
+- **Predict an action:** [Image + instruction inference](docs/rlbench/IMAGE_INFERENCE.md)
+- **Run the benchmark:** [RLBench tasks, protocol and result summaries](docs/rlbench/EVALUATION.md)
 - **Reproduce the BridgeV2 drop curves:** [Diagnostic quick start](docs/diagnostics/QUICKSTART.md)
 - **Explore the implementation:** [Source guide](docs/SOURCE_LAYOUT.md)
 
@@ -78,7 +78,7 @@ git clone https://github.com/yulin-luo/deepvision-vla.git
 cd deepvision-vla
 ```
 
-Follow [Linux installation](docs/INSTALL_LINUX.md) to create the environment and install the package. Simulator dependencies are needed only for RLBench evaluation. Activate the environment before continuing. The commands below use `DV_WORK` and `DV_ASSETS` from that guide.
+Follow [Linux installation](docs/rlbench/INSTALL_LINUX.md) to create the environment and install the package. Simulator dependencies are needed only for RLBench evaluation. Activate the environment before continuing. The commands below use `DV_WORK` and `DV_ASSETS` from that guide.
 
 The reference environment uses **Python 3.10.20, PyTorch 2.12.1 + CUDA 13.0, and Transformers 4.57.0**. Keep the source checkout: it includes the modified Transformers implementation used by the model.
 
@@ -111,7 +111,7 @@ python -m deepvision_vla configure \
   --output "$DV_WORK/image-config.json"
 ```
 
-For existing weights, see [how to reuse a checkpoint](docs/CHECKPOINT_DELIVERY.md#reuse-an-existing-checkpoint).
+For existing weights, see [how to reuse a checkpoint](docs/rlbench/CHECKPOINT_DELIVERY.md#reuse-an-existing-checkpoint).
 
 ### 4. Run image inference
 
@@ -135,7 +135,7 @@ python -m deepvision_vla image \
   --output "$DV_WORK/runs/image-001"
 ```
 
-The prediction is saved to `results/image_prediction/prediction.json` under the run directory. It contains **XYZ delta, absolute XYZ Euler rotation, and gripper**. See [image inference](docs/IMAGE_INFERENCE.md) for the input and output formats.
+The prediction is saved to `results/image_prediction/prediction.json` under the run directory. It contains **XYZ delta, absolute XYZ Euler rotation, and gripper**. See [image inference](docs/rlbench/IMAGE_INFERENCE.md) for the input and output formats.
 
 Use a **new output directory** for every run.
 
@@ -145,15 +145,15 @@ Use a **new output directory** for every run.
 
 [**DeepVision-VLA RLBench-10**](https://huggingface.co/lyl010221-pku/deepvision-vla-rlbench10) is fine-tuned on RLBench-10 and ready for inference and evaluation.
 
-[Download and setup](docs/CHECKPOINT_DELIVERY.md) · [Model specifications](docs/MODEL_CARD.md#model-specifications)
+[Download and setup](docs/rlbench/CHECKPOINT_DELIVERY.md) · [Model specifications](docs/MODEL_CARD.md#model-specifications)
 
 <a name="evaluation"></a>
 
 ## 🧪 RLBench evaluation
 
-The evaluator supports **10 tasks**: closing a box, fridge and laptop; placing a phone and wine bottle; sweeping; taking a frame and umbrella; watering plants; and lowering a toilet seat. Exact task identifiers and the pinned protocol are listed in [the evaluation guide](docs/EVALUATION.md).
+The evaluator supports **10 tasks**: closing a box, fridge and laptop; placing a phone and wine bottle; sweeping; taking a frame and umbrella; watering plants; and lowering a toilet seat. Exact task identifiers and the pinned protocol are listed in [the evaluation guide](docs/rlbench/EVALUATION.md).
 
-Before evaluating, complete the native-dependency section of [Linux installation](docs/INSTALL_LINUX.md), then generate a full configuration and check its libraries:
+Before evaluating, complete the native-dependency section of [Linux installation](docs/rlbench/INSTALL_LINUX.md), then generate a full configuration and check its libraries:
 
 ```bash
 python -m deepvision_vla configure \
@@ -221,7 +221,7 @@ deepvision-vla/
 └── pyproject.toml
 ```
 
-See [the source guide](docs/SOURCE_LAYOUT.md) for VL-MoT, AGVP and action-head implementation locations.
+Browse the [documentation index](docs/README.md) and [source guide](docs/SOURCE_LAYOUT.md).
 
 <a name="citation"></a>
 

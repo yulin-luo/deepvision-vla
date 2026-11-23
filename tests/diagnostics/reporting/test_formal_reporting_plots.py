@@ -5,7 +5,8 @@ import tempfile
 import unittest
 
 from deepvision_vla.diagnostics import formal_reporting as f
-from test_formal_reporting import fixture
+from deepvision_vla.paths import REPOSITORY_ROOT
+from .test_formal_reporting import fixture
 
 
 @unittest.skipUnless(importlib.util.find_spec('matplotlib'),'Existing figure runtime required; do not install into the model environment')
@@ -52,10 +53,10 @@ class ReportPlotTests(unittest.TestCase):
     def test_attribution_redraw_with_one_model_aligns_four_layers_in_one_row(self):
         from deepvision_vla.diagnostics.attribution_plot import plot
 
-        example = Path(__file__).resolve().parents[1] / "examples/bridgev2-attribution/selected"
+        example = REPOSITORY_ROOT / "examples/bridgev2-attribution/selected"
         with tempfile.TemporaryDirectory() as tmp:
             output = Path(tmp) / "single-model-attribution"
-            receipt = plot(example / "source.jpg", [example / "qwen-h16.json"], output)
+            receipt = plot(example / "input/source.jpg", [example / "tokens/qwen-h16.json"], output)
             self.assertTrue((output / "attribution.png").is_file())
             self.assertTrue((output / "attribution.pdf").is_file())
             boxes = receipt["alignment"]["axes_rectangles_points"]

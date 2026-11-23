@@ -21,6 +21,7 @@ from deepvision_vla.diagnostics.resources import require_own_memory
 from deepvision_vla.diagnostics.model_geometry import actual_visual_layout
 from deepvision_vla.diagnostics.adapters.openvla_gradients import compare_native_ce, teacher_sequence, action_logit_positions
 from deepvision_vla.diagnostics.adapters.qwen_h16_gradients import prediction_float32_bytes
+from deepvision_vla.paths import REPOSITORY_ROOT
 
 
 class PublicCoreContracts(unittest.TestCase):
@@ -139,7 +140,7 @@ class PublicCoreContracts(unittest.TestCase):
         with self.assertRaises(ValueError):paper_probe.sealed_metadata(path,'0'*64)
 
     def test_public_surface_imports_no_private_modules_or_neural_runtime(self):
-        src=Path(__file__).parents[1]/'src'
+        src=REPOSITORY_ROOT/'src'
         audit=public_surface.verify_public_surface(src)
         self.assertGreater(audit['modules'],40)
         for name in public_surface.MODULES:importlib.import_module(name)
@@ -147,7 +148,7 @@ class PublicCoreContracts(unittest.TestCase):
         self.assertFalse(any(('canary' in name or 'role_pilot' in name) for name in sys.modules if name.startswith('deepvision_vla.diagnostics.')))
 
     def test_release_overlay_excludes_private_operations_and_never_overwrites(self):
-        src=Path(__file__).parents[1]/'src';out=self.root/'overlay'
+        src=REPOSITORY_ROOT/'src';out=self.root/'overlay'
         manifest=public_surface.stage_public_sources(src,out)
         names={r['path'] for r in manifest['files']}
         self.assertFalse(any(('canary' in n or 'role_pilot' in n or 'legacy_success_cache_export' in n) for n in names))
@@ -155,7 +156,7 @@ class PublicCoreContracts(unittest.TestCase):
         with self.assertRaises(FileExistsError):public_surface.stage_public_sources(src,out)
 
     def test_static_dynamic_import_alias_cannot_escape_allowlist(self):
-        src=Path(__file__).parents[1]/'src'
+        src=REPOSITORY_ROOT/'src'
         out=self.root/'overlay';public_surface.stage_public_sources(src,out)
         path=out/'src/deepvision_vla/diagnostics/provenance.py'
         with path.open('a',encoding='utf-8') as stream:
@@ -168,7 +169,7 @@ class PublicCoreContracts(unittest.TestCase):
                 paper_probe.run(self.root/'missing','a'*64,self.root/'permit','b'*64)
 
     def test_all_public_native_function_globals_are_resolved_without_execution(self):
-        src=Path(__file__).parents[1]/'src'
+        src=REPOSITORY_ROOT/'src'
         missing=[]
         for module in public_surface.MODULES:
             path=public_surface.module_file(src,module)
@@ -216,7 +217,7 @@ class PublicCoreContracts(unittest.TestCase):
             with self.assertRaises(ValueError):paper_probe.verify_parent(permit)
 
     def test_all_public_text_reads_writes_are_explicit_utf8(self):
-        src=Path(__file__).parents[1]/'src';missing=[]
+        src=REPOSITORY_ROOT/'src';missing=[]
         for module in public_surface.MODULES:
             path=public_surface.module_file(src,module)
             for node in ast.walk(ast.parse(path.read_text(encoding='utf-8'))):

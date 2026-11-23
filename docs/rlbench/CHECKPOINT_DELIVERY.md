@@ -39,4 +39,4 @@ Pass the generated file to `configure --verification-receipt`. Without this opti
 
 After changing checkpoint files or their links, run verification again and generate a new configuration. Unchanged checkpoints can reuse the verification file across runs.
 
-See the [model card](MODEL_CARD.md) for model specifications and action conventions, and [third-party notices](../THIRD_PARTY_NOTICES.md) for licenses.
+See the [model card](../MODEL_CARD.md) for model specifications and action conventions, and [third-party notices](../../THIRD_PARTY_NOTICES.md) for licenses.

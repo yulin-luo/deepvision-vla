@@ -1,6 +1,6 @@
 # Recompute the three-model BridgeV2 attribution example
 
-Use [the example RGB frame](../../../examples/bridgev2-attribution/selected/source.jpg) and its [source manifest](../../../examples/bridgev2-attribution/selected/source.json). The commands use ordinal 1318 from the BridgeV2 v55 runtime.
+Use [the example RGB frame](../../../examples/bridgev2-attribution/selected/input/source.jpg) and its [source manifest](../../../examples/bridgev2-attribution/selected/input/source.json). The commands use ordinal 1318 from the BridgeV2 v55 runtime.
 
 Set `DV_CODE` to the root of this checkout in each model's environment and run the commands from that root. Use an idle NVIDIA GPU and a different output path for each run. The three model environments are separate. The CPU plotting environment is shared.
 
@@ -11,9 +11,9 @@ Use the environment, pinned checkpoint and asset receipt in the [OpenVLA guide](
 ```bash
 export DV_CODE="$PWD"
 export PYTHONPATH="$DV_CODE/src"
-export IMAGE="$DV_CODE/examples/bridgev2-attribution/selected/source.jpg"
+export IMAGE="$DV_CODE/examples/bridgev2-attribution/selected/input/source.jpg"
 export INSTRUCTION=$(python -c 'import json, sys; print(json.load(open(sys.argv[1]))["instruction"])' \\
-  "$DV_CODE/examples/bridgev2-attribution/selected/source.json")
+  "$DV_CODE/examples/bridgev2-attribution/selected/input/source.json")
 
 python -m deepvision_vla.diagnostics attribute openvla \
   --image "$IMAGE" --instruction "$INSTRUCTION" \
@@ -63,7 +63,7 @@ Use the plotting Python from the [BridgeV2 quickstart](../QUICKSTART.md).
 
 ```bash
 "$DV_REPORT_PYTHON" -m deepvision_vla.diagnostics plot attribution \
-  --image "$DV_CODE/examples/bridgev2-attribution/selected/source.jpg" \
+  --image "$DV_CODE/examples/bridgev2-attribution/selected/input/source.jpg" \
   --result "$DV_WORK/attribution/openvla.json" \
   --result "$DV_WORK/attribution/pi0-base.json" \
   --result "$QWEN_PROBE/result/result.json" \
