@@ -53,6 +53,10 @@ The code supports **image inference, single-GPU RLBench-10 evaluation, and Bridg
 
 ## BridgeV2 visual diagnostics
 
+<img src="https://deepvision-vla.github.io/static/images/diagnosis-final.png" alt="Paper Figure 2. Layer-wise ROI masking curves and contribution maps for OpenVLA, Pi0, and QwenVLA-OFT" width="880" />
+
+[Figure 2 from the paper](https://arxiv.org/html/2603.15618v1#S3.SS2) · [Full-resolution figure](assets/bridgev2-paper-figure2.png)
+
 The default π₀ reproduction uses [official LeRobot Pi0 base](docs/diagnostics/PI0_BASE.md)
 on 150 fixed BridgeData V2 episodes. The curves measure normalized prediction drift.
 The [BridgeV2 diagnostic quick start](docs/diagnostics/QUICKSTART.md) also covers

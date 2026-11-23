@@ -1,11 +1,14 @@
 # BridgeData V2 contribution maps
 
-![OpenVLA and QwenVLA-OFT Grad-CAM maps for four layers](https://deepvision-vla.github.io/static/images/bridgev2-gradcam-preview.png)
+<img src="https://deepvision-vla.github.io/static/images/diagnosis-final.png" alt="Paper Figure 2. Layer-wise ROI masking curves and contribution maps for OpenVLA, Pi0, and QwenVLA-OFT" width="880" />
 
-The preview shows positive Grad-CAM from OpenVLA and QwenVLA-OFT on one shared
-BridgeData V2 frame. The color scale is relative to each model's own peak.
+[Figure 2 from the paper](https://arxiv.org/html/2603.15618v1#S3.SS2) · [Full-resolution figure](../../assets/bridgev2-paper-figure2.png)
 
-[Download the PDF](attribution.pdf) · [Render manifest](RENDER_RECEIPT.json)
+## Runnable attribution example
+
+The saved arrays below use the cloth-folding frame. They can be redrawn on CPU for all three models.
+
+[OpenVLA and QwenVLA-OFT preview PDF](attribution.pdf) · [Render manifest](RENDER_RECEIPT.json)
 
 This example contains the original image and the signed and positive token Grad-CAM values for four layers of each model. All three models read the same BridgeData V2 frame and the instruction “fold the cloth from the right to the left side.”
 
@@ -27,6 +30,7 @@ FIGURE_DIR="$PWD/bridgev2-attribution-redraw"
 python -m deepvision_vla.diagnostics plot attribution \
   --image "$EXAMPLE_DIR/source.jpg" \
   --result "$EXAMPLE_DIR/openvla.json" \
+  --result "$EXAMPLE_DIR/pi0.json" \
   --result "$EXAMPLE_DIR/qwen_h16.json" \
   --output "$FIGURE_DIR"
 ```
@@ -37,7 +41,6 @@ within each map. Use the shared-scale view to compare strengths across a
 model's layers.
 
 The output contains `attribution.png`, `attribution.pdf`, and `RENDER_RECEIPT.json`. The frame locator and image digest are in `source.json`.
-The original three-model example includes the archived π₀ array in `pi0.json`.
 For a new QwenVLA-OFT Grad-CAM probe, see the [Qwen H16 guide](../../docs/diagnostics/QWEN_H16_ENVIRONMENT.md).
 
 ## Image credit
