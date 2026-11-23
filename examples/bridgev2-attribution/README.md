@@ -10,16 +10,19 @@ The ROI masking curves summarize sensitivity across trajectories. The contributi
 
 ## Reproduce Grad-CAM on a shared frame
 
-This cloth-folding frame was retained from earlier verification so that all three model runs could be checked against the same image and instruction. Individual layers can show different patterns on this frame. Use the ROI masking curves above for the aggregate layer-wise result.
+The selected v55 frame is ordinal **1318**, with the instruction “take lid off pot or pan.” We reran 27 candidate frames on all three checkpoints and obtained complete maps from all three for 23 frames. Selection favors stronger localization in the manipulated-object and target regions in the two earlier sampled layers. This is a selected illustration from the rerun.
 
-[Recompute all three models from the source frame](../../docs/diagnostics/ATTRIBUTION.md) · [Three-model PDF](native-attribution.pdf) · [Render manifest](NATIVE_RENDER_RECEIPT.json)
+<img src="selected/attribution.png" alt="Three-model Grad-CAM on the selected BridgeV2 frame" width="720" />
 
-<details>
-<summary>Show the 12 Grad-CAM maps for the shared frame</summary>
+[Original frame](selected/source.jpg) · [Three-model PDF](selected/attribution.pdf) · [Selection scores and exclusions](selected/selection.json) · [Render manifest](selected/RENDER_RECEIPT.json) · [Recompute the example](../../docs/diagnostics/ATTRIBUTION.md)
 
-<img src="native-attribution.png" alt="Three-model Grad-CAM on the shared BridgeV2 cloth-folding frame" width="720" />
+| Model | Earlier minus later share of positive Grad-CAM in the object and target regions |
+| --- | ---: |
+| OpenVLA | 51.4 pp |
+| Official π₀ base | 8.9 pp |
+| QwenVLA-OFT | 23.3 pp |
 
-</details>
+[Earlier cloth-folding example](native-attribution.pdf)
 
 This example contains the original image and the signed and positive token Grad-CAM values for four layers of each model. All three models read the same BridgeData V2 frame and the instruction “fold the cloth from the right to the left side.”
 
@@ -38,14 +41,14 @@ pinned in `requirements/diagnostics-analysis.txt`.
 uv venv --python 3.12 .venv-bridgev2-plot
 uv pip install --python .venv-bridgev2-plot/bin/python -r requirements/diagnostics-analysis.txt
 export PYTHONPATH="$PWD/src"
-EXAMPLE_DIR="$PWD/examples/bridgev2-attribution"
+EXAMPLE_DIR="$PWD/examples/bridgev2-attribution/selected"
 FIGURE_DIR="$PWD/bridgev2-attribution-redraw"
 (cd "$EXAMPLE_DIR" && sha256sum -c SHA256SUMS)
 .venv-bridgev2-plot/bin/python -m deepvision_vla.diagnostics plot attribution \
   --image "$EXAMPLE_DIR/source.jpg" \
   --result "$EXAMPLE_DIR/openvla.json" \
   --result "$EXAMPLE_DIR/pi0-base.json" \
-  --result "$EXAMPLE_DIR/qwen-h16-public.json" \
+  --result "$EXAMPLE_DIR/qwen-h16.json" \
   --output "$FIGURE_DIR"
 ```
 
@@ -54,9 +57,9 @@ new output directory. This version shows where positive contribution is located
 within each map. Use the shared-scale view to compare strengths across a
 model's layers.
 
-The output contains `attribution.png`, `attribution.pdf`, and `RENDER_RECEIPT.json`. The frame locator and image digest are in `source.json`.
+The output contains `attribution.png`, `attribution.pdf`, and `RENDER_RECEIPT.json`. The frame locator and image digest are in [the source manifest](selected/source.json).
 For a new QwenVLA-OFT Grad-CAM probe, see the [Qwen H16 guide](../../docs/diagnostics/QWEN_H16_ENVIRONMENT.md).
 
 ## Image credit
 
-The source frame is from *BridgeData V2: A Dataset for Robot Learning at Scale*, Homer Walke and collaborators, CoRL 2023. `source.jpg` is the reconstructed input frame. The figure displays it in grayscale with DeepVision-VLA diagnostic overlays. [BridgeData V2](https://rail-berkeley.github.io/bridgedata/) · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+The source frame is from *BridgeData V2: A Dataset for Robot Learning at Scale*, Homer Walke and collaborators, CoRL 2023. [The original RGB image](selected/source.jpg) is the reconstructed input frame. The figure displays it in grayscale with DeepVision-VLA diagnostic overlays. [BridgeData V2](https://rail-berkeley.github.io/bridgedata/) · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)

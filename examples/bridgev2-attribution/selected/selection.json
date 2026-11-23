@@ -1,0 +1,1222 @@
+{
+  "first_round": {
+    "scope": "Small illustration selection on the fixed pilot, not an estimate of benchmark-wide effect",
+    "roles": [
+      "goal_context_anchor",
+      "manipulated_object"
+    ],
+    "projection": "patch center with each model's actual grid",
+    "ranking": [
+      {
+        "ordinal": 1013,
+        "instruction": "Put the red cube on top of the blue cube",
+        "sample_id": "ccb7bbe1d3d583673bd3",
+        "positive_models": 2,
+        "median_contrast": 0.04794009568010754,
+        "models": {
+          "openvla": {
+            "scorable": true,
+            "roi_token_fraction": 0.06640625,
+            "roi_mass_by_layer": [
+              0.06052521718095198,
+              0.0046131985034137575,
+              0.2556055634156271,
+              0.14138377181949444
+            ],
+            "early_enrichment": -0.03383704215781713,
+            "late_enrichment": 0.1320884176175608,
+            "early_minus_late": -0.16592545977537793
+          },
+          "pi0-base": {
+            "scorable": true,
+            "roi_token_fraction": 0.06640625,
+            "roi_mass_by_layer": [
+              0.23430753677819882,
+              0.1522592574800458,
+              0.0888794572750417,
+              0.19525951448175308
+            ],
+            "early_enrichment": 0.1268771471291223,
+            "late_enrichment": 0.0756632358783974,
+            "early_minus_late": 0.051213911250724886
+          },
+          "qwen-h16": {
+            "scorable": true,
+            "roi_token_fraction": 0.078125,
+            "roi_mass_by_layer": [
+              0.15221277497683167,
+              0.09781492515630509,
+              0.07377399408029929,
+              0.08037351469262236
+            ],
+            "early_enrichment": 0.04688885006656837,
+            "late_enrichment": -0.0010512456135391701,
+            "early_minus_late": 0.04794009568010754
+          }
+        }
+      },
+      {
+        "ordinal": 924,
+        "instruction": "put bowl on plate",
+        "sample_id": "e4b1240a0abc5ae63d20",
+        "positive_models": 1,
+        "median_contrast": -0.12506813748715612,
+        "models": {
+          "openvla": {
+            "scorable": true,
+            "roi_token_fraction": 0.05859375,
+            "roi_mass_by_layer": [
+              0.07313099895542477,
+              0.0005953406177084152,
+              0.8974180318592304,
+              0.024775252117754686
+            ],
+            "early_enrichment": -0.02173058021343341,
+            "late_enrichment": 0.40250289198849254,
+            "early_minus_late": -0.424233472201926
+          },
+          "pi0-base": {
+            "scorable": true,
+            "roi_token_fraction": 0.05859375,
+            "roi_mass_by_layer": [
+              0.056007678606585676,
+              0.11019914859520993,
+              0,
+              0
+            ],
+            "early_enrichment": 0.024509663600897805,
+            "late_enrichment": -0.05859375,
+            "early_minus_late": 0.0831034136008978
+          },
+          "qwen-h16": {
+            "scorable": true,
+            "roi_token_fraction": 0.125,
+            "roi_mass_by_layer": [
+              0,
+              0,
+              0.1965050139630047,
+              0.05363126101130753
+            ],
+            "early_enrichment": -0.125,
+            "late_enrichment": 0.0000681374871561169,
+            "early_minus_late": -0.12506813748715612
+          }
+        }
+      },
+      {
+        "ordinal": 119,
+        "instruction": "moved the yellow object to the right burner",
+        "sample_id": "9cdbed2887b0fcc6580d",
+        "positive_models": 0,
+        "median_contrast": -0.003148371911783465,
+        "models": {
+          "openvla": {
+            "scorable": true,
+            "roi_token_fraction": 0.06640625,
+            "roi_mass_by_layer": [
+              0.04200388042253209,
+              0.057871706545638064,
+              0.053437289242923104,
+              0.09763599733524883
+            ],
+            "early_enrichment": -0.01646845651591492,
+            "late_enrichment": 0.009130393289085964,
+            "early_minus_late": -0.025598849805000885
+          },
+          "pi0-base": {
+            "scorable": true,
+            "roi_token_fraction": 0.06640625,
+            "roi_mass_by_layer": [
+              0.004745778715595796,
+              0.13207484416129522,
+              0.07738680439004653,
+              0.0657305623104114
+            ],
+            "early_enrichment": 0.0020040614384455036,
+            "late_enrichment": 0.005152433350228969,
+            "early_minus_late": -0.003148371911783465
+          },
+          "qwen-h16": {
+            "scorable": true,
+            "roi_token_fraction": 0.078125,
+            "roi_mass_by_layer": [
+              0.03766382190274128,
+              0.08237776418485256,
+              0.025241510388000772,
+              0.09734677484888901
+            ],
+            "early_enrichment": -0.018104206956203087,
+            "late_enrichment": -0.01683085738155511,
+            "early_minus_late": -0.001273349574647975
+          }
+        }
+      },
+      {
+        "ordinal": 77,
+        "instruction": "put the cylinder on top of the green cube",
+        "sample_id": "5dc394c3d26f31536b7d",
+        "positive_models": 0,
+        "median_contrast": -0.007141374379320501,
+        "models": {
+          "openvla": {
+            "scorable": true,
+            "roi_token_fraction": 0.0390625,
+            "roi_mass_by_layer": [
+              0.014281780780786901,
+              0.04876655452631833,
+              0.022738672183326526,
+              0.28310022660326206
+            ],
+            "early_enrichment": -0.0075383323464473795,
+            "late_enrichment": 0.1138569493932943,
+            "early_minus_late": -0.12139528173974168
+          },
+          "pi0-base": {
+            "scorable": true,
+            "roi_token_fraction": 0.0390625,
+            "roi_mass_by_layer": [
+              0.22037168679322447,
+              0,
+              0.042437315494495094,
+              0.18540029944571645
+            ],
+            "early_enrichment": 0.07112334339661223,
+            "late_enrichment": 0.07485630747010577,
+            "early_minus_late": -0.003732964073493536
+          },
+          "qwen-h16": {
+            "scorable": true,
+            "roi_token_fraction": 0.046875,
+            "roi_mass_by_layer": [
+              0.02094025004606722,
+              0,
+              0,
+              0.03522299880470823
+            ],
+            "early_enrichment": -0.036404874976966387,
+            "late_enrichment": -0.029263500597645885,
+            "early_minus_late": -0.007141374379320501
+          }
+        }
+      },
+      {
+        "ordinal": 385,
+        "instruction": "cover the silver pot with the silver lid",
+        "sample_id": "36183c482cfb3ac5cc0d",
+        "positive_models": 2,
+        "median_contrast": null,
+        "models": {
+          "openvla": {
+            "scorable": true,
+            "roi_token_fraction": 0.109375,
+            "roi_mass_by_layer": [
+              0.2436523439859147,
+              0.06706901766544834,
+              0.184105587418801,
+              0.1061229236474486
+            ],
+            "early_enrichment": 0.045985680825681524,
+            "late_enrichment": 0.03573925553312479,
+            "early_minus_late": 0.010246425292556732
+          },
+          "pi0-base": {
+            "scorable": false,
+            "roi_token_fraction": 0.109375
+          },
+          "qwen-h16": {
+            "scorable": true,
+            "roi_token_fraction": 0.125,
+            "roi_mass_by_layer": [
+              0.21374105790573072,
+              0.0972229179773954,
+              0.13067437065236084,
+              0.12577565186915216
+            ],
+            "early_enrichment": 0.030481987941563066,
+            "late_enrichment": 0.0032250112607564996,
+            "early_minus_late": 0.027256976680806566
+          }
+        }
+      },
+      {
+        "ordinal": 969,
+        "instruction": "put detergent in sink",
+        "sample_id": "8c0587069c78ec889b92",
+        "positive_models": 2,
+        "median_contrast": null,
+        "models": {
+          "openvla": {
+            "scorable": true,
+            "roi_token_fraction": 0.19921875,
+            "roi_mass_by_layer": [
+              0.22095039140823666,
+              0.24320750248533213,
+              0.18034322528577496,
+              0.22287411552097472
+            ],
+            "early_enrichment": 0.03286019694678438,
+            "late_enrichment": 0.0023899204033748234,
+            "early_minus_late": 0.030470276543409558
+          },
+          "pi0-base": {
+            "scorable": false,
+            "roi_token_fraction": 0.19921875
+          },
+          "qwen-h16": {
+            "scorable": true,
+            "roi_token_fraction": 0.15625,
+            "roi_mass_by_layer": [
+              0.5091679772358014,
+              0.2292808478327646,
+              0.3400524712694682,
+              0
+            ],
+            "early_enrichment": 0.212974412534283,
+            "late_enrichment": 0.013776235634734096,
+            "early_minus_late": 0.1991981768995489
+          }
+        }
+      },
+      {
+        "ordinal": 191,
+        "instruction": "Put the blue spoon on the green rag.",
+        "sample_id": "63e97e600f697c3da92e",
+        "positive_models": 1,
+        "median_contrast": null,
+        "models": {
+          "openvla": {
+            "scorable": true,
+            "roi_token_fraction": 0.08984375,
+            "roi_mass_by_layer": [
+              0.13777129796964888,
+              0.14338390194684733,
+              0.05164046283323714,
+              0.06077522911980718
+            ],
+            "early_enrichment": 0.05073384995824809,
+            "late_enrichment": -0.03363590402347784,
+            "early_minus_late": 0.08436975398172593
+          },
+          "pi0-base": {
+            "scorable": false,
+            "roi_token_fraction": 0.08984375
+          },
+          "qwen-h16": {
+            "scorable": true,
+            "roi_token_fraction": 0.078125,
+            "roi_mass_by_layer": [
+              0.12902048065060562,
+              0.03501192653669878,
+              0.11404237454460737,
+              0.07249549370127462
+            ],
+            "early_enrichment": 0.0038912035936521927,
+            "late_enrichment": 0.015143934122940989,
+            "early_minus_late": -0.011252730529288796
+          }
+        }
+      },
+      {
+        "ordinal": 427,
+        "instruction": "put the yellow object in the  silver pot.",
+        "sample_id": "bcc79a2c42285827f574",
+        "positive_models": 1,
+        "median_contrast": null,
+        "models": {
+          "openvla": {
+            "scorable": false,
+            "ordinal": 427,
+            "model": "openvla",
+            "diagnostic": "Teacher causal argmax differs from native greedy generated IDs"
+          },
+          "pi0-base": {
+            "scorable": false,
+            "roi_token_fraction": 0.0703125
+          },
+          "qwen-h16": {
+            "scorable": true,
+            "roi_token_fraction": 0.078125,
+            "roi_mass_by_layer": [
+              0.20764667046898005,
+              0.020326940166402165,
+              0.016257529031800038,
+              0.11602127557218385
+            ],
+            "early_enrichment": 0.035861805317691106,
+            "late_enrichment": -0.011985597698008055,
+            "early_minus_late": 0.04784740301569916
+          }
+        }
+      },
+      {
+        "ordinal": 596,
+        "instruction": "Place the silver pot on the blue cloth.",
+        "sample_id": "220452fe11db539cd4a0",
+        "positive_models": 1,
+        "median_contrast": null,
+        "models": {
+          "openvla": {
+            "scorable": true,
+            "roi_token_fraction": 0.140625,
+            "roi_mass_by_layer": [
+              0.07489181259248538,
+              0.23580251533181032,
+              0.3691632012464778,
+              1
+            ],
+            "early_enrichment": 0.014722163962147844,
+            "late_enrichment": 0.5439566006232389,
+            "early_minus_late": -0.529234436661091
+          },
+          "pi0-base": {
+            "scorable": false,
+            "roi_token_fraction": 0.140625
+          },
+          "qwen-h16": {
+            "scorable": true,
+            "roi_token_fraction": 0.15625,
+            "roi_mass_by_layer": [
+              0.5689963216797543,
+              0.3494522954240672,
+              0.12218516228075624,
+              0.2124523549991823
+            ],
+            "early_enrichment": 0.30297430855191076,
+            "late_enrichment": 0.011068758639969256,
+            "early_minus_late": 0.2919055499119415
+          }
+        }
+      }
+    ]
+  },
+  "scope": "Small illustration selection on the fixed pilot, not an estimate of benchmark-wide effect",
+  "roles": [
+    "goal_context_anchor",
+    "manipulated_object"
+  ],
+  "projection": "patch center with each model's actual grid",
+  "ranking": [
+    {
+      "ordinal": 1318,
+      "instruction": "take lid off pot or pan",
+      "sample_id": "05c8b40e713f661f0194",
+      "positive_models": 3,
+      "median_contrast": 0.23255555976023112,
+      "models": {
+        "openvla": {
+          "scorable": true,
+          "roi_token_fraction": 0.09765625,
+          "roi_mass_by_layer": [
+            0.4036955228315171,
+            0.8190384668143116,
+            0.1002940094050504,
+            0.09445617845454568
+          ],
+          "early_enrichment": 0.5137107448229143,
+          "late_enrichment": -0.00028115607020196,
+          "early_minus_late": 0.5139919008931163
+        },
+        "pi0-base": {
+          "scorable": true,
+          "roi_token_fraction": 0.09765625,
+          "roi_mass_by_layer": [
+            0.3244035983523456,
+            0.3342222527480793,
+            0.12144959202887352,
+            0.3600769917451692
+          ],
+          "early_enrichment": 0.23165667555021247,
+          "late_enrichment": 0.14310704188702136,
+          "early_minus_late": 0.0885496336631911
+        },
+        "qwen-h16": {
+          "scorable": true,
+          "roi_token_fraction": 0.140625,
+          "roi_mass_by_layer": [
+            0.4940348951699052,
+            0.13091229922280587,
+            0.042159844642315675,
+            0.11767623022993316
+          ],
+          "early_enrichment": 0.17184859719635553,
+          "late_enrichment": -0.06070696256387559,
+          "early_minus_late": 0.23255555976023112
+        }
+      }
+    },
+    {
+      "ordinal": 333,
+      "instruction": "push the can to the left side of the silver pot",
+      "sample_id": "833eb22ecbfb4ba671e4",
+      "positive_models": 3,
+      "median_contrast": 0.060232105278300994,
+      "models": {
+        "openvla": {
+          "scorable": true,
+          "roi_token_fraction": 0.07421875,
+          "roi_mass_by_layer": [
+            0.06748057033979464,
+            0.12858367186974928,
+            0.054789938391073066,
+            0.08996392075472046
+          ],
+          "early_enrichment": 0.02381337110477197,
+          "late_enrichment": -0.0018418204271032357,
+          "early_minus_late": 0.025655191531875204
+        },
+        "pi0-base": {
+          "scorable": true,
+          "roi_token_fraction": 0.07421875,
+          "roi_mass_by_layer": [
+            0.2042229865749916,
+            0,
+            0.05415042688678361,
+            0.029608349131606003
+          ],
+          "early_enrichment": 0.027892743287495803,
+          "late_enrichment": -0.03233936199080519,
+          "early_minus_late": 0.060232105278300994
+        },
+        "qwen-h16": {
+          "scorable": true,
+          "roi_token_fraction": 0.0625,
+          "roi_mass_by_layer": [
+            0.11133249644117181,
+            0.18355223768665482,
+            0.0009672246739198028,
+            0.05638506821615929
+          ],
+          "early_enrichment": 0.08494236706391331,
+          "late_enrichment": -0.033823853554960454,
+          "early_minus_late": 0.11876622061887376
+        }
+      }
+    },
+    {
+      "ordinal": 1045,
+      "instruction": "move the orange cloth from the left burner to top left",
+      "sample_id": "0564f5dd4a6e6b17f57c",
+      "positive_models": 2,
+      "median_contrast": 0.11474191140747851,
+      "models": {
+        "openvla": {
+          "scorable": true,
+          "roi_token_fraction": 0.06640625,
+          "roi_mass_by_layer": [
+            0.009850222346127735,
+            0.013731759317221858,
+            0,
+            0.3342577706117417
+          ],
+          "early_enrichment": -0.0546152591683252,
+          "late_enrichment": 0.10072263530587086,
+          "early_minus_late": -0.15533789447419605
+        },
+        "pi0-base": {
+          "scorable": true,
+          "roi_token_fraction": 0.06640625,
+          "roi_mass_by_layer": [
+            0.1361943543840083,
+            0.15442624502975894,
+            0.05257683532261415,
+            0.008559941276196041
+          ],
+          "early_enrichment": 0.07890404970688361,
+          "late_enrichment": -0.0358378617005949,
+          "early_minus_late": 0.11474191140747851
+        },
+        "qwen-h16": {
+          "scorable": true,
+          "roi_token_fraction": 0.0625,
+          "roi_mass_by_layer": [
+            0.5744502180404967,
+            0.6206908653935944,
+            0.11660708692675027,
+            0.36450047465515617
+          ],
+          "early_enrichment": 0.5350705417170456,
+          "late_enrichment": 0.17805378079095321,
+          "early_minus_late": 0.35701676092609236
+        }
+      }
+    },
+    {
+      "ordinal": 265,
+      "instruction": "put pot or pan from sink into drying rack",
+      "sample_id": "5db24b9c4bd25c961065",
+      "positive_models": 1,
+      "median_contrast": 0.024879619976564266,
+      "models": {
+        "openvla": {
+          "scorable": true,
+          "roi_token_fraction": 0.265625,
+          "roi_mass_by_layer": [
+            0.2587574767038248,
+            0.06543156359631548,
+            0.02688583292756115,
+            0.24754396741945062
+          ],
+          "early_enrichment": -0.10353047984992986,
+          "late_enrichment": -0.12841009982649412,
+          "early_minus_late": 0.024879619976564266
+        },
+        "pi0-base": {
+          "scorable": true,
+          "roi_token_fraction": 0.265625,
+          "roi_mass_by_layer": [
+            0.07496298039626687,
+            0,
+            0.27432303393470786,
+            0.810270480441511
+          ],
+          "early_enrichment": -0.22814350980186657,
+          "late_enrichment": 0.27667175718810944,
+          "early_minus_late": -0.504815266989976
+        },
+        "qwen-h16": {
+          "scorable": true,
+          "roi_token_fraction": 0.25,
+          "roi_mass_by_layer": [
+            0.4478025277605554,
+            0.25057477558171615,
+            0.10715337440483175,
+            0.057951213166214474
+          ],
+          "early_enrichment": 0.09918865167113577,
+          "late_enrichment": -0.16744770621447688,
+          "early_minus_late": 0.2666363578856127
+        }
+      }
+    },
+    {
+      "ordinal": 442,
+      "instruction": "moved the silver pot to the right side of the sink",
+      "sample_id": "60a6c954785e12caf6a2",
+      "positive_models": 1,
+      "median_contrast": -0.009590195344411856,
+      "models": {
+        "openvla": {
+          "scorable": true,
+          "roi_token_fraction": 0.234375,
+          "roi_mass_by_layer": [
+            0.5024430773669,
+            0.5428827708836009,
+            0.20950652361529432,
+            0.22733884003670335
+          ],
+          "early_enrichment": 0.2882879241252505,
+          "late_enrichment": -0.015952318174001168,
+          "early_minus_late": 0.3042402422992517
+        },
+        "pi0-base": {
+          "scorable": true,
+          "roi_token_fraction": 0.234375,
+          "roi_mass_by_layer": [
+            0.4364869834568998,
+            0.3448885270367923,
+            0.21451065643796158,
+            0.5860452447445542
+          ],
+          "early_enrichment": 0.15631275524684607,
+          "late_enrichment": 0.16590295059125792,
+          "early_minus_late": -0.009590195344411856
+        },
+        "qwen-h16": {
+          "scorable": true,
+          "roi_token_fraction": 0.25,
+          "roi_mass_by_layer": [
+            0.059993218697441286,
+            0.11238802726509657,
+            0.43065507227784355,
+            0.1854508571262756
+          ],
+          "early_enrichment": -0.16380937701873108,
+          "late_enrichment": 0.05805296470205956,
+          "early_minus_late": -0.22186234172079064
+        }
+      }
+    },
+    {
+      "ordinal": 936,
+      "instruction": "move the can to the bottom of the right side burner",
+      "sample_id": "f36725f6b84e34c3b092",
+      "positive_models": 1,
+      "median_contrast": -0.009904947900786262,
+      "models": {
+        "openvla": {
+          "scorable": true,
+          "roi_token_fraction": 0.08203125,
+          "roi_mass_by_layer": [
+            0.04196731187377297,
+            0.066163626086599,
+            0.05959184255124126,
+            0.06834899121070323
+          ],
+          "early_enrichment": -0.02796578101981402,
+          "late_enrichment": -0.018060833119027758,
+          "early_minus_late": -0.009904947900786262
+        },
+        "pi0-base": {
+          "scorable": true,
+          "roi_token_fraction": 0.08203125,
+          "roi_mass_by_layer": [
+            0.07130452624884079,
+            0.3665733109209391,
+            0.08631440405135121,
+            0.5712366634001035
+          ],
+          "early_enrichment": 0.13690766858488995,
+          "late_enrichment": 0.24674428372572732,
+          "early_minus_late": -0.10983661514083737
+        },
+        "qwen-h16": {
+          "scorable": true,
+          "roi_token_fraction": 0.078125,
+          "roi_mass_by_layer": [
+            0.18383774941346015,
+            0.0419353722674262,
+            0.028732931244346168,
+            0.06142248054672729
+          ],
+          "early_enrichment": 0.03476156084044317,
+          "late_enrichment": -0.03304729410446327,
+          "early_minus_late": 0.06780885494490643
+        }
+      }
+    },
+    {
+      "ordinal": 619,
+      "instruction": "put pan on stove from sink",
+      "sample_id": "ce6baf0fbd929dfb87d8",
+      "positive_models": 1,
+      "median_contrast": -0.03840509916807697,
+      "models": {
+        "openvla": {
+          "scorable": true,
+          "roi_token_fraction": 0.32421875,
+          "roi_mass_by_layer": [
+            0.33592628457058293,
+            0.4805764218195015,
+            0.2298765620435981,
+            0
+          ],
+          "early_enrichment": 0.08403260319504224,
+          "late_enrichment": -0.20928046897820096,
+          "early_minus_late": 0.2933130721732432
+        },
+        "pi0-base": {
+          "scorable": true,
+          "roi_token_fraction": 0.32421875,
+          "roi_mass_by_layer": [
+            0.31191241811760634,
+            0.356818645781097,
+            0.2844578622396526,
+            0.6473805635768939
+          ],
+          "early_enrichment": 0.010146781949351702,
+          "late_enrichment": 0.1417004629082732,
+          "early_minus_late": -0.1315536809589215
+        },
+        "qwen-h16": {
+          "scorable": true,
+          "roi_token_fraction": 0.28125,
+          "roi_mass_by_layer": [
+            0.18191901705735058,
+            0.10299828189122474,
+            0.30394693795824756,
+            0.05778055932648166
+          ],
+          "early_enrichment": -0.13879135052571234,
+          "late_enrichment": -0.10038625135763538,
+          "early_minus_late": -0.03840509916807697
+        }
+      }
+    },
+    {
+      "ordinal": 825,
+      "instruction": "move the can in the right side",
+      "sample_id": "2d1d6d3cb4fef7c72418",
+      "positive_models": 1,
+      "median_contrast": -0.03877411401536726,
+      "models": {
+        "openvla": {
+          "scorable": true,
+          "roi_token_fraction": 0.1015625,
+          "roi_mass_by_layer": [
+            0.06287117404867794,
+            0.052056080345578834,
+            0.08088496447515191,
+            0.11159051794983937
+          ],
+          "early_enrichment": -0.044098872802871614,
+          "late_enrichment": -0.005324758787504352,
+          "early_minus_late": -0.03877411401536726
+        },
+        "pi0-base": {
+          "scorable": true,
+          "roi_token_fraction": 0.1015625,
+          "roi_mass_by_layer": [
+            0.3457774572594447,
+            0.1530163079073318,
+            0.09797192960337317,
+            0.03415191573977357
+          ],
+          "early_enrichment": 0.14783438258338827,
+          "late_enrichment": -0.035500577328426625,
+          "early_minus_late": 0.1833349599118149
+        },
+        "qwen-h16": {
+          "scorable": true,
+          "roi_token_fraction": 0.078125,
+          "roi_mass_by_layer": [
+            0.012573971741881573,
+            0.03224254429714827,
+            0.06920296575176521,
+            0.09166981227030914
+          ],
+          "early_enrichment": -0.05571674198048508,
+          "late_enrichment": 0.002311389011037168,
+          "early_minus_late": -0.05802813099152225
+        }
+      }
+    },
+    {
+      "ordinal": 63,
+      "instruction": "flip pot upright in sink",
+      "sample_id": "b09e384fdb0482e2a1ad",
+      "positive_models": 1,
+      "median_contrast": -0.19533252410331936,
+      "models": {
+        "openvla": {
+          "scorable": true,
+          "roi_token_fraction": 0.31640625,
+          "roi_mass_by_layer": [
+            0.11063119425207607,
+            0.7523710944204575,
+            0.728328545135586,
+            0.5253387917435863
+          ],
+          "early_enrichment": 0.11509489433626674,
+          "late_enrichment": 0.3104274184395861,
+          "early_minus_late": -0.19533252410331936
+        },
+        "pi0-base": {
+          "scorable": true,
+          "roi_token_fraction": 0.31640625,
+          "roi_mass_by_layer": [
+            0.45850181797455924,
+            0.3136309001407881,
+            0.25402538098186356,
+            0.37765822813376904
+          ],
+          "early_enrichment": 0.06966010905767367,
+          "late_enrichment": -0.0005644454421837031,
+          "early_minus_late": 0.07022455449985737
+        },
+        "qwen-h16": {
+          "scorable": true,
+          "roi_token_fraction": 0.390625,
+          "roi_mass_by_layer": [
+            0.35992349611338625,
+            0.04045724187251659,
+            0.5359098159291418,
+            0.3922275088975614
+          ],
+          "early_enrichment": -0.19043463100704858,
+          "late_enrichment": 0.0734436624133516,
+          "early_minus_late": -0.26387829342040015
+        }
+      }
+    },
+    {
+      "ordinal": 1127,
+      "instruction": "put eggplant in pot or pan",
+      "sample_id": "db551f90018157fd521e",
+      "positive_models": 2,
+      "median_contrast": null,
+      "models": {
+        "openvla": {
+          "scorable": true,
+          "roi_token_fraction": 0.08203125,
+          "roi_mass_by_layer": [
+            0.2948761529061923,
+            0.08972021713820098,
+            0.056639950692917516,
+            0.02159365274901711
+          ],
+          "early_enrichment": 0.11026693502219664,
+          "late_enrichment": -0.04291444827903269,
+          "early_minus_late": 0.15318138330122932
+        },
+        "pi0-base": {
+          "scorable": false,
+          "roi_token_fraction": 0.08203125
+        },
+        "qwen-h16": {
+          "scorable": true,
+          "roi_token_fraction": 0.109375,
+          "roi_mass_by_layer": [
+            0.3426050743183217,
+            0,
+            0.10833003312556733,
+            0.07465546346900201
+          ],
+          "early_enrichment": 0.061927537159160856,
+          "late_enrichment": -0.017882251702715332,
+          "early_minus_late": 0.07980978886187619
+        }
+      }
+    },
+    {
+      "ordinal": 179,
+      "instruction": "move the silver pot in the middle of the table",
+      "sample_id": "f761c547d79b7a68bcc9",
+      "positive_models": 1,
+      "median_contrast": null,
+      "models": {
+        "openvla": {
+          "scorable": true,
+          "roi_token_fraction": 0.0859375,
+          "roi_mass_by_layer": [
+            0.19299587613423638,
+            0.4731128942542585,
+            0.326356976369266,
+            0.6500896463104588
+          ],
+          "early_enrichment": 0.24711688519424746,
+          "late_enrichment": 0.4022858113398624,
+          "early_minus_late": -0.15516892614561495
+        },
+        "pi0-base": {
+          "scorable": false,
+          "roi_token_fraction": 0.0859375
+        },
+        "qwen-h16": {
+          "scorable": true,
+          "roi_token_fraction": 0.09375,
+          "roi_mass_by_layer": [
+            0.7909063877698618,
+            0.2990096415566197,
+            0.10667702221595876,
+            0.06606170955929803
+          ],
+          "early_enrichment": 0.4512080146632407,
+          "late_enrichment": -0.007380634112371609,
+          "early_minus_late": 0.4585886487756123
+        }
+      }
+    },
+    {
+      "ordinal": 303,
+      "instruction": "Move the pot to the right back of the table.",
+      "sample_id": "6e8e0b3d837b20a6b9d0",
+      "positive_models": 1,
+      "median_contrast": null,
+      "models": {
+        "openvla": {
+          "scorable": true,
+          "roi_token_fraction": 0.09375,
+          "roi_mass_by_layer": [
+            0.057074939179960336,
+            0,
+            0,
+            0.0691801119812161
+          ],
+          "early_enrichment": -0.06521253041001983,
+          "late_enrichment": -0.05915994400939195,
+          "early_minus_late": -0.006052586400627877
+        },
+        "pi0-base": {
+          "scorable": true,
+          "roi_token_fraction": 0.09375,
+          "roi_mass_by_layer": [
+            0.1271667200164107,
+            0.23937463717021515,
+            0.1346281301684925,
+            0
+          ],
+          "early_enrichment": 0.08952067859331292,
+          "late_enrichment": -0.026435934915753745,
+          "early_minus_late": 0.11595661350906666
+        },
+        "qwen-h16": {
+          "scorable": false,
+          "roi_token_fraction": 0.140625
+        }
+      }
+    },
+    {
+      "ordinal": 456,
+      "instruction": "move the silver pot to the left side of the stove",
+      "sample_id": "030c426b7facd8d57bf8",
+      "positive_models": 1,
+      "median_contrast": null,
+      "models": {
+        "openvla": {
+          "scorable": true,
+          "roi_token_fraction": 0.11328125,
+          "roi_mass_by_layer": [
+            0.03712233928757554,
+            0.08054495152976471,
+            0.09607872031525963,
+            0.08799392029493112
+          ],
+          "early_enrichment": -0.05444760459132988,
+          "late_enrichment": -0.02124492969490463,
+          "early_minus_late": -0.03320267489642525
+        },
+        "pi0-base": {
+          "scorable": false,
+          "roi_token_fraction": 0.11328125
+        },
+        "qwen-h16": {
+          "scorable": true,
+          "roi_token_fraction": 0.140625,
+          "roi_mass_by_layer": [
+            0.3691924094495484,
+            0.14966755759156766,
+            0.135867956144268,
+            0.07742624678825495
+          ],
+          "early_enrichment": 0.11880498352055802,
+          "late_enrichment": -0.03397789853373853,
+          "early_minus_late": 0.15278288205429655
+        }
+      }
+    },
+    {
+      "ordinal": 1074,
+      "instruction": "move the basket to the left side in front of the washing machine",
+      "sample_id": "8a1154e744a6e2797f48",
+      "positive_models": 1,
+      "median_contrast": null,
+      "models": {
+        "openvla": {
+          "scorable": true,
+          "roi_token_fraction": 0.25390625,
+          "roi_mass_by_layer": [
+            0.3423354097800528,
+            0.07976571079653261,
+            0.2882960357589261,
+            0.24641846443291499
+          ],
+          "early_enrichment": -0.04285568971170731,
+          "late_enrichment": 0.01345100009592054,
+          "early_minus_late": -0.05630668980762785
+        },
+        "pi0-base": {
+          "scorable": false,
+          "roi_token_fraction": 0.25390625
+        },
+        "qwen-h16": {
+          "scorable": true,
+          "roi_token_fraction": 0.25,
+          "roi_mass_by_layer": [
+            0.8993021944263,
+            0.5657611173003978,
+            0.19942130709747805,
+            0.02992352548334174
+          ],
+          "early_enrichment": 0.4825316558633489,
+          "late_enrichment": -0.1353275837095901,
+          "early_minus_late": 0.617859239572939
+        }
+      }
+    },
+    {
+      "ordinal": 1174,
+      "instruction": "put spatula on plate sink",
+      "sample_id": "5d57aad214873e5cb9bc",
+      "positive_models": 1,
+      "median_contrast": null,
+      "models": {
+        "openvla": {
+          "scorable": false,
+          "ordinal": 1174,
+          "model": "openvla",
+          "diagnostic": "Teacher causal argmax differs from native greedy generated IDs"
+        },
+        "pi0-base": {
+          "scorable": true,
+          "roi_token_fraction": 0.0859375,
+          "roi_mass_by_layer": [
+            0.006240625912742393,
+            0.14247966438305185,
+            0.07840631714320791,
+            0
+          ],
+          "early_enrichment": -0.011577354852102886,
+          "late_enrichment": -0.046734341428396046,
+          "early_minus_late": 0.03515698657629316
+        },
+        "qwen-h16": {
+          "scorable": true,
+          "roi_token_fraction": 0.078125,
+          "roi_mass_by_layer": [
+            0.119097098450134,
+            0.06293843682400721,
+            0.03900666183224757,
+            0
+          ],
+          "early_enrichment": 0.012892767637070604,
+          "late_enrichment": -0.05862166908387621,
+          "early_minus_late": 0.07151443672094682
+        }
+      }
+    },
+    {
+      "ordinal": 1423,
+      "instruction": "put pan on stove and put stuffedduck in pan",
+      "sample_id": "9f98b3e48612c520caf5",
+      "positive_models": 1,
+      "median_contrast": null,
+      "models": {
+        "openvla": {
+          "scorable": false,
+          "ordinal": 1423,
+          "model": "openvla",
+          "diagnostic": "Teacher causal argmax differs from native greedy generated IDs"
+        },
+        "pi0-base": {
+          "scorable": true,
+          "roi_token_fraction": 0.15625,
+          "roi_mass_by_layer": [
+            0.20371636379474864,
+            0.4003814129559161,
+            0.10204994277931603,
+            0.30006929817306716
+          ],
+          "early_enrichment": 0.1457988883753324,
+          "late_enrichment": 0.04480962047619158,
+          "early_minus_late": 0.10098926789914081
+        },
+        "qwen-h16": {
+          "scorable": true,
+          "roi_token_fraction": 0.125,
+          "roi_mass_by_layer": [
+            0.17385613574455813,
+            0,
+            0.12278360507389888,
+            0
+          ],
+          "early_enrichment": -0.038071932127720934,
+          "late_enrichment": -0.06360819746305056,
+          "early_minus_late": 0.025536265335329628
+        }
+      }
+    },
+    {
+      "ordinal": 537,
+      "instruction": "move the purple can to the bottom of the stove",
+      "sample_id": "2e2f19b88839ff8ad341",
+      "positive_models": 0,
+      "median_contrast": null,
+      "models": {
+        "openvla": {
+          "scorable": true,
+          "roi_token_fraction": 0.06640625,
+          "roi_mass_by_layer": [
+            0.0417345218292154,
+            0,
+            0.051846585384850784,
+            0
+          ],
+          "early_enrichment": -0.0455389890853923,
+          "late_enrichment": -0.040482957307574605,
+          "early_minus_late": -0.005056031777817695
+        },
+        "pi0-base": {
+          "scorable": false,
+          "roi_token_fraction": 0.06640625
+        },
+        "qwen-h16": {
+          "scorable": true,
+          "roi_token_fraction": 0.0625,
+          "roi_mass_by_layer": [
+            0.02373941889097569,
+            0.029298512701435103,
+            0.005128655021769441,
+            0.018867847933448655
+          ],
+          "early_enrichment": -0.0359810342037946,
+          "late_enrichment": -0.05050174852239095,
+          "early_minus_late": 0.014520714318596348
+        }
+      }
+    },
+    {
+      "ordinal": 1281,
+      "instruction": "take lid off pot or pan",
+      "sample_id": "926c55d7973edc59399b",
+      "positive_models": 0,
+      "median_contrast": null,
+      "models": {
+        "openvla": {
+          "scorable": false,
+          "ordinal": 1281,
+          "model": "openvla",
+          "diagnostic": "Teacher causal argmax differs from native greedy generated IDs"
+        },
+        "pi0-base": {
+          "scorable": true,
+          "roi_token_fraction": 0.11328125,
+          "roi_mass_by_layer": [
+            0.193510734047379,
+            0.21931260163108826,
+            0.14677426103819557,
+            0.28779367220014535
+          ],
+          "early_enrichment": 0.09313041783923365,
+          "late_enrichment": 0.10400271661917046,
+          "early_minus_late": -0.010872298779936812
+        },
+        "qwen-h16": {
+          "scorable": true,
+          "roi_token_fraction": 0.09375,
+          "roi_mass_by_layer": [
+            0.050661131931892193,
+            0.017722685913829316,
+            0.021882571534149343,
+            0.20216598392201757
+          ],
+          "early_enrichment": -0.05955809107713925,
+          "late_enrichment": 0.01827427772808346,
+          "early_minus_late": -0.07783236880522271
+        }
+      }
+    }
+  ],
+  "selection": {
+    "source_panel": "BridgeV2 v55 supplemental illustration sample",
+    "input_filter": "Choose 18 non-pilot samples by SHA256 of gradcam-illustration-v2:<sample-id> with at most one per source shard. Require object, arm and goal annotations, object box at least 2.5% of the frame and 7-30% object-plus-goal coverage.",
+    "ranking_minimums": {
+      "positive_models": 2,
+      "median_contrast": 0.05
+    },
+    "ordinals": [
+      456,
+      63,
+      619,
+      303,
+      1174,
+      1423,
+      537,
+      936,
+      1281,
+      333,
+      179,
+      265,
+      1127,
+      825,
+      1318,
+      442,
+      1045,
+      1074
+    ],
+    "source_inventory_sha256": "4155dc0f1df1dde0efd312848490ba3aea701b82645e5a8f7a915a1c79c4f3a6",
+    "annotation_sha256": "c49ff1fc2f2d1c5f5732e77b721069791f26e8f682fa95f55a7a691aca71c77d",
+    "ordinal": 1318
+  },
+  "attempted_sources": 27,
+  "sources_with_three_completed_model_runs": 23
+}

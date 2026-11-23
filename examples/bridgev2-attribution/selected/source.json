@@ -1,0 +1,18 @@
+{
+  "dataset": "BridgeData V2",
+  "dataset_url": "https://rail-berkeley.github.io/bridgedata/",
+  "license": "CC BY 4.0",
+  "ordinal": 1318,
+  "sample_id": "05c8b40e713f661f0194",
+  "instruction": "take lid off pot or pan",
+  "image_size": [
+    256,
+    256
+  ],
+  "image_sha256": "7ea829c69ae4da97e98d965d4fc2036755c033c3be89865c01aeda8033824ee2",
+  "anchor": 9,
+  "shard": "bridge_dataset-train.tfrecord-00515-of-01024",
+  "record_offset": 102129389,
+  "record_sha256": "b0d24b3ccdeb533b71945dfc01c78b067195009af850c4c714708f357daea9ba",
+  "source_inventory_sha256": "4155dc0f1df1dde0efd312848490ba3aea701b82645e5a8f7a915a1c79c4f3a6"
+}

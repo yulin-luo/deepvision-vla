@@ -1,6 +1,6 @@
 # Recompute the three-model BridgeV2 attribution example
 
-Use the original RGB frame in `examples/bridgev2-attribution/source.jpg` and ordinal 49 of the verified BridgeV2 v55 runtime. The cloth-folding frame was retained from earlier verification to check all three model paths with the same input and instruction. [The paper's figure](https://arxiv.org/html/2603.15618v1#S3.SS2) shows a separate example.
+Use [the selected RGB frame](../../examples/bridgev2-attribution/selected/source.jpg), ordinal **1318** of the verified BridgeV2 v55 runtime. This frame was selected for readability from the 27-frame rerun. [The paper's figure](https://arxiv.org/html/2603.15618v1#S3.SS2) shows a separate example.
 
 Set `DV_CODE` to the root of this checkout in each model's environment and run the commands from that root. Use an idle NVIDIA GPU and a different output path for each run. The three model environments are separate. The CPU plotting environment is shared.
 
@@ -11,8 +11,9 @@ Use the environment, pinned checkpoint and asset receipt in the [OpenVLA guide](
 ```bash
 export DV_CODE="$PWD"
 export PYTHONPATH="$DV_CODE/src"
-export IMAGE="$DV_CODE/examples/bridgev2-attribution/source.jpg"
-export INSTRUCTION="fold the cloth from the right to the left side"
+export IMAGE="$DV_CODE/examples/bridgev2-attribution/selected/source.jpg"
+export INSTRUCTION=$(python -c 'import json, sys; print(json.load(open(sys.argv[1]))["instruction"])' \\
+  "$DV_CODE/examples/bridgev2-attribution/selected/source.json")
 
 python -m deepvision_vla.diagnostics attribute openvla \
   --image "$IMAGE" --instruction "$INSTRUCTION" \
@@ -31,7 +32,7 @@ Use the model and tokenizer from [Official Pi0 base](PI0_BASE.md). Set `PI0_WORK
 ```bash
 export PYTHONPATH="$DV_CODE/src"
 python -m deepvision_vla.diagnostics attribute pi0-base \
-  --root "$PI0_WORK" --ordinal 49 --gpu "$GPU" \
+  --root "$PI0_WORK" --ordinal 1318 --gpu "$GPU" \
   --output "$DV_WORK/attribution/pi0-base.json"
 ```
 
@@ -39,15 +40,15 @@ The probe uses one native denoising step at time 0.5 with fixed noise. Its scala
 
 ## QwenVLA-OFT H16
 
-Follow the [Qwen H16 environment and launch guide](QWEN_H16_ENVIRONMENT.md) to obtain the public checkpoint and prepare its drop launch in this checkout. Set `QWEN_RUN` to the prepared run directory. This attribution probe uses the qualified ROI for ordinal 49 and computes a fresh baseline before capturing gradients through the native H16 action head.
+Follow the [Qwen H16 environment and launch guide](QWEN_H16_ENVIRONMENT.md) to obtain the public checkpoint and prepare its drop launch in this checkout. Set `QWEN_RUN` to the prepared run directory. This attribution probe uses the qualified ROI for ordinal 1318 and computes a fresh baseline before capturing gradients through the native H16 action head.
 
 ```bash
 export PYTHONPATH="$DV_CODE/src"
-export QWEN_PROBE="$DV_WORK/attribution/qwen-probe-49"
+export QWEN_PROBE="$DV_WORK/attribution/qwen-probe-1318"
 
 python -m deepvision_vla.diagnostics attribute qwen-h16 \
-  --prepared-launch "$QWEN_RUN/launch.json" --ordinal 49 --gpu "$GPU" \
-  --output "$QWEN_PROBE" --node-local /tmp/deepvision-qwen-attribution-49
+  --prepared-launch "$QWEN_RUN/launch.json" --ordinal 1318 --gpu "$GPU" \
+  --output "$QWEN_PROBE" --node-local /tmp/deepvision-qwen-attribution-1318
 
 PROBE_SHA=$(sha256sum "$QWEN_PROBE/launch.json" | cut -d' ' -f1)
 python "$DV_CODE/src/deepvision_vla/diagnostics/paper_probe_watchdog.py" \
@@ -62,11 +63,11 @@ Use the plotting Python from the [BridgeV2 quickstart](QUICKSTART.md).
 
 ```bash
 "$DV_REPORT_PYTHON" -m deepvision_vla.diagnostics plot attribution \
-  --image "$DV_CODE/examples/bridgev2-attribution/source.jpg" \
+  --image "$DV_CODE/examples/bridgev2-attribution/selected/source.jpg" \
   --result "$DV_WORK/attribution/openvla.json" \
   --result "$DV_WORK/attribution/pi0-base.json" \
   --result "$QWEN_PROBE/result/result.json" \
-  --output "$DV_WORK/attribution/three-model-49"
+  --output "$DV_WORK/attribution/three-model-1318"
 ```
 
 The renderer checks image SHA256, instruction, layer positions and visual token order. It writes PNG, PDF and a render receipt. Each model uses its own documented gradient target. Compare strengths within each model using the shared-per-model display scale.
