@@ -23,7 +23,7 @@ export PYTHONPATH="$DV_CODE/src"
 
 The audit verifies the fixed inventory, original action/state array hashes, anchor and all four action vectors against the archived Bridge reference. The optional `--qwen-stored-evidence` argument accepts the retained per-source Qwen conversion evidence and independently compares the first-step vectors, source hashes and frame indices. Without that ledger, the command still checks the public Bridge arrays and reports the gripper-convention difference.
 
-Add `--qwen-terminals merged_terminals.jsonl --qwen-merge-receipt MERGE_RECEIPT.json` to replay the native H16 predictions on CPU. It verifies the merged ledger digest and the same 1,500 sources in the baseline and every layer/retention cell, then scores step 0 in each prediction. [Verified action audit and H1 replay](bridge-v55-action-alignment.json)
+Add `--qwen-terminals merged_terminals.jsonl --qwen-merge-receipt MERGE_RECEIPT.json` to replay the native H16 predictions on CPU. It verifies the merged ledger digest and the same 1,500 sources in the baseline and every layer/retention cell, then scores step 0 in each prediction. [Verified action audit and H1 replay](../../examples/bridgev2-action-alignment/summary.json)
 
 ## Qwen H1 results
 

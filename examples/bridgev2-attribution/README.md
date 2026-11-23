@@ -2,7 +2,7 @@
 
 ## Paper Figure 2
 
-<img src="https://deepvision-vla.github.io/static/images/diagnosis-final.png" alt="Paper Figure 2. Layer-wise ROI masking curves and contribution maps for OpenVLA, Pi0, and QwenVLA-OFT" width="880" />
+<img src="../../assets/bridgev2-paper-figure2.png" alt="Paper Figure 2. Layer-wise ROI masking curves and contribution maps for OpenVLA, Pi0, and QwenVLA-OFT" width="880" />
 
 [Figure 2 from the paper](https://arxiv.org/html/2603.15618v1#S3.SS2) · [Full-resolution figure](../../assets/bridgev2-paper-figure2.png)
 
@@ -10,19 +10,9 @@ The ROI masking curves summarize sensitivity across trajectories. The contributi
 
 ## Reproduce Grad-CAM on a shared frame
 
-The selected v55 frame is ordinal **1318**, with the instruction “take lid off pot or pan.” We reran 27 candidate frames on all three checkpoints and obtained complete maps from all three for 23 frames. Selection favors stronger localization in the manipulated-object and target regions in the two earlier sampled layers. This is a selected illustration from the rerun.
+<img src="selected/attribution.png" alt="Three-model Grad-CAM for taking a lid off a pot or pan" width="720" />
 
-<img src="selected/attribution.png" alt="Three-model Grad-CAM on the selected BridgeV2 frame" width="720" />
-
-[Original frame](selected/source.jpg) · [Three-model PDF](selected/attribution.pdf) · [Selection scores and exclusions](selected/selection.json) · [Render manifest](selected/RENDER_RECEIPT.json) · [Recompute the example](../../docs/diagnostics/ATTRIBUTION.md)
-
-| Model | Earlier minus later share of positive Grad-CAM in the object and target regions |
-| --- | ---: |
-| OpenVLA | 51.4 pp |
-| Official π₀ base | 8.9 pp |
-| QwenVLA-OFT | 23.3 pp |
-
-[Earlier cloth-folding example](native-attribution.pdf)
+[Original frame](selected/source.jpg) · [Three-model PDF](selected/attribution.pdf) · [Recompute the example](../../docs/diagnostics/ATTRIBUTION.md)
 
 This example contains the original image and the signed and positive token Grad-CAM values for four layers of each model. All three models read the same BridgeData V2 frame and the instruction “fold the cloth from the right to the left side.”
 

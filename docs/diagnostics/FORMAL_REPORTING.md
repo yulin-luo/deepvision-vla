@@ -14,19 +14,13 @@ python -m pip install -e . --no-deps
 python -m pip check
 ```
 
-The figure tests use NumPy 2.3.5, Matplotlib 3.10.7, and Pillow 13.0.0. The
-saved-report redraw was verified on Windows Python 3.12.14 and in a clean Linux
-Python 3.12.3 environment. Those runs used a synthetic report. Linux
-resource-context checks for analysis were verified separately. Actual
-`--analyze` uses the Linux affinity, resource, and signal guards.
-Keep this environment separate from all three incompatible native-policy
-environments; analysis does not require Torch, Transformers or a simulator.
+Keep this analysis environment separate from the native policy environments.
 
 Preparation is the default and opens only the configuration itself:
 
 ```bash
 python -m deepvision_vla.diagnostics.formal_reporting \
-  --config docs/diagnostics/formal_reporting_config.prepared.json
+  --config configs/diagnostics/reporting.example.json
 ```
 
 The template deliberately leaves all run paths and output unset. Default

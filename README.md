@@ -53,7 +53,7 @@ The code supports **image inference, single-GPU RLBench-10 evaluation, and Bridg
 
 ## BridgeV2 visual diagnostics
 
-<img src="https://deepvision-vla.github.io/static/images/diagnosis-final.png" alt="Paper Figure 2. Layer-wise ROI masking curves and contribution maps for OpenVLA, Pi0, and QwenVLA-OFT" width="880" />
+<img src="assets/bridgev2-paper-figure2.png" alt="Paper Figure 2. Layer-wise ROI masking curves and contribution maps for OpenVLA, Pi0, and QwenVLA-OFT" width="880" />
 
 [Figure 2 from the paper](https://arxiv.org/html/2603.15618v1#S3.SS2) · [Full-resolution figure](assets/bridgev2-paper-figure2.png)
 
@@ -204,11 +204,13 @@ This runs 50 episodes per task, for 500 requests. Use a new output directory; pa
 ```text
 deepvision-vla/
 ├── assets/                  # Paper overview and method figures
-├── configs/                 # Example configuration
-├── docs/                    # Installation, model and usage guides
+├── configs/                 # Configuration templates and model inventories
+├── docs/                    # Installation, model and reproduction guides
+├── examples/                # Example inputs, figures and numerical results
 ├── src/deepvision_vla/
 │   ├── inference/           # Image requests and prediction adapter
 │   ├── evaluation/          # Task runner and result summaries
+│   ├── diagnostics/         # BridgeV2 masking, attribution and reporting
 │   ├── runtime/             # Checkpoint loading, reset and headless display
 │   ├── tools/               # Download, verification and setup
 │   └── assets/              # Model inventory and runtime profiles

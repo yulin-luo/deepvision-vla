@@ -1,6 +1,6 @@
 # Recompute the three-model BridgeV2 attribution example
 
-Use [the selected RGB frame](../../examples/bridgev2-attribution/selected/source.jpg), ordinal **1318** of the verified BridgeV2 v55 runtime. This frame was selected for readability from the 27-frame rerun. [The paper's figure](https://arxiv.org/html/2603.15618v1#S3.SS2) shows a separate example.
+Use [the example RGB frame](../../examples/bridgev2-attribution/selected/source.jpg) and its [source manifest](../../examples/bridgev2-attribution/selected/source.json). The commands use ordinal 1318 from the BridgeV2 v55 runtime.
 
 Set `DV_CODE` to the root of this checkout in each model's environment and run the commands from that root. Use an idle NVIDIA GPU and a different output path for each run. The three model environments are separate. The CPU plotting environment is shared.
 

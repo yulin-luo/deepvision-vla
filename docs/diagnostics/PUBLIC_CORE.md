@@ -40,7 +40,7 @@ environment. The model runs in its own configured Python environment.
 plots without rebuilding model inputs or loading a policy.
 
 `plot attribution` redraws the four native layer maps from a completed
-`paper_probe` result and its original JPEG. Pass one `--result` per model.
+model attribution result and its original JPEG. Pass one `--result` per model.
 All results must use the same sample, image and instruction.
 
 ```bash
@@ -154,88 +154,8 @@ normalized action space. The archived Qwen dropout script compares a single
 decoded action to a stored seven-channel label. The exact label producer and
 its frame binding remain unverified for the current Qwen checkpoint and panel.
 
-## Parameterized paper-layer attribution
+## Grad-CAM
 
-`paper_probe` accepts a sealed source descriptor instead of a built-in book
-image. The descriptor contains sample ID, exact instruction, JPEG/NPZ paths and
-SHA256, image size, anchor, and source-pixel ROI boxes. It does not translate,
-normalize or repair instructions. Use a new output and once path for every
-independently authorized scope; a failed or unknown attempt is retained.
+Follow the [three-model attribution guide](ATTRIBUTION.md) to recompute the maps from the released checkpoints. Use the [attribution example](../../examples/bridgev2-attribution/README.md) to redraw the saved maps on CPU.
 
-The native operators differ by model:
-
-- OpenVLA observes actual greedy generation of seven action tokens, then probes
-  decoder OUTPUT layers 0/10/20/30 with native teacher-forced token CE. The
-  explicit seven-token CE is only a machine-precision consistency check.
-- Bridge Pi0 probes logical OUTPUT layers 0/6/12/16 at their source-proven next
-  layernorm-input alias. The scalar is one spatial flow-velocity step at fixed
-  noise and time, not final ten-step action correctness.
-- Qwen H16 probes OUTPUT layers 0/12/24/34 using the full normalized 16×7 action
-  head scalar. It requires a same-source, same-model, full native baseline and
-  an independently verified baseline/input/source binding. An old canary's
-  identity is never silently generalized to a different image.
-
-All three preserve native parameter flags, frozen parameter gradients, hooks,
-actual layouts and forward/backward counters. These attribution scalars are not
-interchangeable GT errors. Qwen has no accepted physical Bridge GT conversion.
-Pi source-bound dataset references remain distinct from global physical GT.
-
-Prepare config/permit from the examples under `configs/diagnostics`; their null
-fields deliberately cannot execute. Each factory metadata file needs an exact
-seal. Build a complete checkout source manifest using `source_manifest`; the
-probe checks its public dependency coverage, not just one entry file.
-
-```bash
-python -m deepvision_vla.diagnostics.public_surface --src ./src
-python -m deepvision_vla.diagnostics.public_surface \
-  --src ./src --source-manifest-to /path/to/new/source-manifest.json
-python -m deepvision_vla.diagnostics.paper_probe \
-  --config /path/to/probe.json --config-sha256 "$CONFIG_SHA256" \
-  --permit /path/to/permit.json --permit-sha256 "$PERMIT_SHA256"
-```
-
-The default command validates source/input/metadata only. `--execute` additionally
-requires an exclusive physical UUID/PCI, original dual-clock deadline (at most
-1200 seconds), a real live external parent identity/command/source proof, and
-the existing memory/CPU/lease limits. The CPU factory loads before the GPU UUID
-lease, with resource checks before and after loading.
-An unchanged formal-executor guard hashes every actual selected weight payload
-against its sealed receipt before CPU loading or UUID acquisition. A saved
-receipt, matching byte size or valid tensor header alone cannot satisfy this
-guard; same-size payload corruption fails before any model load.
-The formal curve runner and the attribution probe use separate supervisors.
-Fill the attribution launch-plan example with sealed paths and leave the three
-parent fields in the permit template empty. Set the original dual-clock budget
-on the target host. Use a new node-local directory for the parent, separate
-from the probe output and once file.
-
-```bash
-export PYTHONPATH=/path/to/editable/deepvision-vla/src
-python /path/to/editable/deepvision-vla/src/deepvision_vla/diagnostics/paper_probe_watchdog.py \
-  --launch-plan /path/to/probe-launch.json --launch-plan-sha256 "$LAUNCH_SHA256"
-```
-
-This command checks the sealed launch metadata and exits before spawning a
-worker. A launch with an authorized plan and `--execute` binds the permit to the
-live Linux supervisor. It records the worker log, raw probe receipt, and the
-supervisor's independent process and GPU release check.
-
-## Source overlay for a reviewed release
-
-Private pilots, canaries, research trace tools and cache-export operations remain
-in the private development history. `public_surface` checks all direct/local
-imports, named dynamic import calls and the explicit source allowlist. It can
-prepare a source-only overlay into a new directory:
-
-```bash
-python -m deepvision_vla.diagnostics.public_surface \
-  --src ./src --stage-to /path/to/new/diagnostics-overlay
-```
-
-This is an overlay for a later reviewed merge into the existing codebase, not a
-complete replacement for its inference package and not a publish command. Its
-manifest does not assert runtime acceptance or historical cache equivalence.
-Approved annotation/source indexes and the separately reviewed offline Bridge
-reconstructor are additional release inputs. Sanitizing an annotation release
-creates new hashes and requires its own review; old qualification flags and
-hashes cannot be relabelled.
+See [Bridge action alignment](BRIDGE_ACTION_ALIGNMENT.md) for the model-specific action references and Qwen first-step replay.
