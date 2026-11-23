@@ -20,14 +20,17 @@ The figure divides the positive Grad-CAM values by the maximum across the four l
 
 ## Redraw
 
-From a checkout with `deepvision_vla.diagnostics`, use a Python environment with NumPy 2.3.5, Matplotlib 3.10.7, and Pillow 13.0.0. The command reads the saved contribution arrays and runs on CPU. Run the commands below from the repository root.
+Run from the repository root with Python 3.12 and uv. The plotting environment is
+pinned in `requirements/diagnostics-analysis.txt`.
 
 ```bash
+uv venv --python 3.12 .venv-bridgev2-plot
+uv pip install --python .venv-bridgev2-plot/bin/python -r requirements/diagnostics-analysis.txt
 export PYTHONPATH="$PWD/src"
 EXAMPLE_DIR="$PWD/examples/bridgev2-attribution"
 FIGURE_DIR="$PWD/bridgev2-attribution-redraw"
 (cd "$EXAMPLE_DIR" && sha256sum -c SHA256SUMS)
-python -m deepvision_vla.diagnostics plot attribution \
+.venv-bridgev2-plot/bin/python -m deepvision_vla.diagnostics plot attribution \
   --image "$EXAMPLE_DIR/source.jpg" \
   --result "$EXAMPLE_DIR/openvla.json" \
   --result "$EXAMPLE_DIR/pi0.json" \

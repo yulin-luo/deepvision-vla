@@ -65,8 +65,8 @@ per-episode results, and contribution maps.
 
 <img src="examples/bridgev2-pi0-base/pi0-base-bridgev2.png" alt="Official Pi0 base masking curves on 150 BridgeData V2 episodes" width="680" />
 
-[View the OpenVLA and QwenVLA-OFT Grad-CAM figures](examples/bridgev2-attribution/README.md)
-for a shared BridgeData V2 frame, with saved token scores and CPU redraw commands.
+[Redraw the saved OpenVLA, π₀, and QwenVLA-OFT Grad-CAM maps](examples/bridgev2-attribution/README.md)
+on CPU using the shared BridgeData V2 frame and its saved token scores.
 
 ## 🚀 Quick start
 
