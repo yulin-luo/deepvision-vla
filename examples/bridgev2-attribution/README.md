@@ -1,9 +1,9 @@
 # BridgeData V2 contribution maps
 
+![OpenVLA and QwenVLA-OFT Grad-CAM maps for four layers](https://deepvision-vla.github.io/static/images/bridgev2-gradcam-preview.png)
+
 The preview shows positive Grad-CAM from OpenVLA and QwenVLA-OFT on one shared
 BridgeData V2 frame. The color scale is relative to each model's own peak.
-
-![OpenVLA and QwenVLA-OFT Grad-CAM maps for four layers](attribution.png)
 
 [Download the PDF](attribution.pdf) · [Render manifest](RENDER_RECEIPT.json)
 
