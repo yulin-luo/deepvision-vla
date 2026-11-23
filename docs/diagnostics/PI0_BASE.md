@@ -32,7 +32,7 @@ uv pip install --python "$PI0_PYTHON" \
 export DV_WORK="$HOME/deepvision-pi0-base"
 "$PI0_PYTHON" -m deepvision_vla.diagnostics.pi0_base fetch --root "$DV_WORK"
 
-hf download lyl010221-pku/deepvision-vla-bridgev2-roi runtime/bridgev2-v55-runtime.tar.gz \
+.venv-pi0-base/bin/hf download lyl010221-pku/deepvision-vla-bridgev2-roi runtime/bridgev2-v55-runtime.tar.gz \
   --repo-type dataset --revision 0f4641b190ee15fe896c6dd207c694231d9d3530 --local-dir "$DV_WORK/hf"
 RUNTIME="$DV_WORK/hf/runtime/bridgev2-v55-runtime.tar.gz"
 echo "95bf776862b91961b463e5c3f56fb98c3129b074821cbebcd77fa9bdd3baa8fa  $RUNTIME" | sha256sum -c -
