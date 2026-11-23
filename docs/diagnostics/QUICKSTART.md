@@ -1,8 +1,8 @@
 # Reproduce the BridgeData V2 diagnostics
 
 Use the Hugging Face dataset for the 1,500 annotated frames, runtime panel
-and saved per-episode results. The three model checkpoints and the analysis
-code are fetched separately.
+and archived per-episode results. For π₀, start with the [official base checkpoint
+and 150-episode reproduction](PI0_BASE.md).
 
 ## Get the data
 
@@ -24,7 +24,7 @@ hf download "$DV_DATASET" refs/source_index.json results/bridgev2-v55-results.ta
 The dataset viewer reads `data/evaluation.parquet`. Download that file
 separately when you only need the images and ROI labels.
 
-## Verify and redraw on CPU
+## Verify and redraw the archived 1,500-episode results on CPU
 
 ```bash
 set -e
@@ -49,11 +49,11 @@ REPORT="$DV_WORK/saved-results/report.json"
 
 The verifier recomputes 12,000 source-metric rows across eight panels.
 Open `overview/bridge_primary_overview.pdf` under `DV_WORK` for the three
-main curves. Omit `--overview` and choose a new output directory for
+archived curves. Omit `--overview` and choose a new output directory for
 the individual plots. The [attribution example](../../examples/bridgev2-attribution/README.md)
 redraws the saved three-model Grad-CAM maps from their raw token values.
 
-## Prepare the runtime panel
+## Prepare the runtime panel for OpenVLA and QwenVLA-OFT
 
 The runtime input contains the exact 1,500 images and action/state arrays,
 ROI and geometry inputs, and model metadata.
@@ -87,7 +87,8 @@ export PLAN="$DV_WORK/pilot-plan"
   --output "$PLAN"
 ```
 
-The pilot plans 208 primary requests per model for 16 verified images.
+The pilot plans 208 primary requests per model for 16 verified images. Use the
+[Pi0 base guide](PI0_BASE.md) for π₀.
 Use the full-panel command in `inputs/README.md` for all 1,500 images
 and the semantic controls. The same guide documents reconstruction
 from the 47 original BridgeData shards.
@@ -95,10 +96,9 @@ from the 47 original BridgeData shards.
 ## Get a checkpoint and run inference
 
 - [OpenVLA](install/OPENVLA_ENVIRONMENT.md) uses the original public revision.
-- [Bridge Pi0](install/PI0_ENVIRONMENT.md) uses the pinned public Bridge-adapted H4 checkpoint.
+- [Official Pi0 base](PI0_BASE.md) has its own inference and plotting commands.
 - [QwenVLA-OFT H16](QWEN_H16_ENVIRONMENT.md) uses the exact backbone and action head for this reproduction, along with their processor and normalization statistics.
 
-After obtaining a model's asset receipt, follow [`prepare launch` and `run`](PUBLIC_CORE.md#run-a-prepared-plan).
+For OpenVLA or QwenVLA-OFT, obtain the asset receipt and follow [`prepare launch` and `run`](PUBLIC_CORE.md#run-a-prepared-plan).
 Use [formal reporting](FORMAL_REPORTING.md) to aggregate completed runs.
-The three primary metrics are OpenVLA action MSE, Bridge Pi0 H4 reference
-MSE and Qwen H16 prediction drift.
+OpenVLA reports action MSE. Qwen H16 and official Pi0 base report prediction drift.

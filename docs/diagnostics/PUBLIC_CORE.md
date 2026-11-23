@@ -81,8 +81,7 @@ python -m deepvision_vla.diagnostics run \
   --launch-plan "$RUN/launch.json" --launch-plan-sha256 "$LAUNCH_SHA" --execute
 ```
 
-For Bridge Pi0, select `--model pi0`, use its own model environment and
-checkpoint, and supply `--lerobot "$LEROBOT_CHECKOUT"`. For Qwen H16, select
+For π₀, follow the [official Pi0 base guide](PI0_BASE.md). For Qwen H16, select
 `--model qwen_h16` and supply `--qwen-processor "$QWEN_PROCESSOR"` and
 `--qwen-statistics "$QWEN_STATISTICS"`. The [Qwen environment guide](QWEN_H16_ENVIRONMENT.md)
 describes the controlled checkpoint and processor assets. The preparation

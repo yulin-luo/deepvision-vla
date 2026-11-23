@@ -14,6 +14,7 @@
 
 ## 📰 News
 
+- **2026.11.23** — Added [official Pi0 base curves and reproduction instructions](docs/diagnostics/PI0_BASE.md) for 150 BridgeV2 episodes.
 - **2026.11.22** — Released the [BridgeV2 ROI dataset](https://huggingface.co/datasets/lyl010221-pku/deepvision-vla-bridgev2-roi), [QwenVLA-OFT H16 baseline](https://huggingface.co/lyl010221-pku/deepvision-vla-qwenvla-oft-h16), and [diagnostic code](docs/diagnostics/QUICKSTART.md). Find these assets and the RLBench-10 checkpoint in the [DeepVision-VLA collection](https://huggingface.co/collections/lyl010221-pku/deepvision-vla-6b030965d2acd95487d39617).
 - **2026.11.11** — Initial release of the inference code, RLBench-10 evaluation pipeline, and [RLBench-10 fine-tuned checkpoint](https://huggingface.co/lyl010221-pku/deepvision-vla-rlbench10).
 
@@ -52,14 +53,13 @@ The code supports **image inference, single-GPU RLBench-10 evaluation, and Bridg
 
 ## BridgeV2 visual diagnostics
 
-Reproduce the layer-wise ROI masking curves for OpenVLA, Bridge π₀ and
-QwenVLA-OFT on a fixed 1,500-episode BridgeData V2 panel. The release bundle
-includes ROI labels, per-episode metrics, curves and token Grad-CAM values
-for a fixed example. Verify the saved results on CPU, or run a 16-episode
-pilot with the supported checkpoints to check a new setup.
-[BridgeV2 diagnostic quick start](docs/diagnostics/QUICKSTART.md).
+The default π₀ reproduction uses [official LeRobot Pi0 base](docs/diagnostics/PI0_BASE.md)
+on 150 fixed BridgeData V2 episodes. The curves measure normalized prediction drift.
+The [BridgeV2 diagnostic quick start](docs/diagnostics/QUICKSTART.md) also covers
+OpenVLA and QwenVLA-OFT, and links to the archived 1,500-episode plots, ROI labels,
+per-episode results, and contribution maps.
 
-<a name="quick-start"></a>
+<img src="examples/bridgev2-pi0-base/pi0-base-bridgev2.png" alt="Official Pi0 base masking curves on 150 BridgeData V2 episodes" width="680" />
 
 ## 🚀 Quick start
 

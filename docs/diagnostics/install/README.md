@@ -1,9 +1,9 @@
 # BridgeV2 model installation
 
-This package contains installation instructions, version pins, and checkpoint inventories for two BridgeV2 diagnostic policies. Use a DeepVision-VLA checkout that contains `deepvision_vla.diagnostics.asset_receipts`. Each policy has its own Linux x86-64 Python 3.10 environment.
+This package contains installation instructions, version pins, and checkpoint inventories for the BridgeV2 diagnostics. Use a dedicated environment for each model.
 
 - [OpenVLA](OPENVLA_ENVIRONMENT.md) uses the official OpenVLA-7B checkpoint and the model code in its snapshot.
-- [Bridge Pi0](PI0_ENVIRONMENT.md) uses Haoming Song's Bridge-adapted Pi0 checkpoint and a pinned Hugging Face LeRobot checkout.
+- [Official Pi0 base](../PI0_BASE.md) uses the LeRobot checkpoint in a Linux Python 3.12 environment.
 
 Before choosing a guide, set these paths in a Bash shell. Use a workspace with room for the new environment and model snapshot.
 
@@ -17,7 +17,7 @@ mkdir -p "$DV_WORK"
 
 The guides create an isolated environment, use the official pinned download, and verify the checkpoint against the supplied inventory. `pip check` checks installed dependency metadata. The CPU-only import checks confirm library and adapter imports. The asset receipt reads and verifies the actual local files. Simulator setup is unnecessary for these checks.
 
-The pins come from the Linux environments used for the diagnostic runs. OpenVLA and Bridge Pi0 both passed installation in fresh Python 3.10 environments, checkpoint verification, and the 16-source pilot. Each model executed 208 new requests and reproduced the previous pilot's action values exactly. The dependency sources are the official package indexes. [PyTorch CUDA 13.0 wheel index](https://download.pytorch.org/whl/cu130/) · [PyPI](https://pypi.org/)
+The pins come from the Linux environments used for the diagnostic runs. OpenVLA passed checkpoint verification and a 16-source pilot in a fresh Python 3.10 environment. The official Pi0 base guide documents its separate 150-episode run. The dependency sources are the official package indexes. [PyTorch CUDA 13.0 wheel index](https://download.pytorch.org/whl/cu130/) · [PyPI](https://pypi.org/)
 
 ## Qwen H16
 
