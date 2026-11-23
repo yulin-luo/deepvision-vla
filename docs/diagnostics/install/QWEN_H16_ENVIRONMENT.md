@@ -34,7 +34,7 @@ python -m deepvision_vla.diagnostics.asset_receipts \
   --checkpoint "$DV_QWEN_CHECKPOINT" --output "$ASSET_RECEIPT"
 ```
 
-Follow the [common launch command](PUBLIC_CORE.md#run-a-prepared-plan) with
+Follow the [common launch command](../guides/PUBLIC_CORE.md#run-a-prepared-plan) with
 `--model qwen_h16` and `--checkpoint "$DV_QWEN_CHECKPOINT"`. Use
 `--qwen-processor "$DV_QWEN_CHECKPOINT/processor"` and
 `--qwen-statistics "$DV_QWEN_CHECKPOINT/action_statistics.json"` and pass
@@ -43,4 +43,4 @@ revision, while the Hub revision identifies the downloadable export.
 
 ## Recompute a Grad-CAM example with the published Qwen checkpoint
 
-Follow the [three-model attribution guide](ATTRIBUTION.md#qwenvla-oft-h16) for the Qwen launch and CPU redraw. See [Bridge action alignment](BRIDGE_ACTION_ALIGNMENT.md) for the action references and Qwen H1 replay.
+Follow the [three-model attribution guide](../guides/ATTRIBUTION.md#qwenvla-oft-h16) for the Qwen launch and CPU redraw. See [Bridge action alignment](../reference/BRIDGE_ACTION_ALIGNMENT.md) for the action references and Qwen H1 replay.

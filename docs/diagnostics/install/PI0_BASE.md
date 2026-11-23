@@ -2,7 +2,7 @@
 
 Use [Physical Intelligence's Pi0 base in LeRobot format](https://huggingface.co/lerobot/pi0_base/tree/6e245399ad403ccf02b8112b73cfdc2633068f38). We evaluated it on 150 fixed BridgeData V2 episodes across 46 source shards. The experiment uses the published base weights without additional Bridge fine-tuning.
 
-[Download the curve (PDF)](../../examples/bridgev2-pi0-base/pi0-base-bridgev2.pdf) · [Per-episode measurements](../../examples/bridgev2-pi0-base/per-source.json)
+[Download the curve (PDF)](../../../examples/bridgev2-pi0-base/pi0-base-bridgev2.pdf) · [Per-episode measurements](../../../examples/bridgev2-pi0-base/per-source.json)
 
 ## Redraw the published curve on CPU
 

@@ -12,7 +12,7 @@ The ROI masking curves summarize sensitivity across trajectories. The contributi
 
 <img src="selected/attribution.png" alt="Three-model Grad-CAM for taking a lid off a pot or pan" width="720" />
 
-[Original frame](selected/source.jpg) · [Three-model PDF](selected/attribution.pdf) · [Recompute the example](../../docs/diagnostics/ATTRIBUTION.md)
+[Original frame](selected/source.jpg) · [Three-model PDF](selected/attribution.pdf) · [Recompute the example](../../docs/diagnostics/guides/ATTRIBUTION.md)
 
 This example contains the original image and the signed and positive token Grad-CAM values for four layers of each model. All three models read the same BridgeData V2 frame and the instruction “fold the cloth from the right to the left side.”
 
@@ -48,7 +48,7 @@ within each map. Use the shared-scale view to compare strengths across a
 model's layers.
 
 The output contains `attribution.png`, `attribution.pdf`, and `RENDER_RECEIPT.json`. The frame locator and image digest are in [the source manifest](selected/source.json).
-For a new QwenVLA-OFT Grad-CAM probe, see the [Qwen H16 guide](../../docs/diagnostics/QWEN_H16_ENVIRONMENT.md).
+For a new QwenVLA-OFT Grad-CAM probe, see the [Qwen H16 guide](../../docs/diagnostics/install/QWEN_H16_ENVIRONMENT.md).
 
 ## Image credit
 

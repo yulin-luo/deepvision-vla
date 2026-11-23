@@ -81,9 +81,9 @@ python -m deepvision_vla.diagnostics run \
   --launch-plan "$RUN/launch.json" --launch-plan-sha256 "$LAUNCH_SHA" --execute
 ```
 
-For π₀, follow the [official Pi0 base guide](PI0_BASE.md). For Qwen H16, select
+For π₀, follow the [official Pi0 base guide](../install/PI0_BASE.md). For Qwen H16, select
 `--model qwen_h16` and supply `--qwen-processor "$QWEN_PROCESSOR"` and
-`--qwen-statistics "$QWEN_STATISTICS"`. The [Qwen environment guide](QWEN_H16_ENVIRONMENT.md)
+`--qwen-statistics "$QWEN_STATISTICS"`. The [Qwen environment guide](../install/QWEN_H16_ENVIRONMENT.md)
 describes the controlled checkpoint and processor assets. The preparation
 command checks the launch and creates its local configuration without
 importing the model. Execute it on the selected free GPU while the local
@@ -156,6 +156,6 @@ its frame binding remain unverified for the current Qwen checkpoint and panel.
 
 ## Grad-CAM
 
-Follow the [three-model attribution guide](ATTRIBUTION.md) to recompute the maps from the released checkpoints. Use the [attribution example](../../examples/bridgev2-attribution/README.md) to redraw the saved maps on CPU.
+Follow the [three-model attribution guide](ATTRIBUTION.md) to recompute the maps from the released checkpoints. Use the [attribution example](../../../examples/bridgev2-attribution/README.md) to redraw the saved maps on CPU.
 
-See [Bridge action alignment](BRIDGE_ACTION_ALIGNMENT.md) for the model-specific action references and Qwen first-step replay.
+See [Bridge action alignment](../reference/BRIDGE_ACTION_ALIGNMENT.md) for the model-specific action references and Qwen first-step replay.

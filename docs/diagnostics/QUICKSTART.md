@@ -2,7 +2,7 @@
 
 Use the Hugging Face dataset for the 1,500 annotated frames, runtime panel
 and archived per-episode results. For π₀, start with the [official base checkpoint
-and 150-episode reproduction](PI0_BASE.md).
+and 150-episode reproduction](install/PI0_BASE.md).
 
 ## Get the data
 
@@ -88,7 +88,7 @@ export PLAN="$DV_WORK/pilot-plan"
 ```
 
 The pilot plans 208 primary requests per model for 16 verified images. Use the
-[Pi0 base guide](PI0_BASE.md) for π₀.
+[Pi0 base guide](install/PI0_BASE.md) for π₀.
 Use the full-panel command in `inputs/README.md` for all 1,500 images
 and the semantic controls. The same guide documents reconstruction
 from the 47 original BridgeData shards.
@@ -96,11 +96,11 @@ from the 47 original BridgeData shards.
 ## Get a checkpoint and run inference
 
 - [OpenVLA](install/OPENVLA_ENVIRONMENT.md) uses the original public revision.
-- [Official Pi0 base](PI0_BASE.md) has its own inference and plotting commands.
-- [QwenVLA-OFT H16](QWEN_H16_ENVIRONMENT.md) uses the exact backbone and action head for this reproduction, along with their processor and normalization statistics.
+- [Official Pi0 base](install/PI0_BASE.md) has its own inference and plotting commands.
+- [QwenVLA-OFT H16](install/QWEN_H16_ENVIRONMENT.md) uses the exact backbone and action head for this reproduction, along with their processor and normalization statistics.
 
-For OpenVLA or QwenVLA-OFT, obtain the asset receipt and follow [`prepare launch` and `run`](PUBLIC_CORE.md#run-a-prepared-plan).
-Use [formal reporting](FORMAL_REPORTING.md) to aggregate completed runs.
+For OpenVLA or QwenVLA-OFT, obtain the asset receipt and follow [`prepare launch` and `run`](guides/PUBLIC_CORE.md#run-a-prepared-plan).
+Use [formal reporting](guides/FORMAL_REPORTING.md) to aggregate completed runs.
 OpenVLA reports action MSE. Qwen H16 and official Pi0 base report prediction drift.
 
-For single-frame Grad-CAM from the checkpoint, follow the [three-model attribution guide](ATTRIBUTION.md). See [Bridge action alignment](BRIDGE_ACTION_ALIGNMENT.md) for the verified reference definitions and the supplemental Qwen H1 comparison.
+For single-frame Grad-CAM from the checkpoint, follow the [three-model attribution guide](guides/ATTRIBUTION.md). See [Bridge action alignment](reference/BRIDGE_ACTION_ALIGNMENT.md) for the verified reference definitions and the supplemental Qwen H1 comparison.

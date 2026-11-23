@@ -11,7 +11,7 @@ The check uses the fixed 1,500-source BridgeV2 v55 runtime. It selects the sourc
 
 ## Recheck the references on CPU
 
-Follow [Quickstart](QUICKSTART.md) to download, verify and unpack the v55 runtime. Use the report environment.
+Follow [Quickstart](../QUICKSTART.md) to download, verify and unpack the v55 runtime. Use the report environment.
 
 ```bash
 export PYTHONPATH="$DV_CODE/src"
@@ -23,7 +23,7 @@ export PYTHONPATH="$DV_CODE/src"
 
 The audit verifies the fixed inventory, original action/state array hashes, anchor and all four action vectors against the archived Bridge reference. The optional `--qwen-stored-evidence` argument accepts the retained per-source Qwen conversion evidence and independently compares the first-step vectors, source hashes and frame indices. Without that ledger, the command still checks the public Bridge arrays and reports the gripper-convention difference.
 
-Add `--qwen-terminals merged_terminals.jsonl --qwen-merge-receipt MERGE_RECEIPT.json` to replay the native H16 predictions on CPU. It verifies the merged ledger digest and the same 1,500 sources in the baseline and every layer/retention cell, then scores step 0 in each prediction. [Verified action audit and H1 replay](../../examples/bridgev2-action-alignment/summary.json)
+Add `--qwen-terminals merged_terminals.jsonl --qwen-merge-receipt MERGE_RECEIPT.json` to replay the native H16 predictions on CPU. It verifies the merged ledger digest and the same 1,500 sources in the baseline and every layer/retention cell, then scores step 0 in each prediction. [Verified action audit and H1 replay](../../../examples/bridgev2-action-alignment/summary.json)
 
 ## Qwen H1 results
 
@@ -33,4 +33,4 @@ On the already saved predictions from the current public checkpoint, unmasked fi
 
 ## Official Pi0 base and physical actions
 
-The published masking run feeds one Bridge camera and a standardized EEF/gripper proxy. A physical-action MSE would require both a verified state adapter and an action encoding, normalization and validity window for Bridge, tied to this exact checkpoint. The pinned base snapshot has no such Bridge contract. The archived four-step Bridge reference remains available for comparing the historical Bridge-adapted route. [Pi0 base reproduction](PI0_BASE.md) · [Official base snapshot](https://huggingface.co/lerobot/pi0_base/tree/6e245399ad403ccf02b8112b73cfdc2633068f38)
+The published masking run feeds one Bridge camera and a standardized EEF/gripper proxy. A physical-action MSE would require both a verified state adapter and an action encoding, normalization and validity window for Bridge, tied to this exact checkpoint. The pinned base snapshot has no such Bridge contract. The archived four-step Bridge reference remains available for comparing the historical Bridge-adapted route. [Pi0 base reproduction](../install/PI0_BASE.md) · [Official base snapshot](https://huggingface.co/lerobot/pi0_base/tree/6e245399ad403ccf02b8112b73cfdc2633068f38)

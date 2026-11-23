@@ -1,12 +1,12 @@
 # Recompute the three-model BridgeV2 attribution example
 
-Use [the example RGB frame](../../examples/bridgev2-attribution/selected/source.jpg) and its [source manifest](../../examples/bridgev2-attribution/selected/source.json). The commands use ordinal 1318 from the BridgeV2 v55 runtime.
+Use [the example RGB frame](../../../examples/bridgev2-attribution/selected/source.jpg) and its [source manifest](../../../examples/bridgev2-attribution/selected/source.json). The commands use ordinal 1318 from the BridgeV2 v55 runtime.
 
 Set `DV_CODE` to the root of this checkout in each model's environment and run the commands from that root. Use an idle NVIDIA GPU and a different output path for each run. The three model environments are separate. The CPU plotting environment is shared.
 
 ## OpenVLA
 
-Use the environment, pinned checkpoint and asset receipt in the [OpenVLA guide](install/OPENVLA_ENVIRONMENT.md).
+Use the environment, pinned checkpoint and asset receipt in the [OpenVLA guide](../install/OPENVLA_ENVIRONMENT.md).
 
 ```bash
 export DV_CODE="$PWD"
@@ -19,7 +19,7 @@ python -m deepvision_vla.diagnostics attribute openvla \
   --image "$IMAGE" --instruction "$INSTRUCTION" \
   --checkpoint "$DV_WORK/checkpoints/openvla-7b" \
   --asset-receipt "$DV_WORK/receipts/openvla-assets.json" \
-  --official-inventory "$DV_CODE/docs/diagnostics/install/openvla-inventory.json" \
+  --official-inventory "$DV_CODE/docs/diagnostics/install/files/openvla-inventory.json" \
   --gpu "$GPU" --output "$DV_WORK/attribution/openvla.json"
 ```
 
@@ -27,7 +27,7 @@ The native forward generates seven action tokens. The gradient target is their t
 
 ## Official Pi0 base
 
-Use the model and tokenizer from [Official Pi0 base](PI0_BASE.md). Set `PI0_WORK` to the same root passed to `fetch` and `prepare`. Preparing the Bridge state calibration does not require running the masking sweep.
+Use the model and tokenizer from [Official Pi0 base](../install/PI0_BASE.md). Set `PI0_WORK` to the same root passed to `fetch` and `prepare`. Preparing the Bridge state calibration does not require running the masking sweep.
 
 ```bash
 export PYTHONPATH="$DV_CODE/src"
@@ -36,11 +36,11 @@ python -m deepvision_vla.diagnostics attribute pi0-base \
   --output "$DV_WORK/attribution/pi0-base.json"
 ```
 
-The probe uses one native denoising step at time 0.5 with fixed noise. Its scalar is the mean squared native flow output. The Bridge state input is the documented EEF/gripper proxy. The runner checks the camera mask, 16×16 visual grid, and that the captured forward matches the unhooked forward. See [Bridge action alignment](BRIDGE_ACTION_ALIGNMENT.md) for the metric scope.
+The probe uses one native denoising step at time 0.5 with fixed noise. Its scalar is the mean squared native flow output. The Bridge state input is the documented EEF/gripper proxy. The runner checks the camera mask, 16×16 visual grid, and that the captured forward matches the unhooked forward. See [Bridge action alignment](../reference/BRIDGE_ACTION_ALIGNMENT.md) for the metric scope.
 
 ## QwenVLA-OFT H16
 
-Follow the [Qwen H16 environment and launch guide](QWEN_H16_ENVIRONMENT.md) to obtain the public checkpoint and prepare its drop launch in this checkout. Set `QWEN_RUN` to the prepared run directory. This attribution probe uses the qualified ROI for ordinal 1318 and computes a fresh baseline before capturing gradients through the native H16 action head.
+Follow the [Qwen H16 environment and launch guide](../install/QWEN_H16_ENVIRONMENT.md) to obtain the public checkpoint and prepare its drop launch in this checkout. Set `QWEN_RUN` to the prepared run directory. This attribution probe uses the qualified ROI for ordinal 1318 and computes a fresh baseline before capturing gradients through the native H16 action head.
 
 ```bash
 export PYTHONPATH="$DV_CODE/src"
@@ -59,7 +59,7 @@ Use a Linux supervisor Python with `os.pidfd_open` and `signal.pidfd_send_signal
 
 ## Combine all three outputs on CPU
 
-Use the plotting Python from the [BridgeV2 quickstart](QUICKSTART.md).
+Use the plotting Python from the [BridgeV2 quickstart](../QUICKSTART.md).
 
 ```bash
 "$DV_REPORT_PYTHON" -m deepvision_vla.diagnostics plot attribution \

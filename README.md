@@ -14,7 +14,7 @@
 
 ## 📰 News
 
-- **2026.11.23** — Added [official Pi0 base curves and reproduction instructions](docs/diagnostics/PI0_BASE.md) for 150 BridgeV2 episodes.
+- **2026.11.23** — Added [official Pi0 base curves and reproduction instructions](docs/diagnostics/install/PI0_BASE.md) for 150 BridgeV2 episodes.
 - **2026.11.22** — Released the [BridgeV2 ROI dataset](https://huggingface.co/datasets/lyl010221-pku/deepvision-vla-bridgev2-roi), [QwenVLA-OFT H16 baseline](https://huggingface.co/lyl010221-pku/deepvision-vla-qwenvla-oft-h16), and [diagnostic code](docs/diagnostics/QUICKSTART.md). Find these assets and the RLBench-10 checkpoint in the [DeepVision-VLA collection](https://huggingface.co/collections/lyl010221-pku/deepvision-vla-6b030965d2acd95487d39617).
 - **2026.11.11** — Initial release of the inference code, RLBench-10 evaluation pipeline, and [RLBench-10 fine-tuned checkpoint](https://huggingface.co/lyl010221-pku/deepvision-vla-rlbench10).
 
@@ -57,7 +57,7 @@ The code supports **image inference, single-GPU RLBench-10 evaluation, and Bridg
 
 [Figure 2 from the paper](https://arxiv.org/html/2603.15618v1#S3.SS2) · [Full-resolution figure](assets/bridgev2-paper-figure2.png)
 
-The default π₀ reproduction uses [official LeRobot Pi0 base](docs/diagnostics/PI0_BASE.md)
+The default π₀ reproduction uses [official LeRobot Pi0 base](docs/diagnostics/install/PI0_BASE.md)
 on 150 fixed BridgeData V2 episodes. The curves measure normalized prediction drift.
 The [BridgeV2 diagnostic quick start](docs/diagnostics/QUICKSTART.md) also covers
 OpenVLA and QwenVLA-OFT, and links to the archived 1,500-episode plots, ROI labels,
@@ -66,8 +66,8 @@ per-episode results, and contribution maps.
 <img src="examples/bridgev2-pi0-base/pi0-base-bridgev2.png" alt="Official Pi0 base masking curves on 150 BridgeData V2 episodes" width="680" />
 
 [Redraw a shared-frame Grad-CAM reproduction example](examples/bridgev2-attribution/README.md#reproduce-grad-cam-on-a-shared-frame) on CPU using saved OpenVLA, π₀, and QwenVLA-OFT token scores.
-[Recompute the maps from the released checkpoints](docs/diagnostics/ATTRIBUTION.md) or
-[check the Bridge action references](docs/diagnostics/BRIDGE_ACTION_ALIGNMENT.md).
+[Recompute the maps from the released checkpoints](docs/diagnostics/guides/ATTRIBUTION.md) or
+[check the Bridge action references](docs/diagnostics/reference/BRIDGE_ACTION_ALIGNMENT.md).
 
 ## 🚀 Quick start
 
