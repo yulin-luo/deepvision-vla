@@ -41,9 +41,14 @@ def run_native(args, sample, image, filtered, selected, state, save):
     model = runtime.model
     layers = model.language_model.model.layers
     layout = runtime.visual_layout(sample['image_sha256'], image.size)
-    roi = project_roi_boxes([x['xyxy_px'] for x in filtered['candidate_boxes']], image_sha256=sample['image_sha256'], layout=layout, membership='patch_center')
-    if not roi:
-        raise ValueError('Screened ROI projects to no genuine visual patches')
+    roi = ()
+    if filtered is not None:
+        roi = project_roi_boxes(
+            [x['xyxy_px'] for x in filtered['candidate_boxes']],
+            image_sha256=sample['image_sha256'], layout=layout, membership='patch_center',
+        )
+        if not roi:
+            raise ValueError('Screened ROI projects to no genuine visual patches')
     state.update(layout=asdict(layout), roi_tokens=list(roi), source_hashes=runtime.source_hashes, versions=runtime.versions, loading_info=runtime.loading_info)
     params = list(model.parameters())
     old_flags = [p.requires_grad for p in params]

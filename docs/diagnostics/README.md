@@ -15,3 +15,5 @@ Prepare the same source panel for each model.
 The model guides identify the public checkpoints used for the
 reproduction. QwenVLA-OFT H16 uses a separately controlled checkpoint. Its
 saved evaluation values measure prediction drift and can be verified offline.
+
+[Recompute the three-model Grad-CAM example](ATTRIBUTION.md) · [Bridge action alignment and Qwen first-step metrics](BRIDGE_ACTION_ALIGNMENT.md)

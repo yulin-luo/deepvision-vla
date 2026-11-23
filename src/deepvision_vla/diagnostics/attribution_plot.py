@@ -8,15 +8,26 @@ import json
 from pathlib import Path
 from textwrap import wrap
 
-from .formal_reporting import LAYERS
-from .formal_reporting_plots import MODEL_LABELS, _alignment
+from .formal_reporting import LAYERS as HISTORICAL_LAYERS
+from .formal_reporting_plots import MODEL_LABELS as HISTORICAL_LABELS, _alignment
+from .pi0_base import LAYERS as PI0_BASE_LAYERS
+from .pi0_base_attribution import TARGET_NAME as PI0_BASE_TARGET
 from .geometry import VisualLayout
 from .model_geometry import actual_visual_layout
 
 
+LAYERS = {
+    "openvla": HISTORICAL_LAYERS["openvla"],
+    "pi0": HISTORICAL_LAYERS["pi0"],
+    "pi0_base": PI0_BASE_LAYERS,
+    "qwen_h16": HISTORICAL_LAYERS["qwen_h16"],
+}
+MODEL_LABELS = {**HISTORICAL_LABELS, "pi0_base": "Official Pi0 base"}
+
 TARGETS = {
     "openvla": ("teacher_forced_self_generated_action_token_ce", "Action token CE"),
     "pi0": ("single_flow_step_spatial_velocity_squared_mean", "Flow velocity"),
+    "pi0_base": (PI0_BASE_TARGET, "Native flow velocity"),
     "qwen_h16": ("normalized_h16_action_head_l2_mean", "H16 action head"),
 }
 
@@ -162,7 +173,9 @@ def plot(image_path, result_paths, output, *, scale="model"):
         records[model] = bundle
         input_hashes[model] = sha256(payload).hexdigest()
     bundles = [records[model] for model in LAYERS if model in records]
-    if len({(p["sample_id"], p["instruction"]) for _, p, _, _ in bundles}) != 1:
+    sample_ids = {p["sample_id"] for _, p, _, _ in bundles if p.get("sample_id")}
+    instructions = {p["instruction"] for _, p, _, _ in bundles}
+    if len(sample_ids) > 1 or len(instructions) != 1:
         raise ValueError("Attribution results must use the same source and instruction")
     out = Path(output)
     out.mkdir(exist_ok=False)

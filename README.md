@@ -67,6 +67,8 @@ per-episode results, and contribution maps.
 
 [Redraw the saved OpenVLA, π₀, and QwenVLA-OFT Grad-CAM maps](examples/bridgev2-attribution/README.md)
 on CPU using the shared BridgeData V2 frame and its saved token scores.
+[Recompute the maps from the released checkpoints](docs/diagnostics/ATTRIBUTION.md) or
+[check the Bridge action references](docs/diagnostics/BRIDGE_ACTION_ALIGNMENT.md).
 
 ## 🚀 Quick start
 

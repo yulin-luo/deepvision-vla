@@ -11,7 +11,7 @@ def main(argv=None):
         description=__doc__,
         epilog="Prepare modes: fetch, data, plan, launch, qwen-attribution. Plot modes: redraw, aggregate, attribution, verify. Run validates a launch plan by default.",
     )
-    parser.add_argument("command", choices=("prepare", "run", "plot"))
+    parser.add_argument("command", choices=("prepare", "run", "plot", "attribute"))
     if not arguments or arguments[0] in ("-h", "--help"):
         parser.print_help()
         return 0
@@ -36,6 +36,22 @@ def main(argv=None):
         else:
             mode_parser.error(f"unknown preparation mode: {mode}")
         subcommand = f"{command} {mode}"
+    elif command == "attribute":
+        mode_parser = argparse.ArgumentParser(prog=f"{parser.prog} attribute")
+        mode_parser.add_argument("model", choices=("openvla", "pi0-base", "qwen-h16"))
+        if not remainder or remainder[0] in ("-h", "--help"):
+            mode_parser.print_help()
+            return 0
+        model, *remainder = remainder
+        if model == "openvla":
+            from .openvla_attribution import main as operation
+        elif model == "pi0-base":
+            from .pi0_base_attribution import main as operation
+        elif model == "qwen-h16":
+            from .prepare_qwen_attribution import main as operation
+        else:
+            mode_parser.error(f"unknown attribution model: {model}")
+        subcommand = f"{command} {model}"
     elif command == "run":
         from .formal_single_model_watchdog import main as operation
         subcommand = command

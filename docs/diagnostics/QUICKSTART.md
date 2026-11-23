@@ -102,3 +102,5 @@ from the 47 original BridgeData shards.
 For OpenVLA or QwenVLA-OFT, obtain the asset receipt and follow [`prepare launch` and `run`](PUBLIC_CORE.md#run-a-prepared-plan).
 Use [formal reporting](FORMAL_REPORTING.md) to aggregate completed runs.
 OpenVLA reports action MSE. Qwen H16 and official Pi0 base report prediction drift.
+
+For single-frame Grad-CAM from the checkpoint, follow the [three-model attribution guide](ATTRIBUTION.md). See [Bridge action alignment](BRIDGE_ACTION_ALIGNMENT.md) for the verified reference definitions and the supplemental Qwen H1 comparison.

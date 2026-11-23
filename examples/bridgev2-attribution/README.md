@@ -6,14 +6,16 @@
 
 ## Runnable attribution example
 
-The saved arrays below use the cloth-folding frame. They can be redrawn on CPU for all three models.
+The maps below use one cloth-folding frame and the published checkpoints. [Recompute all three models from the source frame](../../docs/diagnostics/ATTRIBUTION.md).
 
-[OpenVLA and QwenVLA-OFT preview PDF](attribution.pdf) · [Render manifest](RENDER_RECEIPT.json)
+<img src="native-attribution.png" alt="Three-model Grad-CAM on the shared BridgeV2 cloth-folding frame" width="720" />
+
+[Three-model PDF](native-attribution.pdf) · [Render manifest](NATIVE_RENDER_RECEIPT.json)
 
 This example contains the original image and the signed and positive token Grad-CAM values for four layers of each model. All three models read the same BridgeData V2 frame and the instruction “fold the cloth from the right to the left side.”
 
 - OpenVLA layers 0, 10, 20, and 30 use cross-entropy on the model's generated action tokens.
-- Bridge π₀ layers 0, 6, 12, and 16 use the squared spatial flow velocity at one fixed denoising step.
+- Official LeRobot π₀ base layers 0, 6, 12, and 16 use the mean squared native flow velocity at a fixed denoising step.
 - QwenVLA-OFT layers 0, 12, 24, and 34 use the mean squared output of the full normalized H16 action head.
 
 The figure divides the positive Grad-CAM values by the maximum across the four layers of each model. The maps describe this one example. The models use different attribution targets and the plot scale is shared only within each model.
@@ -33,8 +35,8 @@ FIGURE_DIR="$PWD/bridgev2-attribution-redraw"
 .venv-bridgev2-plot/bin/python -m deepvision_vla.diagnostics plot attribution \
   --image "$EXAMPLE_DIR/source.jpg" \
   --result "$EXAMPLE_DIR/openvla.json" \
-  --result "$EXAMPLE_DIR/pi0.json" \
-  --result "$EXAMPLE_DIR/qwen_h16.json" \
+  --result "$EXAMPLE_DIR/pi0-base.json" \
+  --result "$EXAMPLE_DIR/qwen-h16-public.json" \
   --output "$FIGURE_DIR"
 ```
 
