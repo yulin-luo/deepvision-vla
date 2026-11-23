@@ -1,5 +1,12 @@
 # BridgeData V2 contribution maps
 
+The preview shows positive Grad-CAM from OpenVLA and QwenVLA-OFT on one shared
+BridgeData V2 frame. The color scale is relative to each model's own peak.
+
+![OpenVLA and QwenVLA-OFT Grad-CAM maps for four layers](attribution.png)
+
+[Download the PDF](attribution.pdf) · [Render manifest](RENDER_RECEIPT.json)
+
 This example contains the original image and the signed and positive token Grad-CAM values for four layers of each model. All three models read the same BridgeData V2 frame and the instruction “fold the cloth from the right to the left side.”
 
 - OpenVLA layers 0, 10, 20, and 30 use cross-entropy on the model's generated action tokens.
@@ -10,15 +17,16 @@ The figure divides the positive Grad-CAM values by the maximum across the four l
 
 ## Redraw
 
-From a checkout with `deepvision_vla.diagnostics`, use a Python environment with NumPy 2.3.5, Matplotlib 3.10.7, and Pillow 13.0.0. The command reads the saved contribution arrays and runs on CPU. Set `EXAMPLE_DIR` to the extracted example folder and `FIGURE_DIR` to a new output folder.
+From a checkout with `deepvision_vla.diagnostics`, use a Python environment with NumPy 2.3.5, Matplotlib 3.10.7, and Pillow 13.0.0. The command reads the saved contribution arrays and runs on CPU. Run the commands below from the repository root.
 
 ```bash
 export PYTHONPATH="$PWD/src"
+EXAMPLE_DIR="$PWD/examples/bridgev2-attribution"
+FIGURE_DIR="$PWD/bridgev2-attribution-redraw"
 (cd "$EXAMPLE_DIR" && sha256sum -c SHA256SUMS)
 python -m deepvision_vla.diagnostics plot attribution \
   --image "$EXAMPLE_DIR/source.jpg" \
   --result "$EXAMPLE_DIR/openvla.json" \
-  --result "$EXAMPLE_DIR/pi0.json" \
   --result "$EXAMPLE_DIR/qwen_h16.json" \
   --output "$FIGURE_DIR"
 ```
@@ -29,6 +37,8 @@ within each map. Use the shared-scale view to compare strengths across a
 model's layers.
 
 The output contains `attribution.png`, `attribution.pdf`, and `RENDER_RECEIPT.json`. The frame locator and image digest are in `source.json`.
+The original three-model example includes the archived π₀ array in `pi0.json`.
+For a new QwenVLA-OFT Grad-CAM probe, see the [Qwen H16 guide](../../docs/diagnostics/QWEN_H16_ENVIRONMENT.md).
 
 ## Image credit
 

@@ -16,6 +16,7 @@ import sys
 import time
 from types import SimpleNamespace
 
+from .adapters.qwen_h16_contracts import RUNTIME_EXPORT_FORMAT
 from .factory_imports import configure_factory_imports
 from .formal_execution_core import DurableJSONL
 from .input_inventory import safe_payload_path
@@ -133,10 +134,16 @@ def validate_factory_metadata_seals(config):
                 ('asset_receipt','official_inventory') if key in factory}
     if config['model'] == 'qwen_h16':
         checkpoint = Path(factory['checkpoint_root'])
-        required.update(str(path.resolve(strict=True)) for path in (
-            checkpoint/'training_config.json', checkpoint/'portable/qwen_backbone/manifest.json',
-            checkpoint/'portable/shared_action_head/manifest.json',
-            Path(factory['config_dir'])/'reference_source_manifest.json'))
+        asset = sealed_metadata(config['asset_receipt'], config['asset_receipt_sha256'])
+        paths = [checkpoint/'training_config.json', checkpoint/'portable/qwen_backbone/manifest.json',
+                 checkpoint/'portable/shared_action_head/manifest.json']
+        if asset.get('receipt_format') == RUNTIME_EXPORT_FORMAT:
+            contracts = Path(config['package_source_root'])/'configs/diagnostics'
+            paths.extend((Path(config['asset_receipt']), contracts/'qwen-h16-runtime-export-inventory.json',
+                          contracts/'qwen-h16-vendor-seals.json'))
+        else:
+            paths.append(Path(factory['config_dir'])/'reference_source_manifest.json')
+        required.update(str(path.resolve(strict=True)) for path in paths)
     seals = config.get('factory_metadata_seals')
     if not isinstance(seals, list) or not seals:
         raise ValueError('Exact native factory metadata seals are required')
@@ -217,14 +224,36 @@ def model_metadata(config, sample):
         result.update(cpu=cpu, proof=proof)
     elif model == 'qwen_h16':
         from .adapters import qwen_h16
-        from .adapters.qwen_h16_contracts import REVISION, matches_controlled_repository, validate_cpu_receipt
+        from .adapters.qwen_h16_contracts import REVISION, RUNTIME_EXPORT_ID, matches_controlled_repository, validate_cpu_receipt
         from .adapters.qwen_h16_gradients import validate_baseline, prediction_float32_bytes
-        cpu = sealed_metadata(config['cpu_receipt'], config['cpu_receipt_sha256'])
-        validate_cpu_receipt(cpu, sha256(qwen_h16.__file__))
-        vendor_binding = validate_qwen_vendor_binding(config, cpu)
+
         asset = sealed_metadata(config['asset_receipt'], config['asset_receipt_sha256'])
-        if asset.get('status') != 'complete' or not matches_controlled_repository(asset.get('repo')) or asset.get('revision') != REVISION:
+        published = asset.get('receipt_format') == RUNTIME_EXPORT_FORMAT
+        repo_matches = asset.get('repo') == RUNTIME_EXPORT_ID if published else matches_controlled_repository(asset.get('repo'))
+        if asset.get('status') != 'complete' or not repo_matches or asset.get('revision') != REVISION:
             raise ValueError('Actual qwen_only acquisition identity is required')
+        if published:
+            from .prepare_launch import controlled_qwen_factory
+
+            checkout = Path(config['package_source_root']).resolve(strict=True)
+            inventory_file = checkout/'configs/diagnostics/qwen-h16-runtime-export-inventory.json'
+            inventory = sealed_metadata(inventory_file, asset['inventory_sha256'])
+            factory = config['factory']
+            expected = controlled_qwen_factory(checkout, Path(factory['checkpoint_root']), inventory, asset,
+                                               Path(factory['config_dir']), Path(factory['statistics_path']))
+            if factory != expected:
+                raise ValueError('Qwen attribution factory differs from the pinned export')
+            if any(config.get(key) is not None for key in ('baseline', 'baseline_sha256',
+                                                          'baseline_binding', 'baseline_binding_sha256',
+                                                          'cpu_receipt', 'cpu_receipt_sha256')):
+                raise ValueError('The published runtime probe creates its own native baseline')
+            cpu = None
+            vendor_binding = {'published_runtime_export_verified': True,
+                              'baseline_mode': 'fresh_native_unmasked_prediction'}
+        else:
+            cpu = sealed_metadata(config['cpu_receipt'], config['cpu_receipt_sha256'])
+            validate_cpu_receipt(cpu, sha256(qwen_h16.__file__))
+            vendor_binding = validate_qwen_vendor_binding(config, cpu)
         required = {'training_config.json', 'portable/qwen_backbone/manifest.json',
                     'portable/qwen_backbone/model.safetensors', 'portable/shared_action_head/manifest.json',
                     'portable/shared_action_head/action_head.safetensors'}
@@ -251,6 +280,8 @@ def model_metadata(config, sample):
             expected = acquired['portable/'+component+'/'+filename]
             if saved.get('weights_file') != filename or saved.get('weights_sha256') != expected['sha256']:
                 raise ValueError('Saved weights manifest differs from pinned acquisition receipt')
+        if published:
+            return {'cpu': None, 'baseline': None, 'snapshots': snapshots, 'vendor_binding': vendor_binding}
         baseline = sealed_metadata(config['baseline'], config['baseline_sha256'])
         binding = sealed_metadata(config['baseline_binding'], config['baseline_binding_sha256'])
         validate_baseline_binding(binding, sample, config['baseline_sha256'], config['source_manifest_sha256'])

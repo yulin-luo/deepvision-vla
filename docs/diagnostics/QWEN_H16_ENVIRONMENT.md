@@ -76,7 +76,43 @@ Follow the [common launch command](PUBLIC_CORE.md#run-a-prepared-plan) with
 the new component receipt. The inventory records the source checkpoint
 revision, while the Hub revision identifies the downloadable export.
 
+## Recompute a Grad-CAM example with the published Qwen checkpoint
+
+Use the published Qwen H16 runtime export and a prepared BridgeV2 drop launch.
+For example, ordinal 49 is the frame used in the bundled attribution example.
+The probe takes its ROI boxes from the reviewed panel. It records a new
+unmasked prediction on the selected GPU before capturing gradients, then
+checks that all four probe forwards match that prediction.
+
+```bash
+export QWEN_PROBE="$DV_WORK/qwen-attribution-49"
+python -m deepvision_vla.diagnostics prepare qwen-attribution \
+  --prepared-launch "$RUN/launch.json" --ordinal 49 --gpu "$GPU" \
+  --output "$QWEN_PROBE" --node-local /tmp/deepvision-qwen-attribution-49
+
+PROBE_SHA=$(sha256sum "$QWEN_PROBE/launch.json" | cut -d' ' -f1)
+SUPERVISOR_PYTHON=python
+PYTHONPATH="$DV_CODE/src" "$SUPERVISOR_PYTHON" "$DV_CODE/src/deepvision_vla/diagnostics/paper_probe_watchdog.py" \
+  --launch-plan "$QWEN_PROBE/launch.json" --launch-plan-sha256 "$PROBE_SHA"
+```
+
+This validates the launch without loading a model. Add `--execute` on the
+idle GPU to produce `result/result.json` beneath `QWEN_PROBE`. If your model
+environment's Python lacks `os.pidfd_open` or `signal.pidfd_send_signal`, set
+`SUPERVISOR_PYTHON` to a Linux Python interpreter that supports both. The
+prepared launch still runs the model in its pinned environment.
+
+Redraw ordinal 49 with the CPU plotting environment from the [Quickstart](QUICKSTART.md).
+
+```bash
+"$DV_REPORT_PYTHON" -m deepvision_vla.diagnostics plot attribution \
+  --image "$PANEL/images/643f49a881a2772dc005.jpg" \
+  --result "$QWEN_PROBE/result/result.json" \
+  --output "$DV_WORK/qwen-attribution-49-figure"
+```
+
 ## Run with the original controlled components
+
 
 
 Place the backbone, shared head and their component manifests under the

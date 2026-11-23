@@ -17,14 +17,25 @@ The evaluator supports:
 
 ## Run a task
 
-Complete [installation](INSTALL_LINUX.md) and [checkpoint setup](CHECKPOINT_DELIVERY.md), then select an available physical GPU:
+Complete the [native simulator installation](INSTALL_LINUX.md#2-rlbench-native-dependencies)
+and [checkpoint download](CHECKPOINT_DELIVERY.md#download-and-verify). With the
+reference environment activated, create the simulator configuration:
 
 ```bash
-deepvision eval --config /your/config.json --output /new/close-box-results \
+deepvision configure --checkpoint /your/checkpoint-299-39300 \
+  --verification-receipt /existing/checkpoint-verification.json \
+  --env-prefix /your/env --deps-root /your/deps --output /new/rlbench-config.json
+deepvision doctor --config /new/rlbench-config.json
+```
+
+Use this configuration with an available physical GPU:
+
+```bash
+deepvision eval --config /new/rlbench-config.json --output /new/close-box-results \
   --gpu 0 --task close_box --episodes 50
 ```
 
-A one-episode environment check uses the same command with `--episodes 1`. Each run requires a new output directory.
+Start with `--episodes 1` to check simulator reset, model inference, and action execution. Each run requires a new output directory.
 
 The checkpoint uses variation 0, a 224×224 front RGB observation, matched crop 0.9, and no robot-state conditioning. Each episode permits at most 10 policy steps. The evaluation seed is `42 + episode_id * 1009`; the reset adapter makes one reset attempt for each episode identity. The selected model profile is `hf-legacy-224-v1`.
 
@@ -44,7 +55,7 @@ The summary reports requested episodes, actual model attempts, successes, model 
 ## Evaluate all ten tasks
 
 ```bash
-deepvision evaluate-all --config /your/config.json \
+deepvision evaluate-all --config /new/rlbench-config.json \
   --output /new/rlbench10-results --gpu 0
 ```
 

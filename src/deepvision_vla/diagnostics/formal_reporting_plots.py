@@ -14,16 +14,21 @@ DISPLAY={'roi_matched_random':'Matched ROI','random_nonROI_visual':'Random non-R
          'roi_matched':'Matched task ROI','non_target_object':'Non-target object','empty_background':'Background'}
 
 
-def _alignment(fig,axes):
+def _alignment(fig,axes,*,columns=None):
     fig.canvas.draw();width,height=fig.get_size_inches()*72
     boxes=[ax.get_position().bounds for ax in axes]
     if len(boxes)>1:
         if (max(b[2]*width for b in boxes)-min(b[2]*width for b in boxes)>1.5
                 or max(b[3]*height for b in boxes)-min(b[3]*height for b in boxes)>1.5):
             raise ValueError('Rendered comparable plot areas are not equally sized within1.5pt')
-        if len(boxes)==4:
-            if (abs(boxes[0][0]-boxes[2][0])*width>1.5 or abs(boxes[1][0]-boxes[3][0])*width>1.5
-                    or abs(boxes[0][1]-boxes[1][1])*height>1.5 or abs(boxes[2][1]-boxes[3][1])*height>1.5):
+        if columns is not None:
+            if columns < 1 or len(boxes) % columns:
+                raise ValueError('Grid columns must divide the number of rendered panels')
+            rows = (boxes[start:start+columns] for start in range(0, len(boxes), columns))
+            grid_columns = (boxes[start::columns] for start in range(columns))
+            offsets = [(height, [box[1] for box in row]) for row in rows]
+            offsets.extend((width, [box[0] for box in column]) for column in grid_columns)
+            if any((max(values) - min(values)) * scale > 1.5 for scale, values in offsets):
                 raise ValueError('Rendered shared panel edges are not aligned within1.5pt')
     return {'status':'passed_equal_plot_area_sizes' if len(boxes)>1 else 'single_panel',
         'tolerance_pt':1.5,'figure_size_points':[float(width),float(height)],
@@ -63,11 +68,11 @@ def _coverage(result,metric):
         f"metric-valued points {result.get('metric_reference_coverage_points',{}).get(metric,'unknown')}")
 
 
-def _save(fig,axes,path,contract):
+def _save(fig,axes,path,contract,*,columns=None):
     import matplotlib.pyplot as plt
     if contract.get('synthetic_fixture_only'):
         fig.text(.5,.5,'SYNTHETIC FIXTURE',ha='center',va='center',rotation=25,fontsize=32,color='#777777',alpha=.12)
-    alignment=_alignment(fig,axes)
+    alignment=_alignment(fig,axes,columns=columns)
     fig.savefig(path.with_suffix('.png'),dpi=220,facecolor='white')
     fig.savefig(path.with_suffix('.pdf'),facecolor='white')
     with path.with_suffix('.alignment.json').open('x',encoding='utf-8') as f:json.dump(alignment,f,indent=2)
@@ -120,7 +125,8 @@ def plot_report(report,output):
                     contracts.append(_save(fig,axes,out/name,{'model':model,'metric':metric,'group':group,'statistic':statistic,
                         'synthetic_fixture_only':synthetic,
                         'layers':list(LAYERS[model]),'keep_ratios':list(KEEPS),'paired_sources':panel['paired_sources'],
-                        'status':panel['status'],'missing_imputed':False,'smoothing':False,'same_metric_space_only':True}))
+                        'status':panel['status'],'missing_imputed':False,'smoothing':False,'same_metric_space_only':True},
+                        columns=1 if group=='primary' else 2))
             for comparison in result['shallow_deep']:
                 group=comparison['group']
                 panel=result['panels'][group+'|'+comparison['metric']]

@@ -25,9 +25,14 @@ def validate_figure_layer_selection(value, available=None):
     return selected
 
 def validate_paper_probe_counts(state):
-    fields = ('model_forward_calls', 'head_forward_calls', 'backward_calls', 'probes_completed')
-    if any((type(state.get(name)) is not int or state[name] != PROBE_COUNT for name in fields)):
-        raise RuntimeError('The four-layer figure requires exactly4 model/head forwards/backwards')
+    baseline_count = state.get('baseline_forward_calls', 0)
+    if type(baseline_count) is not int or baseline_count not in (0, 1):
+        raise RuntimeError('A fresh baseline must use exactly one native forward')
+    expected = {'model_forward_calls': PROBE_COUNT + baseline_count,
+                'head_forward_calls': PROBE_COUNT + baseline_count,
+                'backward_calls': PROBE_COUNT, 'probes_completed': PROBE_COUNT}
+    if any(type(state.get(name)) is not int or state[name] != count for name, count in expected.items()):
+        raise RuntimeError('Native baseline and four-layer probe counts differ from the declared schedule')
     probes = state.get('probes', [])
     if len(probes) != PROBE_COUNT or tuple((row.get('layer') for row in probes)) != LAYERS or any((row.get('status') != 'complete' for row in probes)) or any((row.get('baseline_comparison', {}).get('bit_exact') is not True for row in probes)):
         raise RuntimeError('Four complete ordered bit-exact layer results are required')
@@ -72,6 +77,17 @@ def run_native(args, sample, image, filtered, cpu, baseline, selected, state, sa
     handles.append(adapter.model.model.register_forward_pre_hook(count_model))
     handles.append(adapter.head.model.register_forward_hook(count_head))
     try:
+        if baseline is None:
+            budget()
+            starts = (state['model_forward_calls'], state['head_forward_calls'])
+            native_baseline = adapter.predict_normalized(image, sample['instruction'])
+            stops = (state['model_forward_calls'], state['head_forward_calls'])
+            if tuple(end - start for start, end in zip(starts, stops, strict=True)) != (1, 1):
+                raise RuntimeError('Published Qwen baseline did not use one model and one head forward')
+            baseline = {'layout': {'adapter': adapter.last_input_layout},
+                        'baseline_normalized_h16': native_baseline}
+            state.update(baseline_forward_calls=1, fresh_native_baseline=baseline)
+            save()
         with frozen_parameters(parameters) as freeze_audit:
             state['parameter_freeze_audit'] = freeze_audit
             for layer in selected_layers:

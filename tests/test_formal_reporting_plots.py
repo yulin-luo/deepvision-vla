@@ -49,6 +49,20 @@ class ReportPlotTests(unittest.TestCase):
             for item in manifest['files']:self.assertEqual(f.file_sha(out/item['path']),item['sha256'])
             with self.assertRaises(FileExistsError):f.write_report(out,reports,sources,admission={},input_seals={})
 
+    def test_attribution_redraw_with_one_model_aligns_four_layers_in_one_row(self):
+        from deepvision_vla.diagnostics.attribution_plot import plot
+
+        example = Path(__file__).resolve().parents[1] / "examples/bridgev2-attribution"
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp) / "single-model-attribution"
+            receipt = plot(example / "source.jpg", [example / "qwen_h16.json"], output)
+            self.assertTrue((output / "attribution.png").is_file())
+            self.assertTrue((output / "attribution.pdf").is_file())
+            boxes = receipt["alignment"]["axes_rectangles_points"]
+            self.assertEqual(len(boxes), 4)
+            self.assertLessEqual(max(box[1] for box in boxes) - min(box[1] for box in boxes), 1.5)
+            self.assertEqual(list(receipt["result_sha256"]), ["qwen_h16"])
+
     def test_missing_panel_is_gap_not_zero_and_plot_contract_incomplete(self):
         from deepvision_vla.diagnostics.formal_reporting_plots import _values
         import numpy as np

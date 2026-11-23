@@ -99,6 +99,21 @@ class PublicCoreContracts(unittest.TestCase):
         config['factory']['random_fallback']=True
         with self.assertRaises(ValueError):call()
 
+    def test_qwen_attribution_counts_fresh_unmasked_forward_separately(self):
+        from deepvision_vla.diagnostics.adapters import qwen_h16_output
+
+        probes = [{"layer": layer, "status": "complete", "baseline_comparison": {"bit_exact": True}}
+                  for layer in qwen_h16_output.LAYERS]
+        legacy = {"model_forward_calls": 4, "head_forward_calls": 4, "backward_calls": 4,
+                  "probes_completed": 4, "probes": probes}
+        fresh = {**legacy, "baseline_forward_calls": 1, "model_forward_calls": 5, "head_forward_calls": 5}
+        qwen_h16_output.validate_paper_probe_counts(legacy)
+        qwen_h16_output.validate_paper_probe_counts(fresh)
+        with self.assertRaises(RuntimeError):
+            qwen_h16_output.validate_paper_probe_counts({**fresh, "backward_calls": 5})
+        with self.assertRaises(RuntimeError):
+            qwen_h16_output.validate_paper_probe_counts({**legacy, "model_forward_calls": 5})
+
     def test_baseline_binding_tamper_or_missing_native_equivalence_rejected(self):
         sample=dict(sample_id='a'*20,image_sha256='b'*64,arrays_sha256='c'*64,anchor=7,instruction='déplier')
         binding={'schema':'deepvision_qwen_baseline_binding_v1',**sample,'baseline_sha256':'d'*64,

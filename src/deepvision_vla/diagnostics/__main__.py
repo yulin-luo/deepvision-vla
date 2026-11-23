@@ -9,7 +9,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(
         prog="python -m deepvision_vla.diagnostics",
         description=__doc__,
-        epilog="Prepare modes: fetch, data, plan, launch. Plot modes: redraw, aggregate, attribution, verify. Run validates a launch plan by default.",
+        epilog="Prepare modes: fetch, data, plan, launch, qwen-attribution. Plot modes: redraw, aggregate, attribution, verify. Run validates a launch plan by default.",
     )
     parser.add_argument("command", choices=("prepare", "run", "plot"))
     if not arguments or arguments[0] in ("-h", "--help"):
@@ -18,7 +18,7 @@ def main(argv=None):
     command, *remainder = arguments
     if command == "prepare":
         mode_parser = argparse.ArgumentParser(prog=f"{parser.prog} prepare")
-        mode_parser.add_argument("mode", choices=("fetch", "data", "plan", "launch"))
+        mode_parser.add_argument("mode", choices=("fetch", "data", "plan", "launch", "qwen-attribution"))
         if not remainder or remainder[0] in ("-h", "--help"):
             mode_parser.print_help()
             return 0
@@ -31,6 +31,8 @@ def main(argv=None):
             from .formal_plan import main as operation
         elif mode == "launch":
             from .prepare_launch import main as operation
+        elif mode == "qwen-attribution":
+            from .prepare_qwen_attribution import main as operation
         else:
             mode_parser.error(f"unknown preparation mode: {mode}")
         subcommand = f"{command} {mode}"

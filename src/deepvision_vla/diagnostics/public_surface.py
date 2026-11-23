@@ -38,7 +38,7 @@ VENDOR_DYNAMIC_CONTRACTS = {
 OPTIONAL_MODULES = tuple(PREFIX + name for name in (
     'reconstruct_bridge', 'fetch_bridge_shards', 'asset_receipts', 'formal_reporting', 'formal_reporting_plots', 'attribution_plot',
     '__main__', 'formal_single_model_watchdog', 'paper_probe_watchdog',
-    'prepare_launch', 'formal_reporting_verify',
+    'prepare_launch', 'prepare_qwen_attribution', 'formal_reporting_verify',
 ))
 
 

@@ -169,7 +169,7 @@ def plot(image_path, result_paths, output, *, scale="model"):
     with matplotlib.rc_context({"font.family": "DejaVu Sans", "pdf.fonttype": 42}):
         fig, axes, _, peaks = draw(image, bundles, scale=scale)
         try:
-            alignment = _alignment(fig, list(axes.flat))
+            alignment = _alignment(fig, list(axes.flat), columns=axes.shape[1])
             for extension in ("pdf", "png"):
                 fig.savefig(out / f"attribution.{extension}", dpi=300, facecolor="white")
         finally:
