@@ -1,6 +1,6 @@
 # Recompute the three-model BridgeV2 attribution example
 
-Use the original RGB frame in `examples/bridgev2-attribution/source.jpg` and ordinal 49 of the verified BridgeV2 v55 runtime. The example is a cloth-folding frame. [The paper's figure](https://arxiv.org/html/2603.15618v1#S3.SS2) shows a separate example.
+Use the original RGB frame in `examples/bridgev2-attribution/source.jpg` and ordinal 49 of the verified BridgeV2 v55 runtime. The cloth-folding frame was retained from earlier verification to check all three model paths with the same input and instruction. [The paper's figure](https://arxiv.org/html/2603.15618v1#S3.SS2) shows a separate example.
 
 Set `DV_CODE` to the root of this checkout in each model's environment and run the commands from that root. Use an idle NVIDIA GPU and a different output path for each run. The three model environments are separate. The CPU plotting environment is shared.
 

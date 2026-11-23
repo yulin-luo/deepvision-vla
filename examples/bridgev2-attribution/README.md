@@ -1,16 +1,25 @@
 # BridgeData V2 contribution maps
 
+## Paper Figure 2
+
 <img src="https://deepvision-vla.github.io/static/images/diagnosis-final.png" alt="Paper Figure 2. Layer-wise ROI masking curves and contribution maps for OpenVLA, Pi0, and QwenVLA-OFT" width="880" />
 
 [Figure 2 from the paper](https://arxiv.org/html/2603.15618v1#S3.SS2) · [Full-resolution figure](../../assets/bridgev2-paper-figure2.png)
 
-## Runnable attribution example
+The ROI masking curves summarize sensitivity across trajectories. The contribution maps illustrate the paper's example.
 
-The maps below use one cloth-folding frame and the published checkpoints. [Recompute all three models from the source frame](../../docs/diagnostics/ATTRIBUTION.md).
+## Reproduce Grad-CAM on a shared frame
+
+This cloth-folding frame was retained from earlier verification so that all three model runs could be checked against the same image and instruction. Individual layers can show different patterns on this frame. Use the ROI masking curves above for the aggregate layer-wise result.
+
+[Recompute all three models from the source frame](../../docs/diagnostics/ATTRIBUTION.md) · [Three-model PDF](native-attribution.pdf) · [Render manifest](NATIVE_RENDER_RECEIPT.json)
+
+<details>
+<summary>Show the 12 Grad-CAM maps for the shared frame</summary>
 
 <img src="native-attribution.png" alt="Three-model Grad-CAM on the shared BridgeV2 cloth-folding frame" width="720" />
 
-[Three-model PDF](native-attribution.pdf) · [Render manifest](NATIVE_RENDER_RECEIPT.json)
+</details>
 
 This example contains the original image and the signed and positive token Grad-CAM values for four layers of each model. All three models read the same BridgeData V2 frame and the instruction “fold the cloth from the right to the left side.”
 
@@ -18,7 +27,7 @@ This example contains the original image and the signed and positive token Grad-
 - Official LeRobot π₀ base layers 0, 6, 12, and 16 use the mean squared native flow velocity at a fixed denoising step.
 - QwenVLA-OFT layers 0, 12, 24, and 34 use the mean squared output of the full normalized H16 action head.
 
-The figure divides the positive Grad-CAM values by the maximum across the four layers of each model. The maps describe this one example. The models use different attribution targets and the plot scale is shared only within each model.
+The figure divides positive Grad-CAM by the maximum across the four layers of each model. Brightness compares relative magnitudes within a model. The three attribution targets have different scales.
 
 ## Redraw
 
